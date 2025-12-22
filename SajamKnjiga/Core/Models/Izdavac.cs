@@ -13,7 +13,7 @@ namespace Core.Models
         private string naziv;
         private Autor sef;
         private List<Autor> spisakAutora;
-        private List<Autor> spisakKnjiga;
+        private List<Knjiga> spisakKnjiga;
 
         public int Sifra
         {
@@ -39,7 +39,7 @@ namespace Core.Models
         }
 
         public List<Autor> SpisakAutora { get; set; }
-        public List<Autor> SpisakKnjiga { get; set; }
+        public List<Knjiga> SpisakKnjiga { get; set; }
 
         public Izdavac()
         {

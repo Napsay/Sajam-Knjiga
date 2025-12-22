@@ -85,7 +85,7 @@ namespace Core.Models
 
         public Knjiga()
         {
-                
+            
         }
         public Knjiga(string isbn,string naziv,string zanr,int godinaIzdavanja,int cena,int brojStrana,string izdavac)
         {
