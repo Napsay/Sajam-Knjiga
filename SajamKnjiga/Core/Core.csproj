@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\AdresaDao.cs" />
+    <Compile Include="DAO\AutorDao.cs" />
+    <Compile Include="Interfaces\IAdresaDao.cs" />
+    <Compile Include="Interfaces\IAutorDao.cs" />
+    <Compile Include="Interfaces\IIzdavacDao.cs" />
+    <Compile Include="Interfaces\IKnjigaDao.cs" />
+    <Compile Include="Interfaces\IPosetilacDao.cs" />
     <Compile Include="Models\Adresa.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Izdavac.cs" />
@@ -50,10 +57,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ISerializable.cs" />
     <Compile Include="Utils\Serializer.cs" />
+    <Compile Include="Utils\Storage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAO\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

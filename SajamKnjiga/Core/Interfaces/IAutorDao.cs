@@ -9,9 +9,9 @@ namespace Core.Interfaces
 {
     internal interface IAutorDao
     {
-        void Add(Autor autor);
-        void Update(Autor autor);
-        void Delete(int sifra);
+        Autor Add(Autor autor);
+        Autor Update(Autor autor);
+        Autor Delete(int sifra);
         Autor GetBySifra(int sifra);
         List<Autor> GetAll();
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class Adresa:ISerializable
+    public class Adresa:ISerializable
     {
         private int sifra;
 
@@ -44,9 +44,9 @@ namespace Core.Models
             set { ulica = value; }
         }
 
-        public Adresa(int sifra,string ulica,int broj,string grad,string drzava)
+        public Adresa(string ulica,int broj,string grad,string drzava)
         {
-            Sifra = sifra;
+
             Ulica = ulica;
             Broj = broj;
             Grad = grad;
