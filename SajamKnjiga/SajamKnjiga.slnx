@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="ConsoleClient/ConsoleClient.csproj" />
-  <Project Path="Core/Core.csproj" />
-  <Project Path="WpfClient/WpfClient.csproj" />
+  <Project Path="ConsoleClient/ConsoleClient.csproj" Id="3cbc0ab0-ad45-49dc-842b-aae7bdfca600" />
+  <Project Path="Core/Core.csproj" Id="ce5d32e4-31c9-4779-8c9e-7142e195b153" />
+  <Project Path="WpfClient/WpfClient.csproj" Id="3ef705dd-fdad-4c11-8fee-b4461d9b031f" />
 </Solution>

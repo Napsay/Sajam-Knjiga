@@ -10,6 +10,7 @@ namespace ConsoleClient
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
