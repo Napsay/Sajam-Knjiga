@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Core.Models
 {
-    internal class Autor:ISerializable
+    public class Autor:ISerializable
     {
         private int autorID;
         private string ime;
@@ -21,21 +21,36 @@ namespace Core.Models
         private string email;
 
         public void FromCSV(string[] values)
-        {
-            autorID = int.Parse(values[0]);
-            Ime = values[1];
+        { 
+           autorID = int.Parse(values[0]);
+            ime = values[1];
             prezime = values[2];
+            datumRodjenja = DateTime.Parse(values[3]);
+            Adresa = new Adresa { Sifra = int.Parse(values[4]) };
+            telefon = values[5];
+            brojLicneKarte = values[6];
+            godineIskustva = int.Parse(values[7]);
+            email = values[8];
         }
         public string[] ToCSV()
         {
             string[] csvValues =
             {
             autorID.ToString(),
-            ime,prezime
+            ime,
+            prezime,
+            datumRodjenja.ToString("yyyy-MM-dd"),
+            // Pretpostavljamo da klasa Adresa ima metodu koja vraća string za CSV
+            $"{adresa.Sifra}",
+            telefon,
+            brojLicneKarte,
+            godineIskustva.ToString(),
+            email
             };
 
             return csvValues;
         }
+
         public int AutorID
         {
             get { return autorID; }
@@ -113,6 +128,18 @@ namespace Core.Models
 
         }
 
-        
+        override public string ToString()
+        {
+            return 
+            $"{AutorID,4} | " +
+            $"{Ime,-12} | " +
+            $"{Prezime,-15} | " +
+            $"{DatumRodjenja:dd.MM.yyyy,-12} | " +
+            $"{Telefon,-12} | " +
+            $"{Email,-25} | " +
+            $"{GodineIskustva,4} |";
+        }
+
+
     }
 }

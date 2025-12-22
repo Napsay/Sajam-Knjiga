@@ -13,7 +13,7 @@ namespace Core.Models
         B  //VIP
     }
 
-    internal class Posetilac
+    public class Posetilac
     {
 
         private string ime;

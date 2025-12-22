@@ -9,15 +9,17 @@ using Core.Models;
 using Core.Utils;
 namespace Core.DAO
 {
-    internal class AutorDao:IAutorDao
+    public class AutorDao:IAutorDao
     {
         private readonly List<Autor> _autors;
         private readonly Storage<Autor> _storage;
         //TO DO DODATI ADRESU DAO
+        private readonly AdresaDao _adresaDAO;
         public AutorDao()
         {
             _storage = new Storage<Autor>("autori.csv");
-            _autors = _storage.Load();  
+            _autors = _storage.Load();
+            _adresaDAO = new AdresaDao();
         }
         private int GenerateId()
         {

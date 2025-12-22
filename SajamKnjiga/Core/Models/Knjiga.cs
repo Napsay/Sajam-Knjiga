@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class Knjiga
+    public class Knjiga
     {
         private string isbn;
         private string naziv;

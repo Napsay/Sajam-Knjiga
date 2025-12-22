@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class Izdavac
+    public class Izdavac
     {
 
         private int sifra;
