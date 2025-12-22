@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Project Path="ConsoleClient/ConsoleClient.csproj" />
+  <Project Path="Core/Core.csproj" />
+  <Project Path="WpfClient/WpfClient.csproj" />
+</Solution>
