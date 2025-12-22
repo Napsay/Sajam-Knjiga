@@ -44,9 +44,9 @@ namespace Core.Models
             set { ulica = value; }
         }
 
-        public Adresa(string ulica,int broj,string grad,string drzava)
+        public Adresa(int sifra,string ulica,int broj,string grad,string drzava)
         {
-
+            Sifra = sifra;
             Ulica = ulica;
             Broj = broj;
             Grad = grad;

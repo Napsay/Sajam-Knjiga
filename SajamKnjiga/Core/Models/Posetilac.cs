@@ -14,7 +14,7 @@ namespace Core.Models
         B  //VIP
     }
 
-    public class Posetilac: ISerializable
+    public class Posetilac
     {
 
         private string ime;

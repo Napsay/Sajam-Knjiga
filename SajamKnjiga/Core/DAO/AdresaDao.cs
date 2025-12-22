@@ -9,15 +9,16 @@ using Core.Utils;
 
 namespace Core.DAO
 {
-    internal class AdresaDao:IAdresaDao
+    public class AdresaDao:IAdresaDao
     {
         private readonly List<Adresa> _addresses;
         private readonly Storage<Adresa> _storage;
 
-        public AdresaDao(Storage<Adresa> storage)
+        public AdresaDao()
         {
-            _storage = new Storage<Adresa>("addresses.txt");
-            _addresses = _storage.Load(); _storage = storage;
+            _storage = new Storage<Adresa>("addresses.csv");
+            _addresses = _storage.Load();
+            
         }
 
         private int generateId()
