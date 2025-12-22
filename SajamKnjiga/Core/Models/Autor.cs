@@ -1,23 +1,41 @@
-﻿using System;
+﻿using Core.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Core.Models
 {
-    internal class Autor
+    internal class Autor:ISerializable
     {
         private int autorID;
         private string ime;
         private string prezime;
         private DateTime datumRodjenja;
-        private string adresa;
+        private Adresa adresa;
         private string telefon;
         private string brojLicneKarte;
         private int godineIskustva;
         private string email;
 
+        public void FromCSV(string[] values)
+        {
+            autorID = int.Parse(values[0]);
+            Ime = values[1];
+            prezime = values[2];
+        }
+        public string[] ToCSV()
+        {
+            string[] csvValues =
+            {
+            autorID.ToString(),
+            ime,prezime
+            };
+
+            return csvValues;
+        }
         public int AutorID
         {
             get { return autorID; }
@@ -48,7 +66,7 @@ namespace Core.Models
             set { telefon = value; }
         }
 
-        public string Adresa
+        public Adresa Adresa
         {
             get { return adresa; }
             set { adresa = value; }
@@ -79,7 +97,7 @@ namespace Core.Models
             Knjige = new List<Knjiga>();
         }
         public Autor(int id,string ime, string prezime, DateTime datumRodjenja,
-                 string adresa, string telefon, string email,
+                 Adresa adresa, string telefon, string email,
                  string brojLicneKarte, int godineIskustva)
         {
             AutorID = id;
@@ -94,5 +112,7 @@ namespace Core.Models
             Knjige = new List<Knjiga>();
 
         }
+
+        
     }
 }
