@@ -13,7 +13,7 @@ namespace Core.DAO
     {
         private readonly List<Autor> _autors;
         private readonly Storage<Autor> _storage;
-        
+        //TO DO DODATI ADRESU DAO
         public AutorDao()
         {
             _storage = new Storage<Autor>("autori.csv");
