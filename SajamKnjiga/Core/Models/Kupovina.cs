@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 { 
-    internal class Kupovina
+    public class Kupovina
     {
 
         private Posetilac kupac;

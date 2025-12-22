@@ -11,9 +11,9 @@ namespace Core.Interfaces
     {
         List<Posetilac> GetAll();
 
-        void Add(Posetilac posetilac);
+        Posetilac Add(Posetilac posetilac);
 
-        void Update(Posetilac posetilac);
-        void Delete(string BrClanskeKarte);
+        Posetilac Update(Posetilac posetilac);
+        Posetilac Delete(string BrClanskeKarte);
     }
 }

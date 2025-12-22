@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Core.Utils;
 using System.Threading.Tasks;
 
 namespace Core.Models
@@ -13,13 +14,13 @@ namespace Core.Models
         B  //VIP
     }
 
-    internal class Posetilac
+    public class Posetilac: ISerializable
     {
 
         private string ime;
         private string prezime;
         private DateTime datumRodjenja;
-        private string adresa;
+        private Adresa adresa;
         private string telefon;
         private string email;
         private string brClanskeKarte;
@@ -50,7 +51,7 @@ namespace Core.Models
             set { datumRodjenja = value; }
         }
 
-        public string Adresa
+        public Adresa Adresa
         {
             get { return adresa; }
             set { adresa = value; }
@@ -103,7 +104,7 @@ namespace Core.Models
         }
 
         public Posetilac(string ime, string prezime, DateTime datumRodjenja,
-            string adresa, string telefon, string email, string brClanskeKarte,
+            Adresa adresa, string telefon, string email, string brClanskeKarte,
             int trenutnaGodClanstva, StatusPosetioca status, double prosecnaOcenaRec)
 
         {
@@ -121,5 +122,27 @@ namespace Core.Models
             ListaZelja = new List<Knjiga>();
         }
 
+        public override string ToString()
+        {
+            return $"{Ime} {Prezime} ";
+        }
+
+        public string[] ToCSV()
+        {
+            string[] csvValues =
+            {
+                Ime,
+                Prezime
+            
+            };
+            return csvValues;
+        }
+      
+        public void FromCSV(string[] values)
+        {
+            Ime = values[0];
+            Prezime = values[1];
+            
+        }
     }
 }
