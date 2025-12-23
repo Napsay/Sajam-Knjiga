@@ -39,18 +39,20 @@ namespace ConsoleClient.Views
 
         private void ShowMenu()
         {
-            System.Console.WriteLine("\nChoose an option: ");
-            System.Console.WriteLine("1: Show all Autors");
-            System.Console.WriteLine("2: Add autor");
-            System.Console.WriteLine("3: Update autor");
-            System.Console.WriteLine("4: Remove autor");
-            System.Console.WriteLine("5: Show all Books");
-            System.Console.WriteLine("6: Add book");
-            System.Console.WriteLine("7: Remove book");
-            System.Console.WriteLine("8: Update book");
-            System.Console.WriteLine("9: Show all visitors");
-
-            System.Console.WriteLine("0: Close");
+            Console.WriteLine("\nChoose an option: ");
+            Console.WriteLine("1: Show all Autors");
+            Console.WriteLine("2: Add autor");
+            Console.WriteLine("3: Update autor");
+            Console.WriteLine("4: Remove autor");
+            Console.WriteLine("5: Show all Books");
+            Console.WriteLine("6: Add book");
+            Console.WriteLine("7: Remove book");
+            Console.WriteLine("8: Update book");
+            Console.WriteLine("9: Show all visitors");
+            Console.WriteLine("10: Add visitor");
+            Console.WriteLine("11: Update visitor");
+            Console.WriteLine("12: Remove visitor");
+            Console.WriteLine("0: Close");
         }
 
         private void HandleMenuInput(string input)
@@ -64,7 +66,7 @@ namespace ConsoleClient.Views
                     AddAutor();
                     break;
                 case "3":
-                    //UpdateAutor();
+                    UpdateAutor();
                     break;
                 case "4":
                     RemoveAutor();
@@ -84,7 +86,15 @@ namespace ConsoleClient.Views
                 case "9":
                     ShowPosetioci();
                     break;
-
+                case "10":
+                    AddPosetilac();
+                    break;
+                case "11":
+                    RemovePosetilac();
+                    break;
+                case "12":
+                    UpdatePosetilac();
+                    break;
             }
         }   
 
@@ -285,11 +295,38 @@ namespace ConsoleClient.Views
             };
         }
 
+        private void UpdateAutor()
+        {
+            Console.WriteLine("Enter ID of autor to update");
+            int id = int.Parse(Console.ReadLine());
+            var existingAutor = _autorDao.GetBySifra(id);
+            if (existingAutor == null)
+            {
+                Console.WriteLine("Autor not found.");
+                return;
+            }
+            Console.WriteLine("Enter new autor details:");
+            Autor updatedData = InputAutor();
+            existingAutor.Ime = updatedData.Ime;
+            existingAutor.Prezime = updatedData.Prezime;
+            existingAutor.Adresa = updatedData.Adresa;
+            existingAutor.Telefon = updatedData.Telefon;
+            existingAutor.BrojLicneKarte = updatedData.BrojLicneKarte;
+            existingAutor.GodineIskustva = updatedData.GodineIskustva;
+            existingAutor.Email = updatedData.Email;
+            existingAutor.DatumRodjenja = updatedData.DatumRodjenja;
+
+            _autorDao.Update(existingAutor);
+            Console.WriteLine("Autor updated successfully.");
+
+        }
+
         private void AddKnjiga()
         {
             Knjiga knjiga = InputKnjiga();  
             _knjigaDao.addKnjiga(knjiga);
             Console.WriteLine("Knjiga added successfully.");
+            
         }
 
 
@@ -341,22 +378,137 @@ namespace ConsoleClient.Views
         private void ShowPosetioci()
         {
             List<Posetilac> posetioci = _posetilacDao.GetAllPosetilac();
-            PrintPosetioci(posetioci);
+            PrintPosetilac(posetioci);
         }
 
-        private void PrintPosetioci(List<Posetilac> posetioci)
+        private void PrintPosetilac(List<Posetilac> posetioci)
         {
-            Console.WriteLine("ПОСЕТИОЦИ:");
+            Console.WriteLine("POSETIOCI:");
             Console.WriteLine(
-                $"{"Ime",-12} | {"Prezime",-12} | {"Datum rodjenja",-12} | {"Telefon",-12} | {"Email",-25} | {"Clanska karta",-12} | {"God. clanstva",5} | {"Status",-3} | {"Prosecna ocena",5} |"
+                $"{"Ime",-15} | {"Prezime",-15} | {"Datum rođenja",-12} | {"Telefon",-15} | {"Email",-25} | {"Članska karta",-15} | {"God. članstva",13} | {"Status",-10} | {"Ocena",6} |"
             );
-            Console.WriteLine(new string('-', 130));
+            Console.WriteLine(new string('-', 150));
 
             foreach (Posetilac p in posetioci)
             {
                 Console.WriteLine(p);
             }
         }
+
+        private void AddPosetilac()
+        {
+            Posetilac posetilac = InputPosetilac();
+            _posetilacDao.AddPosetilac(posetilac);
+            System.Console.WriteLine("Posetilac added successfully.");
+        }
+
+
+        private Posetilac InputPosetilac()
+        {
+            System.Console.WriteLine("Enter first name: ");
+            string ime = System.Console.ReadLine() ?? string.Empty;
+
+            System.Console.WriteLine("Enter last name: ");
+            string prezime = System.Console.ReadLine() ?? string.Empty;
+
+            System.Console.WriteLine("Enter date of birth (yyyy-MM-dd): ");
+            DateTime datumRodjenja;
+            while (!DateTime.TryParse(Console.ReadLine(), out datumRodjenja))
+            {
+                System.Console.WriteLine("Invalid date. Please enter in format yyyy-MM-dd: ");
+            }
+
+            Adresa adresa = InputAdresa();
+            _adresaDao.Add(adresa);
+
+            System.Console.WriteLine("Enter phone: ");
+            string telefon = System.Console.ReadLine() ?? string.Empty;
+
+            System.Console.WriteLine("Enter email: ");
+            string email = System.Console.ReadLine() ?? string.Empty;
+
+            
+            System.Console.WriteLine("Enter current membership year: ");
+            int trenutnaGodClanstva;
+            while (!int.TryParse(Console.ReadLine(), out trenutnaGodClanstva))
+            {
+                System.Console.WriteLine("Invalid number. Please enter an integer: ");
+            }
+
+            System.Console.WriteLine("Enter visitor status (P - Normal Status,B - VIP Status): ");
+            StatusPosetioca status;
+            while (!Enum.TryParse(Console.ReadLine(), true, out status))
+            {
+                System.Console.WriteLine("Invalid status. Try again: ");
+            }
+
+            System.Console.WriteLine("Enter average review rating: ");
+            double prosecnaOcenaRec;
+            while (!double.TryParse(Console.ReadLine(), out prosecnaOcenaRec))
+            {
+                System.Console.WriteLine("Invalid number. Please enter a decimal value: ");
+            }
+
+            return new Posetilac
+            {
+                Ime = ime,
+                Prezime = prezime,
+                DatumRodjenja = datumRodjenja,
+                Adresa = adresa,
+                Telefon = telefon,
+                Email = email,
+                TrenutnaGodClanstva = trenutnaGodClanstva,
+                Status = status,
+                ProsecnaOcenaRec = prosecnaOcenaRec,
+                KupljeneKnjige = new List<Kupovina>(),
+                ListaZelja = new List<Knjiga>()
+            };
+        }
+        private void RemovePosetilac()
+        {
+            System.Console.WriteLine("Enter visitor membership card number to remove: ");
+            string brClanskeKarte = System.Console.ReadLine() ?? string.Empty;
+            try
+            {
+                _posetilacDao.DeletePosetilac(brClanskeKarte);
+                System.Console.WriteLine("Visitor removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        private void UpdatePosetilac()
+        {
+            Console.WriteLine("Enter visitor membership of the visitor to update: ");
+            string brClanskeKarte = Console.ReadLine() ?? string.Empty;
+
+            var existingVisitor = _posetilacDao.GetByBrClanskeKarte(brClanskeKarte);
+            if (existingVisitor == null)
+            {
+                Console.WriteLine("Visitor not found.");
+                return;
+            }
+
+            Console.WriteLine("Enter new visitor details:");
+            Posetilac updatedData = InputPosetilac();
+            existingVisitor.Ime = updatedData.Ime;
+            existingVisitor.Prezime = updatedData.Prezime; 
+            existingVisitor.Adresa = updatedData.Adresa;
+            existingVisitor.Telefon = updatedData.Telefon;
+            existingVisitor.Email = updatedData.Email;
+            existingVisitor.TrenutnaGodClanstva = updatedData.TrenutnaGodClanstva;
+            existingVisitor.Status = updatedData.Status;
+            existingVisitor.ProsecnaOcenaRec = updatedData.ProsecnaOcenaRec;
+            existingVisitor.DatumRodjenja = updatedData.DatumRodjenja;
+
+
+            _posetilacDao.UpdatePosetilac(existingVisitor);
+
+            Console.WriteLine("Visitor updated successfully.");
+        }
+
 
     }
 }

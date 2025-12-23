@@ -21,18 +21,44 @@ namespace Core.DAO
         private readonly List<Posetilac> _posetioci;
         private readonly Storage<Posetilac> _storage;
 
+
         public PosetilacDao()
         {
             _storage = new Storage<Posetilac>("posetioci.csv");
             _posetioci = _storage.Load();
         }
-        
-
-        public  Posetilac AddPosetilac(Posetilac posetilac)
+        private int GenerateClanskaKartaNumber()
         {
-            if (_posetioci.Any(p => p.BrClanskeKarte == posetilac.BrClanskeKarte))
-                throw new Exception("Posetilac sa ovom članskom kartom već postoji.");
+            int max = 0;
 
+            foreach (var p in _posetioci)
+            {
+                if (string.IsNullOrWhiteSpace(p.BrClanskeKarte))
+                    continue;
+
+                var parts = p.BrClanskeKarte.Split('-');
+                if (parts.Length == 3 && int.TryParse(parts[1], out int broj))
+                {
+                    if (broj > max)
+                        max = broj;
+                }
+            }
+
+            return max + 1;
+        }
+
+
+        private string GenerateClanskaKarta()
+        {
+            int broj = GenerateClanskaKartaNumber();
+            int godina = DateTime.Now.Year;
+
+            return $"SK-{broj}-{godina}";
+        }
+
+        public Posetilac AddPosetilac(Posetilac posetilac)
+        {
+            posetilac.BrClanskeKarte = GenerateClanskaKarta();
             _posetioci.Add(posetilac);
             _storage.Save(_posetioci);
             return posetilac;

@@ -125,19 +125,19 @@ namespace Core.Models
 
         public override string ToString()
         {
-            return
-                $"{Ime,-12} | " +
-                $"{Prezime,-12} | " +
-                $"{DatumRodjenja:yyyy-MM-dd,-12} | " +
-                $"{Adresa?.ToString() ?? "N/A",-20} | " +
-                $"{Telefon,-12} | " +
-                $"{Email,-25} | " +
-                $"{BrClanskeKarte,-10} | " +
-                $"{TrenutnaGodClanstva,4} | " +
-                $"{Status,-3} | " +
-                $"{ProsecnaOcenaRec,5:F2} |";
+            return string.Format(
+                "{0,-15} | {1,-15} | {2,-12:yyyy-MM-dd} | {3,-15} | {4,-25} | {5,-15} | {6,13} | {7,-10} | {8,6:F1} |",
+                Ime,
+                Prezime,
+                DatumRodjenja,
+                Telefon,
+                Email,
+                BrClanskeKarte,
+                TrenutnaGodClanstva,
+                Status,
+                ProsecnaOcenaRec
+            );
         }
-
         public string[] ToCSV()
         {
             string[] csvValues =
