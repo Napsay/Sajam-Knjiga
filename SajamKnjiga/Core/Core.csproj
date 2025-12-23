@@ -44,11 +44,13 @@
     <Compile Include="DAO\AdresaDao.cs" />
     <Compile Include="DAO\AutorDao.cs" />
     <Compile Include="DAO\KnjigaDao.cs" />
+    <Compile Include="DAO\KupovinaDao.cs" />
     <Compile Include="DAO\PosetilacDao.cs" />
     <Compile Include="Interfaces\IAdresaDao.cs" />
     <Compile Include="Interfaces\IAutorDao.cs" />
     <Compile Include="Interfaces\IIzdavacDao.cs" />
     <Compile Include="Interfaces\IKnjigaDao.cs" />
+    <Compile Include="Interfaces\IKupovinaDao.cs" />
     <Compile Include="Interfaces\IPosetilacDao.cs" />
     <Compile Include="Models\Adresa.cs" />
     <Compile Include="Models\Autor.cs" />

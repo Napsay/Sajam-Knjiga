@@ -16,13 +16,16 @@ namespace ConsoleClient.Views
         private readonly AdresaDao _adresaDao;
         private readonly KnjigaDao _knjigaDao;
         private readonly PosetilacDao _posetilacDao;
+        private readonly KupovinaDao _kupovinaDao;
 
-        public BibliotekaConsoleView(AutorDao autorDao,AdresaDao adresaDao, KnjigaDao knjigaDao, PosetilacDao posetilacDao)
+        public BibliotekaConsoleView(AutorDao autorDao, AdresaDao adresaDao, KnjigaDao knjigaDao, PosetilacDao posetilacDao,
+                                        KupovinaDao kupovinaDao)
         {
-                _autorDao = autorDao;
-                _adresaDao = adresaDao;
-               _knjigaDao = knjigaDao;
-               _posetilacDao = posetilacDao;
+            _autorDao = autorDao;
+            _adresaDao = adresaDao;
+            _knjigaDao = knjigaDao;
+            _posetilacDao = posetilacDao;
+            _kupovinaDao = kupovinaDao;
 
         }
 
@@ -52,6 +55,10 @@ namespace ConsoleClient.Views
             Console.WriteLine("10: Add visitor");
             Console.WriteLine("11: Update visitor");
             Console.WriteLine("12: Remove visitor");
+            Console.WriteLine("13: Show all purchases");
+            Console.WriteLine("14: Add purchase");
+            Console.WriteLine("15: Update purchase");
+            Console.WriteLine("16: Remove purchase");
             Console.WriteLine("0: Close");
         }
 
@@ -74,8 +81,8 @@ namespace ConsoleClient.Views
                 case "5":
                     ShowBooks();
                     break;
-                 case "6":
-                     AddKnjiga();
+                case "6":
+                    AddKnjiga();
                     break;
                 case "7":
                     RemoveKnjiga();
@@ -95,8 +102,20 @@ namespace ConsoleClient.Views
                 case "12":
                     RemovePosetilac();
                     break;
+                case "13":
+                    ShowKupovine();
+                    break;
+                 case "14":
+                    AddKupovina();
+                    break;
+                case "15":
+                    UpdateKupovina();
+                    break;
+                 case "16":
+                    RemoveKupovina();
+                    break; 
             }
-        }   
+        }
 
         private void ShowAutor()
         {
@@ -118,7 +137,7 @@ namespace ConsoleClient.Views
             }
         }
 
-       
+
         private void AddAutor()
         {
             Autor autor = InputAutor();
@@ -126,12 +145,12 @@ namespace ConsoleClient.Views
             System.Console.WriteLine("Autor added successfully.");
         }
 
-     
+
         private Adresa InputAdresa()
         {
             // Unos adrese
-           
-            int idUlice =1 ;
+
+            int idUlice = 1;
 
             System.Console.WriteLine("Enter street name: ");
             string ulica = System.Console.ReadLine() ?? string.Empty;
@@ -199,7 +218,7 @@ namespace ConsoleClient.Views
             };
         }
 
-       
+
 
         private void RemoveAutor()
         {
@@ -220,6 +239,31 @@ namespace ConsoleClient.Views
             }
         }
 
+        private void UpdateAutor()
+        {
+            Console.WriteLine("Enter ID of autor to update");
+            int id = int.Parse(Console.ReadLine());
+            var existingAutor = _autorDao.GetBySifra(id);
+            if (existingAutor == null)
+            {
+                Console.WriteLine("Autor not found.");
+                return;
+            }
+            Console.WriteLine("Enter new autor details:");
+            Autor updatedData = InputAutor();
+            existingAutor.Ime = updatedData.Ime;
+            existingAutor.Prezime = updatedData.Prezime;
+            existingAutor.Adresa = updatedData.Adresa;
+            existingAutor.Telefon = updatedData.Telefon;
+            existingAutor.BrojLicneKarte = updatedData.BrojLicneKarte;
+            existingAutor.GodineIskustva = updatedData.GodineIskustva;
+            existingAutor.Email = updatedData.Email;
+            existingAutor.DatumRodjenja = updatedData.DatumRodjenja;
+
+            _autorDao.Update(existingAutor);
+            Console.WriteLine("Autor updated successfully.");
+
+        }
 
         private void ShowBooks()
         {
@@ -295,38 +339,13 @@ namespace ConsoleClient.Views
             };
         }
 
-        private void UpdateAutor()
-        {
-            Console.WriteLine("Enter ID of autor to update");
-            int id = int.Parse(Console.ReadLine());
-            var existingAutor = _autorDao.GetBySifra(id);
-            if (existingAutor == null)
-            {
-                Console.WriteLine("Autor not found.");
-                return;
-            }
-            Console.WriteLine("Enter new autor details:");
-            Autor updatedData = InputAutor();
-            existingAutor.Ime = updatedData.Ime;
-            existingAutor.Prezime = updatedData.Prezime;
-            existingAutor.Adresa = updatedData.Adresa;
-            existingAutor.Telefon = updatedData.Telefon;
-            existingAutor.BrojLicneKarte = updatedData.BrojLicneKarte;
-            existingAutor.GodineIskustva = updatedData.GodineIskustva;
-            existingAutor.Email = updatedData.Email;
-            existingAutor.DatumRodjenja = updatedData.DatumRodjenja;
-
-            _autorDao.Update(existingAutor);
-            Console.WriteLine("Autor updated successfully.");
-
-        }
-
+       
         private void AddKnjiga()
         {
-            Knjiga knjiga = InputKnjiga();  
+            Knjiga knjiga = InputKnjiga();
             _knjigaDao.addKnjiga(knjiga);
             Console.WriteLine("Knjiga added successfully.");
-            
+
         }
 
 
@@ -360,9 +379,9 @@ namespace ConsoleClient.Views
             }
 
             Console.WriteLine("Enter new book details:");
-            Knjiga updatedData = InputKnjiga();  
+            Knjiga updatedData = InputKnjiga();
 
-            
+
             existingKnjiga.Naziv = updatedData.Naziv;
             existingKnjiga.Zanr = updatedData.Zanr;
             existingKnjiga.GodinaIzdanja = updatedData.GodinaIzdanja;
@@ -427,7 +446,7 @@ namespace ConsoleClient.Views
             System.Console.WriteLine("Enter email: ");
             string email = System.Console.ReadLine() ?? string.Empty;
 
-            
+
             System.Console.WriteLine("Enter current membership year: ");
             int trenutnaGodClanstva;
             while (!int.TryParse(Console.ReadLine(), out trenutnaGodClanstva))
@@ -494,7 +513,7 @@ namespace ConsoleClient.Views
             Console.WriteLine("Enter new visitor details:");
             Posetilac updatedData = InputPosetilac();
             existingVisitor.Ime = updatedData.Ime;
-            existingVisitor.Prezime = updatedData.Prezime; 
+            existingVisitor.Prezime = updatedData.Prezime;
             existingVisitor.Adresa = updatedData.Adresa;
             existingVisitor.Telefon = updatedData.Telefon;
             existingVisitor.Email = updatedData.Email;
@@ -507,6 +526,143 @@ namespace ConsoleClient.Views
             _posetilacDao.UpdatePosetilac(existingVisitor);
 
             Console.WriteLine("Visitor updated successfully.");
+        }
+
+        private void ShowKupovine()
+        {
+            List<Kupovina> kupovine = _kupovinaDao.getAllKupovine();
+            PrintKupovina(kupovine);
+        }
+
+        private void PrintKupovina(List<Kupovina> kupovine)
+        {
+            Console.WriteLine("KUPOVINE: ");
+
+            foreach (Kupovina k in kupovine)
+            {
+                Console.WriteLine(new string('-', 50));
+                Console.WriteLine(k.ToString());
+            }
+
+            Console.WriteLine(new string('-', 50));
+        }
+
+
+        private Kupovina InputKupovina()
+        {
+            Posetilac kupac = null;
+            while (kupac == null)
+            { 
+            Console.WriteLine("Enter the customer's membership card number");
+            string brKarte = Console.ReadLine();
+
+            
+            foreach (Posetilac p in _posetilacDao.GetAllPosetilac())
+            {
+                if (p.BrClanskeKarte == brKarte)
+                {
+                    kupac = p;
+                    break;
+                }
+            }
+
+            if (kupac == null)
+                Console.WriteLine("The customer was not found in the system. Try again.");
+            }
+
+            Knjiga knjiga = null;
+            while (knjiga == null)
+            { 
+            Console.WriteLine("Enter the ISBN of the book:");
+            string isbn = Console.ReadLine();
+
+           
+            foreach (Knjiga k in _knjigaDao.getAllKnjige())
+            {
+                if (k.ISBN == isbn)
+                {
+                    knjiga = k; break;
+                }
+            }
+
+            if (knjiga == null)
+                Console.WriteLine("The book does not exist in the system. Try again.");
+            }
+
+            Console.WriteLine("Enter the date of purchase (yyyy-MM-dd):");
+            DateTime datumKupovine;
+            while (!DateTime.TryParse(Console.ReadLine(), out datumKupovine))
+            {
+                Console.WriteLine("Incorrect date format, please try again:");
+            }
+
+            Console.WriteLine("Enter a book rating.");
+            double ocena = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Leave a comment: ");
+            string komenatar = Console.ReadLine();
+
+            Kupovina kupovina = new Kupovina();
+            kupovina.Kupac = kupac;
+            kupovina.Knjiga = knjiga;
+            kupovina.DatumKupovine = datumKupovine;
+            kupovina.Ocena = ocena;
+            kupovina.Komentar = komenatar;
+
+            return kupovina;
+
+        }
+
+        private void AddKupovina()
+        {
+            Kupovina kupovina = InputKupovina();
+            _kupovinaDao.addKupovina(kupovina);
+            System.Console.WriteLine("Purchase added successfully.");
+        }
+
+
+        private void RemoveKupovina()
+        {
+            System.Console.WriteLine("Enter ID of purchase to remove: ");
+            int kupovinaId;
+            while (!int.TryParse(Console.ReadLine(), out kupovinaId))
+            {
+                System.Console.WriteLine("Invalid ID. Please enter an integer: ");
+            }
+            try
+            {
+                _kupovinaDao.deleteKupovina(kupovinaId);
+                System.Console.WriteLine("Purchase removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        private void UpdateKupovina()
+        {
+            Console.WriteLine("Enter purchase id for update");
+            int id = int.Parse(Console.ReadLine());
+            var existingKupovina = _kupovinaDao.GetById(id);
+            if(existingKupovina == null)
+            {
+                Console.WriteLine("Kupovina not found");
+                return;
+            }
+
+            Console.WriteLine("Enter new visitor details:");
+            Kupovina updatedData = InputKupovina();
+
+            existingKupovina.Kupac = updatedData.Kupac;
+            existingKupovina.Knjiga = updatedData.Knjiga;
+            existingKupovina.DatumKupovine = updatedData.DatumKupovine;
+            existingKupovina.Ocena = updatedData.Ocena;
+            existingKupovina.Komentar = updatedData.Komentar;
+
+           _kupovinaDao.updateKupovina(existingKupovina);
+           
+            Console.WriteLine("Purchase has been successfully changed.");
         }
 
 
