@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utils;
 
 namespace Core.Models
 {
-    public class Knjiga
+    public class Knjiga:ISerializable
     {
+       
         private string isbn;
         private string naziv;
         private string zanr;
@@ -102,7 +104,50 @@ namespace Core.Models
              
         }
 
-        
+        public void FromCSV(string[] values)
+        {
+            isbn = values[0];
+            naziv = values[1];
+            zanr = values[2];
+            godinaIzdanja = int.Parse(values[3]);
+            cena = int.Parse(values[4]);
+            brojStrana = int.Parse(values[5]);
+
+            autori = new List<string>();
+
+            izdavac = values[6];
+
+            posetioci = new List<Posetilac>();
+            posetiociListaZelja = new List<Posetilac>();
+
+          
+        }
+        public string[] ToCSV()
+        {
+            string[] csvValues =
+            {
+                isbn,
+                naziv,
+                zanr,
+                godinaIzdanja.ToString(),
+                cena.ToString(),
+                brojStrana.ToString(),
+                izdavac
+            };
+            return csvValues;
+        }
+
+        public override string ToString()
+        {
+            return
+                $"{isbn,-15} | " +
+                $"{naziv,-25} | " +
+                $"{zanr,-15} | " +
+                $"{godinaIzdanja,4} | " +
+                $"{cena,6} | " +
+                $"{brojStrana,5} | " +
+                $"{izdavac,-20} |";
+        }
 
     }
 }

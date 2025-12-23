@@ -7,13 +7,13 @@ using Core.Models;
 
 namespace Core.Interfaces
 {
-    internal interface IPosetilacDao
+    public interface IPosetilacDao
     {
-        List<Posetilac> GetAll();
+        List<Posetilac> GetAllPosetilac();
 
-        Posetilac Add(Posetilac posetilac);
+        Posetilac AddPosetilac(Posetilac posetilac);
 
-        Posetilac Update(Posetilac posetilac);
-        Posetilac Delete(string BrClanskeKarte);
+        Posetilac UpdatePosetilac(Posetilac posetilac);
+        Posetilac DeletePosetilac(string BrClanskeKarte);
     }
 }

@@ -9,10 +9,10 @@ namespace Core.Interfaces
 {
     internal interface IKnjigaDao
     {
-        void addKnjiga(Knjiga knjiga);
-        void deleteKnjiga(string knjigaId);
-        void updateKnjiga(Knjiga knjiga);
+        Knjiga addKnjiga(Knjiga knjiga);
+        Knjiga deleteKnjiga(string knjigaId);
+        Knjiga updateKnjiga(Knjiga knjiga);
         List<Knjiga> getAllKnjige();
-        Knjiga GetKnjiga(string knjigaId);
+        Knjiga GetByISBN(string knjigaISBN);
     }
 }

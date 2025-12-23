@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Core.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Core.Utils;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Core.Models
 {
@@ -14,7 +15,7 @@ namespace Core.Models
         B  //VIP
     }
 
-    public class Posetilac
+    public class Posetilac: ISerializable
     {
 
         private string ime;
@@ -124,7 +125,17 @@ namespace Core.Models
 
         public override string ToString()
         {
-            return $"{Ime} {Prezime} ";
+            return
+                $"{Ime,-12} | " +
+                $"{Prezime,-12} | " +
+                $"{DatumRodjenja:yyyy-MM-dd,-12} | " +
+                $"{Adresa?.ToString() ?? "N/A",-20} | " +
+                $"{Telefon,-12} | " +
+                $"{Email,-25} | " +
+                $"{BrClanskeKarte,-10} | " +
+                $"{TrenutnaGodClanstva,4} | " +
+                $"{Status,-3} | " +
+                $"{ProsecnaOcenaRec,5:F2} |";
         }
 
         public string[] ToCSV()
@@ -132,17 +143,33 @@ namespace Core.Models
             string[] csvValues =
             {
                 Ime,
-                Prezime
-            
+                Prezime,
+                datumRodjenja.ToString("yyyy-MM-dd"),
+                $"{adresa.Sifra}",
+                Telefon,
+                Email,
+                BrClanskeKarte,
+                TrenutnaGodClanstva.ToString(),
+                Status.ToString(),
+                ProsecnaOcenaRec.ToString(),
             };
             return csvValues;
         }
-      
+
         public void FromCSV(string[] values)
         {
             Ime = values[0];
             Prezime = values[1];
-            
+            datumRodjenja = DateTime.Parse(values[2]);
+            Adresa = new Adresa { Sifra = int.Parse(values[3]) };
+            Telefon = values[4];
+            Email = values[5];
+            BrClanskeKarte = values[6];
+            TrenutnaGodClanstva = int.Parse(values[7]);
+            Enum.TryParse(values[8], out StatusPosetioca statusValue);
+            Status = statusValue;
+            ProsecnaOcenaRec = double.Parse(values[9]);
+
         }
     }
 }

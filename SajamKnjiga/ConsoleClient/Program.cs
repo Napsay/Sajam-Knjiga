@@ -14,7 +14,9 @@ namespace ConsoleClient
         {
             AutorDao autori = new AutorDao();
             AdresaDao adrese = new AdresaDao();
-            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese);
+            KnjigaDao knjige = new KnjigaDao();
+            PosetilacDao posetioci = new PosetilacDao();
+            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci);
             view.RunMenu();
         }
     }
