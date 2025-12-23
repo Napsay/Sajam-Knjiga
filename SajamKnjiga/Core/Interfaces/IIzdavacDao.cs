@@ -9,7 +9,12 @@ namespace Core.Interfaces
 {
     internal interface IIzdavacDao
     {
-        void Add(Izdavac izdavac);
+        Izdavac Add(Izdavac izdavac);
+        Izdavac Update(Izdavac izdavac);
+        Izdavac Delete(int sifra);
+        Izdavac GetBySifra(int sifra);
         List<Izdavac> GetAll();
+        
+        
     }
 }

@@ -90,10 +90,10 @@ namespace ConsoleClient.Views
                     AddPosetilac();
                     break;
                 case "11":
-                    RemovePosetilac();
+                    UpdatePosetilac();
                     break;
                 case "12":
-                    UpdatePosetilac();
+                    RemovePosetilac();
                     break;
             }
         }   

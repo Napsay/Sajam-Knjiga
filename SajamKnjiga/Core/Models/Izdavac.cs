@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utils;
 
 namespace Core.Models
 {
-    public class Izdavac
+    public class Izdavac : ISerializable
     {
-
         private int sifra;
         private string naziv;
         private Autor sef;
@@ -55,6 +55,48 @@ namespace Core.Models
             SpisakKnjiga = new List<Knjiga>();
         }
 
+        public void FromCSV(string[] values)
+        {
+            sifra = int.Parse(values[0]);
+            naziv = values[1];
+            sef = new Autor { AutorID = int.Parse(values[2]) };
+            spisakAutora = new List<Autor>();
+            if (!string.IsNullOrEmpty(values[3]))
+            {
+                foreach (string id in values[3].Split(','))
+                {
+                    spisakAutora.Add(new Autor { AutorID = int.Parse(id) });
+                }
+            }
+            spisakKnjiga = new List<Knjiga>();
+            if (!string.IsNullOrEmpty(values[4]))
+            {
+                foreach (string isbn in values[4].Split(','))
+                {
+                    spisakKnjiga.Add(new Knjiga { ISBN = isbn });
+                }
+            }
+        }
+        public string[] ToCSV()
+        {
+            string sefId = sef != null ? sef.AutorID.ToString() : "";
 
+            string autoriIds = spisakAutora != null && spisakAutora.Count > 0
+                ? string.Join(",", spisakAutora.Select(a => a.AutorID))
+                : "";
+
+            string knjigeIsbn = spisakKnjiga != null && spisakKnjiga.Count > 0
+                ? string.Join(",", spisakKnjiga.Select(k => k.ISBN))
+                : "";
+
+            return new string[]
+            {
+            sifra.ToString(),
+            naziv,
+            sefId,
+            autoriIds,
+            knjigeIsbn
+            };
+        }
     }
 }
