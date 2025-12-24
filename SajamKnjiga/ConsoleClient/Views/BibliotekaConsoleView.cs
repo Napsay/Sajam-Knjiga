@@ -623,6 +623,11 @@ namespace ConsoleClient.Views
             Kupovina kupovina = new Kupovina();
             kupovina.Kupac = kupac;
             kupovina.Knjiga = knjiga;
+
+            //povezivanje referenci
+            kupovina.BrClanskeKarteKupca = kupac.BrClanskeKarte;
+            kupovina.ISBNKnjige = knjiga.ISBN;
+
             kupovina.DatumKupovine = datumKupovine;
             kupovina.Ocena = ocena;
             kupovina.Komentar = komenatar;
@@ -674,6 +679,11 @@ namespace ConsoleClient.Views
 
             existingKupovina.Kupac = updatedData.Kupac;
             existingKupovina.Knjiga = updatedData.Knjiga;
+
+            //povezivanje referenci
+            existingKupovina.BrClanskeKarteKupca = updatedData.BrClanskeKarteKupca;
+            existingKupovina.ISBNKnjige = updatedData.ISBNKnjige;
+
             existingKupovina.DatumKupovine = updatedData.DatumKupovine;
             existingKupovina.Ocena = updatedData.Ocena;
             existingKupovina.Komentar = updatedData.Komentar;
