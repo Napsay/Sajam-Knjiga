@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Core.DAO
 {
-    internal class IzdavacDao:IIzdavacDao
+    public class IzdavacDao:IIzdavacDao
     {
         private readonly List<Izdavac> _izdavaci;
         private readonly Storage<Izdavac> _storage;

@@ -79,24 +79,49 @@ namespace Core.Models
         }
         public string[] ToCSV()
         {
-            string sefId = sef != null ? sef.AutorID.ToString() : "";
+            string sefId = "";
+            if (sef != null)
+                sefId = sef.AutorID.ToString();
 
-            string autoriIds = spisakAutora != null && spisakAutora.Count > 0
-                ? string.Join(",", spisakAutora.Select(a => a.AutorID))
-                : "";
-
-            string knjigeIsbn = spisakKnjiga != null && spisakKnjiga.Count > 0
-                ? string.Join(",", spisakKnjiga.Select(k => k.ISBN))
-                : "";
+            string autorsId = "";
+            if(spisakAutora != null && spisakAutora.Count > 0)
+                autorsId = string.Join(",", spisakAutora.Select(a => a.AutorID));
+            string knjigeIsbn = "";
+            if(spisakKnjiga != null && spisakKnjiga.Count > 0)
+                knjigeIsbn = string.Join(",", spisakKnjiga.Select(k => k.ISBN));
 
             return new string[]
-            {
-            sifra.ToString(),
-            naziv,
-            sefId,
-            autoriIds,
-            knjigeIsbn
-            };
+                {
+                    sifra.ToString(),
+                    naziv,
+                    sefId,
+                    autorsId,
+                    knjigeIsbn
+                };
+
+        }
+
+
+        public override string ToString()
+        {
+            string sefID = "-";
+            if(Sef != null)
+                sefID = Sef.AutorID.ToString();
+
+            string autori = "-";
+            if(spisakAutora != null && spisakAutora.Count > 0)
+                autori = string.Join(", ", spisakAutora.Select(a => a.Ime + " " + a.Prezime));
+            string knjige = "-";
+            if(spisakKnjiga != null && spisakKnjiga.Count > 0)
+                knjige = string.Join(", ", spisakKnjiga.Select(k => k.ISBN));
+
+
+            return
+                $"{Sifra,-6} | " +
+                $"{Naziv,-20} | " +
+                $"{sefID,-15} | " +
+                $"{autori,-20} | " +
+                $"{knjige,-30} |";
         }
     }
 }
