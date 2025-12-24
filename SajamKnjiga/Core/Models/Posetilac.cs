@@ -29,7 +29,6 @@ namespace Core.Models
         private StatusPosetioca status;
         private double prosecnaOcenaRec;
         private List<Kupovina> kupljeneKnjige;
-        private List<Knjiga> listaZelja;
 
 
         public string Ime
@@ -96,12 +95,10 @@ namespace Core.Models
 
         public List<Kupovina> KupljeneKnjige { get; set; }
 
-        public List<Knjiga> ListaZelja { get; set; }
-
-
+        
         public Posetilac()
         {
-
+            KupljeneKnjige = new List<Kupovina>();
         }
 
         public Posetilac(string ime, string prezime, DateTime datumRodjenja,
@@ -120,7 +117,7 @@ namespace Core.Models
             Status = status;
             ProsecnaOcenaRec = prosecnaOcenaRec;
             KupljeneKnjige = new List<Kupovina>();
-            ListaZelja = new List<Knjiga>();
+            
         }
 
         public override string ToString()

@@ -47,6 +47,7 @@
     <Compile Include="DAO\IzdavacDao.cs" />
     <Compile Include="DAO\KnjigaDao.cs" />
     <Compile Include="DAO\KupovinaDao.cs" />
+    <Compile Include="DAO\ListaZeljaDao.cs" />
     <Compile Include="DAO\PosetilacDao.cs" />
     <Compile Include="Interfaces\IAdresaDao.cs" />
     <Compile Include="Interfaces\IAutorDao.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Models\Izdavac.cs" />
     <Compile Include="Models\Knjiga.cs" />
     <Compile Include="Models\Kupovina.cs" />
+    <Compile Include="Models\ListaZelja.cs" />
     <Compile Include="Models\Posetilac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DataBinder.cs" />

@@ -19,7 +19,9 @@ namespace ConsoleClient
             PosetilacDao posetioci = new PosetilacDao();
             IzdavacDao izdavaci = new IzdavacDao();
             AutorKnjigaDao autorKnjiga = new AutorKnjigaDao();
-            // Initialize KupovinaDao with references to PosetilacDao and KnjigaDao
+            ListaZeljaDao listaZelja = new ListaZeljaDao();
+
+
             KupovinaDao kupovine = new KupovinaDao(posetioci, knjige);
             DataBinder.PoveziAutoreIKnjige(
             autori.GetAll(),
@@ -29,7 +31,7 @@ namespace ConsoleClient
 
             
 
-            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine,izdavaci);
+            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine,izdavaci,listaZelja);
             view.RunMenu();
         }
     }

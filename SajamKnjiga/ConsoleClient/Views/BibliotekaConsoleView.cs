@@ -18,9 +18,9 @@ namespace ConsoleClient.Views
         private readonly PosetilacDao _posetilacDao;
         private readonly KupovinaDao _kupovinaDao;
         private readonly IzdavacDao _izdavacDao;
-
+        private readonly ListaZeljaDao _listaZeljaDao;
         public BibliotekaConsoleView(AutorDao autorDao, AdresaDao adresaDao, KnjigaDao knjigaDao, PosetilacDao posetilacDao,
-                                        KupovinaDao kupovinaDao, IzdavacDao izdavacDao)
+                                        KupovinaDao kupovinaDao, IzdavacDao izdavacDao,ListaZeljaDao listzelja)
         {
             _autorDao = autorDao;
             _adresaDao = adresaDao;
@@ -28,6 +28,7 @@ namespace ConsoleClient.Views
             _posetilacDao = posetilacDao;
             _kupovinaDao = kupovinaDao;
             _izdavacDao = izdavacDao;
+            _listaZeljaDao = listzelja;
         }
 
         public void RunMenu()
@@ -64,6 +65,7 @@ namespace ConsoleClient.Views
             Console.WriteLine("18: Add publisher");
             Console.WriteLine("19: Update publisher");
             Console.WriteLine("20: Remove publisher");
+            Console.WriteLine("21: Add book to wishlist");
 
             Console.WriteLine("0: Close");
         }
@@ -132,9 +134,41 @@ namespace ConsoleClient.Views
                 case "20":
                     RemoveIzdavac();
                     break;
+                case "21":
+                    AddToListaZelja();
+                    break;
             }
         }
 
+        private void AddToListaZelja()
+        {
+            Console.WriteLine("Enter membership card number:");
+            string brKarte = Console.ReadLine();
+
+            var posetilac = _posetilacDao
+                .GetAllPosetilac()
+                .FirstOrDefault(p => p.BrClanskeKarte == brKarte);
+
+            if (posetilac == null)
+            {
+                Console.WriteLine("Visitor not found.");
+                return;
+            }
+
+            Console.WriteLine("Enter book ISBN:");
+            string isbn = Console.ReadLine();
+
+            var knjiga = _knjigaDao.GetByISBN(isbn);
+
+            if (knjiga == null)
+            {
+                Console.WriteLine("Book not found.");
+                return;
+            }
+            _listaZeljaDao.Add(new ListaZelja(brKarte, isbn));
+
+            Console.WriteLine("Book added to wishlist.");
+        }
         private void ShowAutor()
         {
             List<Autor> autori = _autorDao.GetAll();
@@ -433,14 +467,30 @@ namespace ConsoleClient.Views
         private void PrintPosetilac(List<Posetilac> posetioci)
         {
             Console.WriteLine("POSETIOCI:");
-            Console.WriteLine(
-                $"{"Ime",-15} | {"Prezime",-15} | {"Datum rođenja",-12} | {"Telefon",-15} | {"Email",-25} | {"Članska karta",-15} | {"God. članstva",13} | {"Status",-10} | {"Ocena",6} |"
-            );
             Console.WriteLine(new string('-', 150));
 
             foreach (Posetilac p in posetioci)
             {
                 Console.WriteLine(p);
+                var zelje = _listaZeljaDao
+                    .GetAll()
+                    .Where(z => z.BrClanskeKarte == p.BrClanskeKarte)
+                    .ToList();
+
+                if (zelje.Count > 0)
+                {
+                    Console.WriteLine("Lista zelja:");
+                    foreach (var z in zelje)
+                    {
+                        var knjiga = _knjigaDao.GetByISBN(z.ISBN);
+                        if (knjiga != null)
+                            Console.WriteLine("    - " + knjiga.Naziv);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Lista zelja: nema");
+                }
             }
         }
 
@@ -509,8 +559,7 @@ namespace ConsoleClient.Views
                 TrenutnaGodClanstva = trenutnaGodClanstva,
                 Status = status,
                 ProsecnaOcenaRec = prosecnaOcenaRec,
-                KupljeneKnjige = new List<Kupovina>(),
-                ListaZelja = new List<Knjiga>()
+                KupljeneKnjige = new List<Kupovina>()
             };
         }
         private void RemovePosetilac()
