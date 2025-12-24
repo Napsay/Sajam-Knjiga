@@ -17,16 +17,17 @@ namespace ConsoleClient.Views
         private readonly KnjigaDao _knjigaDao;
         private readonly PosetilacDao _posetilacDao;
         private readonly KupovinaDao _kupovinaDao;
+        private readonly IzdavacDao _izdavacDao;
 
         public BibliotekaConsoleView(AutorDao autorDao, AdresaDao adresaDao, KnjigaDao knjigaDao, PosetilacDao posetilacDao,
-                                        KupovinaDao kupovinaDao)
+                                        KupovinaDao kupovinaDao, IzdavacDao izdavacDao)
         {
             _autorDao = autorDao;
             _adresaDao = adresaDao;
             _knjigaDao = knjigaDao;
             _posetilacDao = posetilacDao;
             _kupovinaDao = kupovinaDao;
-
+            _izdavacDao = izdavacDao;
         }
 
         public void RunMenu()
@@ -59,6 +60,11 @@ namespace ConsoleClient.Views
             Console.WriteLine("14: Add purchase");
             Console.WriteLine("15: Update purchase");
             Console.WriteLine("16: Remove purchase");
+            Console.WriteLine("17: Show all publishers");
+            Console.WriteLine("18: Add publisher");
+            Console.WriteLine("19: Update publisher");
+            Console.WriteLine("20: Remove publisher");
+
             Console.WriteLine("0: Close");
         }
 
@@ -105,15 +111,27 @@ namespace ConsoleClient.Views
                 case "13":
                     ShowKupovine();
                     break;
-                 case "14":
+                case "14":
                     AddKupovina();
                     break;
                 case "15":
                     UpdateKupovina();
                     break;
-                 case "16":
+                case "16":
                     RemoveKupovina();
-                    break; 
+                    break;
+                case "17":
+                    ShowIzdavac();
+                    break;
+                case "18":
+                    addIzdavac();
+                    break;
+                case "19":
+                    UpdateIzdavac();
+                    break;
+                case "20":
+                    RemoveIzdavac();
+                    break;
             }
         }
 
@@ -339,7 +357,7 @@ namespace ConsoleClient.Views
             };
         }
 
-       
+
         private void AddKnjiga()
         {
             Knjiga knjiga = InputKnjiga();
@@ -552,41 +570,41 @@ namespace ConsoleClient.Views
         {
             Posetilac kupac = null;
             while (kupac == null)
-            { 
-            Console.WriteLine("Enter the customer's membership card number");
-            string brKarte = Console.ReadLine();
-
-            
-            foreach (Posetilac p in _posetilacDao.GetAllPosetilac())
             {
-                if (p.BrClanskeKarte == brKarte)
-                {
-                    kupac = p;
-                    break;
-                }
-            }
+                Console.WriteLine("Enter the customer's membership card number");
+                string brKarte = Console.ReadLine();
 
-            if (kupac == null)
-                Console.WriteLine("The customer was not found in the system. Try again.");
+
+                foreach (Posetilac p in _posetilacDao.GetAllPosetilac())
+                {
+                    if (p.BrClanskeKarte == brKarte)
+                    {
+                        kupac = p;
+                        break;
+                    }
+                }
+
+                if (kupac == null)
+                    Console.WriteLine("The customer was not found in the system. Try again.");
             }
 
             Knjiga knjiga = null;
             while (knjiga == null)
-            { 
-            Console.WriteLine("Enter the ISBN of the book:");
-            string isbn = Console.ReadLine();
-
-           
-            foreach (Knjiga k in _knjigaDao.getAllKnjige())
             {
-                if (k.ISBN == isbn)
-                {
-                    knjiga = k; break;
-                }
-            }
+                Console.WriteLine("Enter the ISBN of the book:");
+                string isbn = Console.ReadLine();
 
-            if (knjiga == null)
-                Console.WriteLine("The book does not exist in the system. Try again.");
+
+                foreach (Knjiga k in _knjigaDao.getAllKnjige())
+                {
+                    if (k.ISBN == isbn)
+                    {
+                        knjiga = k; break;
+                    }
+                }
+
+                if (knjiga == null)
+                    Console.WriteLine("The book does not exist in the system. Try again.");
             }
 
             Console.WriteLine("Enter the date of purchase (yyyy-MM-dd):");
@@ -645,7 +663,7 @@ namespace ConsoleClient.Views
             Console.WriteLine("Enter purchase id for update");
             int id = int.Parse(Console.ReadLine());
             var existingKupovina = _kupovinaDao.GetById(id);
-            if(existingKupovina == null)
+            if (existingKupovina == null)
             {
                 Console.WriteLine("Kupovina not found");
                 return;
@@ -660,11 +678,118 @@ namespace ConsoleClient.Views
             existingKupovina.Ocena = updatedData.Ocena;
             existingKupovina.Komentar = updatedData.Komentar;
 
-           _kupovinaDao.updateKupovina(existingKupovina);
-           
+            _kupovinaDao.updateKupovina(existingKupovina);
+
             Console.WriteLine("Purchase has been successfully changed.");
         }
 
+        private void RemoveIzdavac()
+        {
+            Console.WriteLine("Enter publisher ID to remove: ");
+            int sifra;
+            while (!int.TryParse(Console.ReadLine(), out sifra))
+            {
+                Console.WriteLine("Invalid ID. Enter integer:");
+            }
+            try
+            {
+                _izdavacDao.Delete(sifra);
+                Console.WriteLine("Izdavac removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
 
-    }
+        private Izdavac InputIzdavac()
+        {
+            Console.WriteLine("Enter publisher name: ");
+            string naziv = Console.ReadLine();
+
+            Console.WriteLine("Enter chief ID (Autor ID): ");
+            int sefId = Convert.ToInt32(Console.ReadLine());
+            Autor sef = _autorDao.GetBySifra(sefId);
+
+            Console.WriteLine("Enter autor IDs: ");
+            string autorIdsInput = Console.ReadLine();
+            List<Autor> spisakAutora = new List<Autor>();
+            if (autorIdsInput != null)
+            {
+                string[] ids = autorIdsInput.Split(',');
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    int id = Convert.ToInt32(ids[i]);
+                    Autor a = _autorDao.GetBySifra(id);
+                    spisakAutora.Add(a);
+                }
+            }
+            Console.WriteLine("Enter book ISBNs: ");
+            string knjigeInput = Console.ReadLine();
+            List<Knjiga> knjige = new List<Knjiga>();
+
+            if (knjigeInput != null)
+            {
+                string[] isbns = knjigeInput.Split(',');
+                for (int i = 0; i < isbns.Length; i++)
+                {
+                    Knjiga k = _knjigaDao.GetByISBN(isbns[i]);
+                    knjige.Add(k);
+                }
+            }
+
+            Izdavac izdavac = new Izdavac();
+            izdavac.Naziv = naziv;
+            izdavac.Sef = sef;
+            izdavac.SpisakAutora = spisakAutora;
+            izdavac.SpisakKnjiga = knjige;
+            return izdavac; ;
+        }
+
+        private void addIzdavac()
+        {
+            Izdavac izdavac = InputIzdavac();
+            _izdavacDao.Add(izdavac);
+            System.Console.WriteLine("Publisher added successfully.");
+        }
+
+        private void UpdateIzdavac()
+        {
+            Console.WriteLine("Enter publisher ID to update: ");
+            int sifra = int.Parse(Console.ReadLine());
+            var existingIzdavac = _izdavacDao.GetBySifra(sifra);
+            if (existingIzdavac == null)
+            {
+                Console.WriteLine("Publisher not found.");
+                return;
+            }
+            Console.WriteLine("Enter new publisher details:");
+            Izdavac updatedData = InputIzdavac();
+            existingIzdavac.Naziv = updatedData.Naziv;
+            existingIzdavac.Sef = updatedData.Sef;
+            existingIzdavac.SpisakAutora = updatedData.SpisakAutora;
+            existingIzdavac.SpisakKnjiga = updatedData.SpisakKnjiga;
+            _izdavacDao.Update(existingIzdavac);
+            Console.WriteLine("Publisher updated successfully.");
+        }
+
+        private void ShowIzdavac()
+        {
+            List<Izdavac> izdavaci = _izdavacDao.GetAll();
+            PrintIzdavac(izdavaci);
+        }
+
+        private void PrintIzdavac(List<Izdavac> izdavaci)
+        {
+            Console.WriteLine("IZDAVACI:");
+            Console.WriteLine(
+                $"{"ID",4} | {"Naziv",-20} | {"Šef ID",6} | {"Autori",11} | {"Knjige",11} |"
+            );
+            Console.WriteLine(new string('-', 70));
+            foreach (Izdavac i in izdavaci)
+            {
+                Console.WriteLine(i);
+            }
+        }
+        }
 }

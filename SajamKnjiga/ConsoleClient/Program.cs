@@ -17,7 +17,8 @@ namespace ConsoleClient
             KnjigaDao knjige = new KnjigaDao();
             PosetilacDao posetioci = new PosetilacDao();
             KupovinaDao kupovine = new KupovinaDao();
-            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine);
+            IzdavacDao izdavaci = new IzdavacDao();
+            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine,izdavaci);
             view.RunMenu();
         }
     }

@@ -110,7 +110,7 @@ namespace Core.Models
 
             string autori = "-";
             if(spisakAutora != null && spisakAutora.Count > 0)
-                autori = string.Join(", ", spisakAutora.Select(a => a.Ime + " " + a.Prezime));
+                autori = string.Join(", ", spisakAutora.Select(a => a.AutorID));
             string knjige = "-";
             if(spisakKnjiga != null && spisakKnjiga.Count > 0)
                 knjige = string.Join(", ", spisakKnjiga.Select(k => k.ISBN));
