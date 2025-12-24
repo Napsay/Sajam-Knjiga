@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DAO\AdresaDao.cs" />
     <Compile Include="DAO\AutorDao.cs" />
+    <Compile Include="DAO\AutorKnjigaDao.cs" />
     <Compile Include="DAO\IzdavacDao.cs" />
     <Compile Include="DAO\KnjigaDao.cs" />
     <Compile Include="DAO\KupovinaDao.cs" />
@@ -55,11 +56,13 @@
     <Compile Include="Interfaces\IPosetilacDao.cs" />
     <Compile Include="Models\Adresa.cs" />
     <Compile Include="Models\Autor.cs" />
+    <Compile Include="Models\AutorKnjiga.cs" />
     <Compile Include="Models\Izdavac.cs" />
     <Compile Include="Models\Knjiga.cs" />
     <Compile Include="Models\Kupovina.cs" />
     <Compile Include="Models\Posetilac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\DataBinder.cs" />
     <Compile Include="Utils\ISerializable.cs" />
     <Compile Include="Utils\Serializer.cs" />
     <Compile Include="Utils\Storage.cs" />

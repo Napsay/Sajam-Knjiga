@@ -20,6 +20,7 @@ namespace Core.Models
         private int godineIskustva;
         private string email;
 
+
         public void FromCSV(string[] values)
         { 
            autorID = int.Parse(values[0]);

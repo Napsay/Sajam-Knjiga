@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ConsoleClient.Views;
+using Core.DAO;
+using Core.Models;
+using Core.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleClient.Views;
-using Core.DAO;
-using Core.Models;
 namespace ConsoleClient
 {
     internal class Program
@@ -17,10 +18,17 @@ namespace ConsoleClient
             KnjigaDao knjige = new KnjigaDao();
             PosetilacDao posetioci = new PosetilacDao();
             IzdavacDao izdavaci = new IzdavacDao();
-
+            AutorKnjigaDao autorKnjiga = new AutorKnjigaDao();
             // Initialize KupovinaDao with references to PosetilacDao and KnjigaDao
             KupovinaDao kupovine = new KupovinaDao(posetioci, knjige);
-         
+            DataBinder.PoveziAutoreIKnjige(
+            autori.GetAll(),
+            knjige.getAllKnjige(),
+            autorKnjiga.GetAll()
+            );
+
+            
+
             BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine,izdavaci);
             view.RunMenu();
         }

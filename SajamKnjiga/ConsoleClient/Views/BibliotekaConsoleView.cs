@@ -152,6 +152,18 @@ namespace ConsoleClient.Views
             foreach (Autor a in autori)
             {
                 Console.WriteLine(a);
+                if (a.Knjige != null && a.Knjige.Count > 0)
+                {
+                    Console.WriteLine("   Knjige:");
+                    foreach (Knjiga k in a.Knjige)
+                    {
+                        Console.WriteLine("    - " + k.Naziv);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("   Knjige: nema");
+                }
             }
         }
 
