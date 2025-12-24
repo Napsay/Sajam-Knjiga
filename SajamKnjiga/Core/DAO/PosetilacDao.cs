@@ -53,7 +53,7 @@ namespace Core.DAO
             int broj = GenerateClanskaKartaNumber();
             int godina = DateTime.Now.Year;
 
-            return $"SK-{broj}-{godina}";
+            return $"CK-{broj}-{godina}";
         }
 
         public Posetilac AddPosetilac(Posetilac posetilac)
