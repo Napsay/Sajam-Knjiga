@@ -9,7 +9,7 @@ using Core.Models;
 using Core.Utils;
 namespace Core.DAO
 {
-    public class KnjigaDao:IKnjigaDao
+    public class KnjigaDao : IKnjigaDao
     {
 
         private readonly List<Knjiga> _books;

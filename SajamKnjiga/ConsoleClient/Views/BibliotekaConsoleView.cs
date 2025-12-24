@@ -339,13 +339,24 @@ namespace ConsoleClient.Views
         {
             Console.WriteLine("KNJIGE:");
             Console.WriteLine(
-                $"{"ISBN",-15} | {"Naziv",-25} | {"Žanr",-15} | {"Godina",6} | {"Cena",6} | {"Strana",5} | {"Izdavač",-20} |"
+                $"{"ISBN",-15} | {"Naziv",-25} | {"God.",4} | {"Cena",6}"
             );
-            Console.WriteLine(new string('-', 110));
+            Console.WriteLine(new string('-', 70));
 
             foreach (Knjiga k in knjige)
             {
-                Console.WriteLine(k);
+                Console.WriteLine(
+                    $"{k.ISBN,-15} | {k.Naziv,-25} | {k.GodinaIzdanja,4} | {k.Cena,6}"
+                );
+
+                Console.Write("   Autori: ");
+                if (k.Autori.Count > 0)
+                    Console.WriteLine(string.Join(", ", k.Autori));
+                else
+                    Console.WriteLine("nema");
+
+                Console.WriteLine($"Kupili: {k.Posetioci.Count} posetilaca");
+                Console.WriteLine($"U listi želja: {k.PosetiociListaZelja.Count} posetilaca");
             }
         }
 
@@ -384,7 +395,7 @@ namespace ConsoleClient.Views
             Console.WriteLine("Enter publisher: ");
             string izdavac = Console.ReadLine() ?? string.Empty;
 
-            List<string> autori = new List<string>();
+            List<Autor> autori = new List<Autor>();
             List<Posetilac> posetioci = new List<Posetilac>();
             List<Posetilac> posetiociListaZelja = new List<Posetilac>();
 
@@ -472,14 +483,11 @@ namespace ConsoleClient.Views
             foreach (Posetilac p in posetioci)
             {
                 Console.WriteLine(p);
-                var zelje = _listaZeljaDao
-                    .GetAll()
-                    .Where(z => z.BrClanskeKarte == p.BrClanskeKarte)
-                    .ToList();
+                var zelje = _listaZeljaDao.GetAll().Where(z => z.BrClanskeKarte == p.BrClanskeKarte).ToList();
 
                 if (zelje.Count > 0)
                 {
-                    Console.WriteLine("Lista zelja:");
+                    Console.WriteLine("   Lista želja:");
                     foreach (var z in zelje)
                     {
                         var knjiga = _knjigaDao.GetByISBN(z.ISBN);
@@ -489,7 +497,7 @@ namespace ConsoleClient.Views
                 }
                 else
                 {
-                    Console.WriteLine("Lista zelja: nema");
+                    Console.WriteLine("Lista želja: nema");
                 }
             }
         }
@@ -615,15 +623,25 @@ namespace ConsoleClient.Views
 
         private void PrintKupovina(List<Kupovina> kupovine)
         {
-            Console.WriteLine("KUPOVINE: ");
+            Console.WriteLine("KUPOVINE:");
+            Console.WriteLine(new string('-', 60));
 
             foreach (Kupovina k in kupovine)
             {
-                Console.WriteLine(new string('-', 50));
-                Console.WriteLine(k.ToString());
-            }
+                if (k.Kupac == null || k.Knjiga == null)
+                {
+                    Console.WriteLine("NEISPRAVNA KUPOVINA (nepovezani podaci)");
+                    continue;
+                }
 
-            Console.WriteLine(new string('-', 50));
+                Console.WriteLine(
+                    $"{k.Kupac.Ime} {k.Kupac.Prezime} -> {k.Knjiga.Naziv} | {k.Ocena}/5"
+                );
+
+                Console.WriteLine(
+                    $"   {k.DatumKupovine:dd.MM.yyyy} | {k.Komentar}"
+                );
+            }
         }
 
 
@@ -852,15 +870,32 @@ namespace ConsoleClient.Views
 
         private void PrintIzdavac(List<Izdavac> izdavaci)
         {
-            Console.WriteLine("IZDAVACI:");
-            Console.WriteLine(
-                $"{"ID",4} | {"Naziv",-20} | {"Šef ID",6} | {"Autori",11} | {"Knjige",11} |"
-            );
-            Console.WriteLine(new string('-', 70));
+            Console.WriteLine("IZDAVAČI:");
+            Console.WriteLine(new string('-', 60));
+
             foreach (Izdavac i in izdavaci)
             {
-                Console.WriteLine(i);
+                Console.WriteLine($"{i.Naziv} (ID: {i.Sifra})");
+
+                if (i.Sef != null)
+                    Console.WriteLine($"   Šef: {i.Sef.Ime} {i.Sef.Prezime}");
+                else
+                    Console.WriteLine("   Šef: nije dodeljen");
+
+                Console.Write("   Autori: ");
+                if (i.SpisakAutora.Count > 0)
+                    Console.WriteLine(string.Join(", ",i.SpisakAutora.Select(a => $"{a.Ime} {a.Prezime}")
+                    ));
+                else
+                    Console.WriteLine("nema");
+
+                Console.Write("   Knjige: ");
+                if (i.SpisakKnjiga.Count > 0)
+                    Console.WriteLine(string.Join(", ",i.SpisakKnjiga.Select(k => k.Naziv)
+                    ));
+                else
+                    Console.WriteLine("nema");
             }
         }
-        }
+    }
 }

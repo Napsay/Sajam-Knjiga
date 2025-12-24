@@ -22,14 +22,19 @@ namespace ConsoleClient
             ListaZeljaDao listaZelja = new ListaZeljaDao();
 
 
-            KupovinaDao kupovine = new KupovinaDao(posetioci, knjige);
-            DataBinder.PoveziAutoreIKnjige(
-            autori.GetAll(),
-            knjige.getAllKnjige(),
-            autorKnjiga.GetAll()
-            );
+            KupovinaDao kupovine = new KupovinaDao();
+            DataBinder.PoveziSve(
+               autori.GetAll(),
+               knjige.getAllKnjige(),
+               autorKnjiga.GetAll(),
+               posetioci.GetAllPosetilac(),
+               kupovine.getAllKupovine(),
+               listaZelja.GetAll(),
+               izdavaci.GetAll(),
+               adrese.GetAll()
+           );
 
-            
+
 
             BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine,izdavaci,listaZelja);
             view.RunMenu();

@@ -16,7 +16,7 @@ namespace Core.Models
         private int godinaIzdanja;
         private int cena;
         private int brojStrana;
-        private List<string> autori;
+        private List<Autor> autori;
         private string izdavac;
         private List<Posetilac> posetioci;
         private List<Posetilac> posetiociListaZelja;
@@ -41,7 +41,7 @@ namespace Core.Models
         }
 
 
-        public List<string> Autori
+        public List<Autor> Autori
         {
             get { return autori; }
             set { autori = value; }
@@ -87,7 +87,9 @@ namespace Core.Models
 
         public Knjiga()
         {
-            
+            Autori = new List<Autor>();
+            Posetioci = new List<Posetilac>();
+            PosetiociListaZelja = new List<Posetilac>();
         }
         public Knjiga(string isbn,string naziv,string zanr,int godinaIzdavanja,int cena,int brojStrana,string izdavac)
         {
@@ -98,7 +100,7 @@ namespace Core.Models
             Cena = cena;
             BrojStrana = brojStrana;
             Izdavac = izdavac;
-            Autori = new List<string>();
+            Autori = new List<Autor>();
             Posetioci = new List<Posetilac>();
             PosetiociListaZelja = new List<Posetilac>();
              
@@ -113,7 +115,7 @@ namespace Core.Models
             cena = int.Parse(values[4]);
             brojStrana = int.Parse(values[5]);
 
-            autori = new List<string>();
+            autori = new List<Autor>();
 
             izdavac = values[6];
 
