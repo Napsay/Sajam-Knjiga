@@ -32,8 +32,6 @@ namespace Core.Models
             get { return sef; }
             set
             {
-                if (value.GodineIskustva < 5)
-                    throw new ArgumentOutOfRangeException("Sef mora imati najmanje 5 godina iskustva.");
                 sef = value;
             }
         }
@@ -43,38 +41,42 @@ namespace Core.Models
 
         public Izdavac()
         {
-
+            SpisakAutora = new List<Autor>();
+            SpisakKnjiga = new List<Knjiga>();
         }
 
         public Izdavac(int sifra, string naziv, Autor sef)
         {
             Sifra = sifra;
             Naziv = naziv;
-            Sef = sef;   //seter proverava godine iskustva
+            Sef = sef;  
             SpisakAutora = new List<Autor>();
             SpisakKnjiga = new List<Knjiga>();
         }
 
         public void FromCSV(string[] values)
         {
-            sifra = int.Parse(values[0]);
-            naziv = values[1];
-            sef = new Autor { AutorID = int.Parse(values[2]) };
-            spisakAutora = new List<Autor>();
+            Sifra = int.Parse(values[0]);
+            Naziv = values[1];
+
+            // Šef (samo ID)
+            if (!string.IsNullOrEmpty(values[2]))
+                Sef = new Autor { AutorID = int.Parse(values[2]) };
+
+            // Autori (samo ID-jevi)
+            SpisakAutora = new List<Autor>();
             if (!string.IsNullOrEmpty(values[3]))
             {
-                foreach (string id in values[3].Split(','))
-                {
-                    spisakAutora.Add(new Autor { AutorID = int.Parse(id) });
-                }
+                foreach (var id in values[3].Split(','))
+                    SpisakAutora.Add(new Autor { AutorID = int.Parse(id) });
             }
-            spisakKnjiga = new List<Knjiga>();
+
+            // Knjige (samo ISBN)
+            SpisakKnjiga = new List<Knjiga>();
             if (!string.IsNullOrEmpty(values[4]))
             {
-                foreach (string isbn in values[4].Split(','))
-                {
-                    spisakKnjiga.Add(new Knjiga { ISBN = isbn });
-                }
+                foreach (var isbn in values[4].Split(','))
+                    SpisakKnjiga.Add(new Knjiga { ISBN = isbn });
             }
         }
         public string[] ToCSV()
@@ -84,10 +86,10 @@ namespace Core.Models
                 sefId = sef.AutorID.ToString();
 
             string autorsId = "";
-            if(spisakAutora != null && spisakAutora.Count > 0)
+            if (spisakAutora != null && spisakAutora.Count > 0)
                 autorsId = string.Join(",", spisakAutora.Select(a => a.AutorID));
             string knjigeIsbn = "";
-            if(spisakKnjiga != null && spisakKnjiga.Count > 0)
+            if (spisakKnjiga != null && spisakKnjiga.Count > 0)
                 knjigeIsbn = string.Join(",", spisakKnjiga.Select(k => k.ISBN));
 
             return new string[]
@@ -105,14 +107,14 @@ namespace Core.Models
         public override string ToString()
         {
             string sefID = "-";
-            if(Sef != null)
+            if (Sef != null)
                 sefID = Sef.AutorID.ToString();
 
             string autori = "-";
-            if(spisakAutora != null && spisakAutora.Count > 0)
+            if (spisakAutora != null && spisakAutora.Count > 0)
                 autori = string.Join(", ", spisakAutora.Select(a => a.AutorID));
             string knjige = "-";
-            if(spisakKnjiga != null && spisakKnjiga.Count > 0)
+            if (spisakKnjiga != null && spisakKnjiga.Count > 0)
                 knjige = string.Join(", ", spisakKnjiga.Select(k => k.ISBN));
 
 
