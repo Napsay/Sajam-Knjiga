@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utils
 {
-    public  class DataBinder
+    public class DataBinder
     {
         public static void PoveziAutoreIKnjige(List<Autor> autori, List<Knjiga> knjige,List<AutorKnjiga> veze)
         {
@@ -22,6 +22,7 @@ namespace Core.Utils
                 }
             }
         }
+
         private static void PoveziListuZelja(List<Posetilac> posetioci,List<Knjiga> knjige,List<ListaZelja> listaZelja)
         {
             foreach (var veza in listaZelja)
@@ -36,7 +37,7 @@ namespace Core.Utils
                 }
             }
         }
-        public static void PoveziPosetioceIKnjige(List<Posetilac> posetioci,List<Knjiga> knjige,List<Kupovina> kupovine, List<ListaZelja> listaZelja)
+        public static void PoveziPosetioceIKnjige(List<Posetilac> posetioci, List<Knjiga> knjige, List<Kupovina> kupovine, List<ListaZelja> listaZelja)
         {
             foreach (var kupovina in kupovine)
             {
@@ -60,6 +61,41 @@ namespace Core.Utils
                 if (posetilac != null && knjiga != null)
                 {
                     knjiga.PosetiociListaZelja.Add(posetilac);
+                }
+            }
+        }
+
+        private static void PoveziIzdavace(
+        List<Izdavac> izdavaci,
+        List<Autor> autori,
+        List<Knjiga> knjige)
+        {
+            foreach (var izdavac in izdavaci)
+            {
+             
+                if (izdavac.Sef != null)
+                {
+                    izdavac.Sef = autori
+                        .FirstOrDefault(a => a.AutorID == izdavac.Sef.AutorID);
+                }
+
+                for (int i = 0; i < izdavac.SpisakAutora.Count; i++)
+                {
+                    var autor = autori
+                        .FirstOrDefault(a => a.AutorID == izdavac.SpisakAutora[i].AutorID);
+
+                    if (autor != null)
+                        izdavac.SpisakAutora[i] = autor;
+                }
+
+                for (int i = 0; i < izdavac.SpisakKnjiga.Count; i++)
+                {
+                    var knjiga = knjige
+                        .FirstOrDefault(k => k.ISBN == izdavac.SpisakKnjiga[i].ISBN);
+
+                    if (knjiga != null)
+                        izdavac.SpisakKnjiga[i] = knjiga;
+
                 }
             }
         }

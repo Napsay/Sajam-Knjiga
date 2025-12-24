@@ -7,7 +7,7 @@ using Core.Utils;
 
 namespace Core.Models
 {
-    public class Kupovina: ISerializable
+    public class Kupovina : ISerializable
     {
 
         public int IDKupovine { get; set; }
@@ -43,10 +43,10 @@ namespace Core.Models
 
         public override string ToString()
         {
-           string kupacInfo = Kupac != null
-                ? $"{Kupac.Ime} {Kupac.Prezime} (BrClanskeKarte: {Kupac.BrClanskeKarte})"
-                : "Nepoznat kupac";
-            
+            string kupacInfo = Kupac != null
+                 ? $"{Kupac.Ime} {Kupac.Prezime} (BrClanskeKarte: {Kupac.BrClanskeKarte})"
+                 : "Nepoznat kupac";
+
             string knjigaInfo = Knjiga != null
                 ? $"{Knjiga.Naziv} (ISBN: {Knjiga.ISBN})"
                 : $"Nepoznata knjiga";
@@ -59,7 +59,7 @@ namespace Core.Models
                 $"Komentar: {Komentar}\n";
         }
 
-      
+
         public void FromCSV(string[] values)
         {
             IDKupovine = int.Parse(values[0]);
