@@ -11,6 +11,12 @@ namespace Core.Models
         public int AutorId { get; set; }
         public string ISBN { get; set; }
 
+        public AutorKnjiga() { }
+        public AutorKnjiga(int autorId, string isbn)
+        {
+            AutorId = autorId;
+            ISBN = isbn;
+        }
         public void FromCSV(string[] values)
         {
             AutorId = int.Parse(values[0]);

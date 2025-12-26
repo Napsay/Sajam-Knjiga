@@ -30,6 +30,7 @@ namespace Core.Models
         private double prosecnaOcenaRec;
         private List<Kupovina> kupljeneKnjige;
 
+        public List<Knjiga> ListaZelja { get; set; } = new List<Knjiga>();
 
         public string Ime
         {

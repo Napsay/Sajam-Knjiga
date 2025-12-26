@@ -58,72 +58,62 @@ namespace Core.Models
         {
             Sifra = int.Parse(values[0]);
             Naziv = values[1];
-
-            // Šef (samo ID)
             if (!string.IsNullOrEmpty(values[2]))
                 Sef = new Autor { AutorID = int.Parse(values[2]) };
 
-            // Autori (samo ID-jevi)
             SpisakAutora = new List<Autor>();
             if (!string.IsNullOrEmpty(values[3]))
-            {
                 foreach (var id in values[3].Split(','))
                     SpisakAutora.Add(new Autor { AutorID = int.Parse(id) });
-            }
 
-            // Knjige (samo ISBN)
             SpisakKnjiga = new List<Knjiga>();
             if (!string.IsNullOrEmpty(values[4]))
             {
                 foreach (var isbn in values[4].Split(','))
+                {
                     SpisakKnjiga.Add(new Knjiga { ISBN = isbn });
+                }
             }
         }
         public string[] ToCSV()
         {
-            string sefId = "";
-            if (sef != null)
-                sefId = sef.AutorID.ToString();
+            string sefId = Sef != null ? Sef.AutorID.ToString() : "";
 
-            string autorsId = "";
-            if (spisakAutora != null && spisakAutora.Count > 0)
-                autorsId = string.Join(",", spisakAutora.Select(a => a.AutorID));
-            string knjigeIsbn = "";
-            if (spisakKnjiga != null && spisakKnjiga.Count > 0)
-                knjigeIsbn = string.Join(",", spisakKnjiga.Select(k => k.ISBN));
+            string autoriId = SpisakAutora != null && SpisakAutora.Count > 0
+                ? string.Join(",", SpisakAutora.Select(a => a.AutorID))
+                : "";
+
+            string knjigeIsbn = SpisakKnjiga != null && SpisakKnjiga.Count > 0
+                ? string.Join(",", SpisakKnjiga.Select(k => k.ISBN))
+                : "";
 
             return new string[]
-                {
-                    sifra.ToString(),
-                    naziv,
-                    sefId,
-                    autorsId,
-                    knjigeIsbn
-                };
-
+            {
+                   Sifra.ToString(),
+                   Naziv,
+                   sefId,
+                   autoriId,
+                   knjigeIsbn
+            };
         }
-
 
         public override string ToString()
         {
-            string sefID = "-";
-            if (Sef != null)
-                sefID = Sef.AutorID.ToString();
+            string autoriStr = SpisakAutora != null
+            ? string.Join(", ", SpisakAutora.Where(a => a != null && !string.IsNullOrEmpty(a.Ime))
+            .Select(a => $"{a.Ime} {a.Prezime}"))
+            : "";
 
-            string autori = "-";
-            if (spisakAutora != null && spisakAutora.Count > 0)
-                autori = string.Join(", ", spisakAutora.Select(a => a.AutorID));
-            string knjige = "-";
-            if (spisakKnjiga != null && spisakKnjiga.Count > 0)
-                knjige = string.Join(", ", spisakKnjiga.Select(k => k.ISBN));
+            string knjigeStr = SpisakKnjiga != null
+            ? string.Join(", ", SpisakKnjiga.Where(k => k != null && !string.IsNullOrEmpty(k.Naziv)).Select(k => k.Naziv))
+            : "";
 
+            string sefStr = Sef != null ? Sef.Ime : "";
 
-            return
-                $"{Sifra,-6} | " +
-                $"{Naziv,-20} | " +
-                $"{sefID,-15} | " +
-                $"{autori,-20} | " +
-                $"{knjige,-30} |";
+            return $"{Naziv} (ID: {Sifra})\n" +
+                   $"   Sef: {sefStr}\n" +
+                   $"   Autori: {autoriStr}\n" +
+                   $"   Knjige: {knjigeStr}";
         }
     }
 }

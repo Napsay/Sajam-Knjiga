@@ -32,7 +32,7 @@ namespace Core.Models
             Kupac = kupac;
             Knjiga = knjiga;
 
-            //? sprecava NullReferenceException
+           
             BrClanskeKarteKupca = kupac?.BrClanskeKarte;
             ISBNKnjige = knjiga?.ISBN;
 

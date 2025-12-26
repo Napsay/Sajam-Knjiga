@@ -17,16 +17,20 @@ namespace Core.Models
         private int cena;
         private int brojStrana;
         private List<Autor> autori;
-        private string izdavac;
+        private Izdavac izdavac;
         private List<Posetilac> posetioci;
         private List<Posetilac> posetiociListaZelja;
 
-        public List<Posetilac> PosetiociListaZelja
-        {
-            get { return posetiociListaZelja; }
-            set { posetiociListaZelja = value; }
-        }
+        public List<Posetilac> PosetiociListaZelja { get; set; } = new List<Posetilac>();
 
+        public Izdavac Izdavac
+        {
+            get { return izdavac; }
+            set
+            {
+                izdavac = value;
+            }
+        }
 
         public List<Posetilac> Posetioci
         {
@@ -34,7 +38,7 @@ namespace Core.Models
             set { posetioci = value; }
         }
 
-        public string Izdavac
+        public Izdavac IzdavacKnjige
         {
             get { return izdavac; }
             set { izdavac = value; }
@@ -91,7 +95,7 @@ namespace Core.Models
             Posetioci = new List<Posetilac>();
             PosetiociListaZelja = new List<Posetilac>();
         }
-        public Knjiga(string isbn,string naziv,string zanr,int godinaIzdavanja,int cena,int brojStrana,string izdavac)
+        public Knjiga(string isbn,string naziv,string zanr,int godinaIzdavanja,int cena,int brojStrana,Izdavac izdavac)
         {
             ISBN = isbn;
             Naziv = naziv;
@@ -99,7 +103,7 @@ namespace Core.Models
             GodinaIzdanja = godinaIzdavanja;
             Cena = cena;
             BrojStrana = brojStrana;
-            Izdavac = izdavac;
+            IzdavacKnjige = izdavac;
             Autori = new List<Autor>();
             Posetioci = new List<Posetilac>();
             PosetiociListaZelja = new List<Posetilac>();
@@ -117,7 +121,8 @@ namespace Core.Models
 
             autori = new List<Autor>();
 
-            izdavac = values[6];
+            int sifraIzdavaca = int.Parse(values[6]);
+            Izdavac = new Izdavac { Sifra = sifraIzdavaca };
 
             posetioci = new List<Posetilac>();
             posetiociListaZelja = new List<Posetilac>();
@@ -126,6 +131,7 @@ namespace Core.Models
         }
         public string[] ToCSV()
         {
+            string izdavacId = izdavac != null ? izdavac.Sifra.ToString() : "";
             string[] csvValues =
             {
                 isbn,
@@ -134,13 +140,14 @@ namespace Core.Models
                 godinaIzdanja.ToString(),
                 cena.ToString(),
                 brojStrana.ToString(),
-                izdavac
+                izdavac.Sifra.ToString()
             };
             return csvValues;
         }
 
         public override string ToString()
         {
+            string izdavacNaziv = izdavac != null ? izdavac.Naziv : "";
             return
                 $"{isbn,-15} | " +
                 $"{naziv,-25} | " +
@@ -148,7 +155,7 @@ namespace Core.Models
                 $"{godinaIzdanja,4} | " +
                 $"{cena,6} | " +
                 $"{brojStrana,5} | " +
-                $"{izdavac,-20} |";
+                $"{izdavac.Naziv,-20} |";
         }
 
     }

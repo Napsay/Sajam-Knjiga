@@ -30,6 +30,8 @@ namespace Core.Utils
 
             foreach (string line in lines)
             {
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
                 string[] csvValues = line.Split(Delimiter);
                 T obj = new T();
                 obj.FromCSV(csvValues);

@@ -14,11 +14,13 @@ namespace Core.DAO
 
         private readonly List<Knjiga> _books;
         private readonly Storage<Knjiga> _storage;
+        private readonly IzdavacDao _izdavacDao;
 
-        public KnjigaDao()
+        public KnjigaDao(IzdavacDao izdavacDao)
         {
             _storage = new Storage<Knjiga>("knjige.csv");
             _books = _storage.Load();
+            _izdavacDao = izdavacDao ?? throw new ArgumentNullException(nameof(izdavacDao));
         }
 
         public Knjiga addKnjiga(Knjiga knjiga)
@@ -27,6 +29,9 @@ namespace Core.DAO
                 throw new Exception("Књига са датим ISBN-ом већ постоји.");
 
             _books.Add(knjiga);
+
+            _izdavacDao?.AddBookToIzdavac(knjiga);
+
             _storage.Save(_books);
             return knjiga;
         }
@@ -56,6 +61,7 @@ namespace Core.DAO
 
             _storage.Save(_books);
             return existingKnjiga;
+
         }
 
         public Knjiga deleteKnjiga(string isbn)

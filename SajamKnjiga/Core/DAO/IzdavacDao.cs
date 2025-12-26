@@ -13,17 +13,35 @@ namespace Core.DAO
     {
         private readonly List<Izdavac> _izdavaci;
         private readonly Storage<Izdavac> _storage;
+        private readonly AdresaDao _adresaDao;
 
         private readonly AutorDao _autorDao;
         private readonly KnjigaDao _knjigaDao;
+        
 
-        public IzdavacDao()
+        public IzdavacDao(AdresaDao adresaDao)
         {
+            _adresaDao = adresaDao;
             _storage = new Storage<Izdavac>("izdavaci.csv");
             _izdavaci = _storage.Load();
 
-            _autorDao = new AutorDao();
-            _knjigaDao = new KnjigaDao();
+            _autorDao = new AutorDao(_adresaDao);
+        }
+
+       
+
+        public void AddBookToIzdavac(Knjiga knjiga)
+        {
+            if (knjiga.Izdavac == null)
+                throw new ArgumentException("Knjiga nema dodeljenog izdavača.");
+            var izdavac = _izdavaci.FirstOrDefault(i => i.Sifra == knjiga.Izdavac.Sifra);
+            if (izdavac != null)
+            {
+                if (!izdavac.SpisakKnjiga.Contains(knjiga))
+                    izdavac.SpisakKnjiga.Add(knjiga);
+
+                _storage.Save(_izdavaci);
+            }
         }
         private int GenerateId()
         {
@@ -75,6 +93,11 @@ namespace Core.DAO
         public List<Izdavac> GetAll()
         {
             return _izdavaci;
+        }
+
+        public void SaveAll()
+        {
+            _storage.Save(_izdavaci);
         }
 
     }

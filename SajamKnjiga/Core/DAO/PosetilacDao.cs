@@ -20,18 +20,13 @@ namespace Core.DAO
     {
         private readonly List<Posetilac> _posetioci;
         private readonly Storage<Posetilac> _storage;
-        //referenciranje drugih DAO-a radi povezivanja referenci
-        private readonly KupovinaDao _kupovinDao;
-        private readonly KnjigaDao _knjigaDao;
+        private readonly AdresaDao _adresaDao;
 
-
-        public PosetilacDao()
+        public PosetilacDao(AdresaDao adresaDao)
         {
             _storage = new Storage<Posetilac>("posetioci.csv");
             _posetioci = _storage.Load();
-            //povezivanje referenci
-            //_kupovinDao = kupovinDao;
-            //_knjigaDao = knjiaDao;
+            _adresaDao = adresaDao;
         }
         private int GenerateClanskaKartaNumber()
         {
@@ -65,10 +60,7 @@ namespace Core.DAO
         public Posetilac AddPosetilac(Posetilac posetilac)
         {
             posetilac.BrClanskeKarte = GenerateClanskaKarta();
-            //povezivanje referenci
-            //posetilac.BrojClanskeKarte = posetilac.BrClanskeKarteKupca.BrClanskeKarte;
-            //dodati i za listu zelja i kupljene knjige ako je potrebno
-
+          
             _posetioci.Add(posetilac);
             _storage.Save(_posetioci);
             return posetilac;
@@ -90,9 +82,7 @@ namespace Core.DAO
             existing.TrenutnaGodClanstva = posetilac.TrenutnaGodClanstva;
             existing.Status = posetilac.Status;
             existing.ProsecnaOcenaRec = posetilac.ProsecnaOcenaRec;
-            //povezivnje referenci
-           // existing.BrojClanskeKarte = posetilac.kupljeneKnjige.BrClanskeKarteKupca;
-
+           
             _storage.Save(_posetioci);
             return existing;
         }
@@ -104,6 +94,14 @@ namespace Core.DAO
 
             _posetioci.Remove(existing);
             _storage.Save(_posetioci);
+            if (existing.Adresa != null)
+            {
+                bool adresaKoristiJosNeko = _posetioci.Any(p => p.Adresa?.Sifra == existing.Adresa.Sifra);
+                if (!adresaKoristiJosNeko)
+                {
+                    _adresaDao.Delete(existing.Adresa.Sifra);
+                }
+            }
             return existing;
 
         }

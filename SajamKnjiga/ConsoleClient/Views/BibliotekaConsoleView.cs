@@ -8,6 +8,7 @@ using Core.DAO;
 using System.Threading;
 using Core.Interfaces;
 using Core;
+using Core.Utils;
 namespace ConsoleClient.Views
 {
     internal class BibliotekaConsoleView
@@ -19,8 +20,11 @@ namespace ConsoleClient.Views
         private readonly KupovinaDao _kupovinaDao;
         private readonly IzdavacDao _izdavacDao;
         private readonly ListaZeljaDao _listaZeljaDao;
+       
+        private readonly AutorKnjigaDao _autorKnjigaDao;
+
         public BibliotekaConsoleView(AutorDao autorDao, AdresaDao adresaDao, KnjigaDao knjigaDao, PosetilacDao posetilacDao,
-                                        KupovinaDao kupovinaDao, IzdavacDao izdavacDao,ListaZeljaDao listzelja)
+                                        KupovinaDao kupovinaDao, IzdavacDao izdavacDao,ListaZeljaDao listzelja, AutorKnjigaDao autorKnjigaDao)
         {
             _autorDao = autorDao;
             _adresaDao = adresaDao;
@@ -29,6 +33,8 @@ namespace ConsoleClient.Views
             _kupovinaDao = kupovinaDao;
             _izdavacDao = izdavacDao;
             _listaZeljaDao = listzelja;
+            _autorKnjigaDao = autorKnjigaDao;
+           
         }
 
         public void RunMenu()
@@ -198,6 +204,7 @@ namespace ConsoleClient.Views
                 {
                     Console.WriteLine("   Knjige: nema");
                 }
+                Console.WriteLine(new string('-', 100));
             }
         }
 
@@ -212,30 +219,33 @@ namespace ConsoleClient.Views
 
         private Adresa InputAdresa()
         {
-            // Unos adrese
+            Console.WriteLine("Enter street name: ");
+            string ulica = Console.ReadLine() ?? string.Empty;
 
-            int idUlice = 1;
-
-            System.Console.WriteLine("Enter street name: ");
-            string ulica = System.Console.ReadLine() ?? string.Empty;
-
-            System.Console.WriteLine("Enter street number: ");
+            Console.WriteLine("Enter street number: ");
             int broj;
             while (!int.TryParse(Console.ReadLine(), out broj))
             {
-                System.Console.WriteLine("Invalid number. Please enter an integer: ");
+                Console.WriteLine("Invalid number. Please enter an integer: ");
             }
 
-            System.Console.WriteLine("Enter city: ");
-            string grad = System.Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Enter city: ");
+            string grad = Console.ReadLine() ?? string.Empty;
 
-            System.Console.WriteLine("Enter country: ");
-            string drzava = System.Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Enter country: ");
+            string drzava = Console.ReadLine() ?? string.Empty;
 
-            Adresa adresa = new Adresa(idUlice, ulica, broj, grad, drzava);
+    
+            var existing = _adresaDao.GetAll()
+                .FirstOrDefault(a => a.Ulica == ulica && a.Broj == broj && a.Grad == grad && a.Drzava == drzava);
 
-            return adresa;
+            if (existing != null)
+                return existing; 
+
+            Adresa adresa = new Adresa { Ulica = ulica, Broj = broj, Grad = grad, Drzava = drzava };
+            return _adresaDao.Add(adresa);
         }
+
         private Autor InputAutor()
         {
             System.Console.WriteLine("Enter first name: ");
@@ -252,7 +262,7 @@ namespace ConsoleClient.Views
             }
 
             Adresa adresa = InputAdresa();
-            _adresaDao.Add(adresa);
+            
             System.Console.WriteLine("Enter phone: ");
             string telefon = System.Console.ReadLine() ?? string.Empty;
 
@@ -313,20 +323,68 @@ namespace ConsoleClient.Views
                 Console.WriteLine("Autor not found.");
                 return;
             }
-            Console.WriteLine("Enter new autor details:");
-            Autor updatedData = InputAutor();
-            existingAutor.Ime = updatedData.Ime;
-            existingAutor.Prezime = updatedData.Prezime;
-            existingAutor.Adresa = updatedData.Adresa;
-            existingAutor.Telefon = updatedData.Telefon;
-            existingAutor.BrojLicneKarte = updatedData.BrojLicneKarte;
-            existingAutor.GodineIskustva = updatedData.GodineIskustva;
-            existingAutor.Email = updatedData.Email;
-            existingAutor.DatumRodjenja = updatedData.DatumRodjenja;
+
+            Console.WriteLine("Enter new autor details (leave blank to keep existing):");
+
+            
+            Console.WriteLine($"First name ({existingAutor.Ime}):");
+            string ime = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(ime)) existingAutor.Ime = ime;
+
+            Console.WriteLine($"Last name ({existingAutor.Prezime}):");
+            string prezime = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(prezime)) existingAutor.Prezime = prezime;
+
+            Console.WriteLine("Update address? (y/n)");
+            string input = Console.ReadLine() ?? "n";
+            if (input.ToLower() == "y")
+            {
+             
+                Adresa adresa = existingAutor.Adresa != null
+                    ? _adresaDao.GetBySifra(existingAutor.Adresa.Sifra)
+                    : InputAdresa();
+
+                Console.WriteLine($"Street ({adresa.Ulica}):");
+                string ulica = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(ulica)) adresa.Ulica = ulica;
+
+                Console.WriteLine($"Number ({adresa.Broj}):");
+                if (int.TryParse(Console.ReadLine(), out int broj)) adresa.Broj = broj;
+
+                Console.WriteLine($"City ({adresa.Grad}):");
+                string grad = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(grad)) adresa.Grad = grad;
+
+                Console.WriteLine($"Country ({adresa.Drzava}):");
+                string drzava = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(drzava)) adresa.Drzava = drzava;
+
+            
+                _adresaDao.Update(adresa);
+                existingAutor.Adresa = adresa;
+            }
+
+
+            Console.WriteLine($"Phone ({existingAutor.Telefon}):");
+            string telefon = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(telefon)) existingAutor.Telefon = telefon;
+
+            Console.WriteLine($"ID card ({existingAutor.BrojLicneKarte}):");
+            string brojKarte = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(brojKarte)) existingAutor.BrojLicneKarte = brojKarte;
+
+            Console.WriteLine($"Years of experience ({existingAutor.GodineIskustva}):");
+            if (int.TryParse(Console.ReadLine(), out int godine)) existingAutor.GodineIskustva = godine;
+
+            Console.WriteLine($"Email ({existingAutor.Email}):");
+            string email = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(email)) existingAutor.Email = email;
+
+            Console.WriteLine($"Date of birth ({existingAutor.DatumRodjenja:yyyy-MM-dd}):");
+            if (DateTime.TryParse(Console.ReadLine(), out DateTime datum)) existingAutor.DatumRodjenja = datum;
 
             _autorDao.Update(existingAutor);
             Console.WriteLine("Autor updated successfully.");
-
         }
 
         private void ShowBooks()
@@ -351,12 +409,13 @@ namespace ConsoleClient.Views
 
                 Console.Write("   Autori: ");
                 if (k.Autori.Count > 0)
-                    Console.WriteLine(string.Join(", ", k.Autori));
+                    Console.WriteLine(string.Join(", ", k.Autori.Select(a => $"{a.AutorID} {a.Ime} {a.Prezime}")));
                 else
                     Console.WriteLine("nema");
 
                 Console.WriteLine($"Kupili: {k.Posetioci.Count} posetilaca");
                 Console.WriteLine($"U listi želja: {k.PosetiociListaZelja.Count} posetilaca");
+                Console.WriteLine(new string('-', 100));
             }
         }
 
@@ -392,14 +451,43 @@ namespace ConsoleClient.Views
                 Console.WriteLine("Invalid number. Please enter an integer: ");
             }
 
-            Console.WriteLine("Enter publisher: ");
-            string izdavac = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Enter the author id of the book: ");
+            int AutorID;
+            while(!int.TryParse(Console.ReadLine(), out AutorID))
+            {
+                Console.WriteLine("Invalid number. Please enter an integer for author ID: ");
+            }
 
+            Autor autor = _autorDao.GetBySifra(AutorID);
+            if (autor == null)
+            {
+                Console.WriteLine("Author not found. Setting as null.");
+            }
+
+            Console.WriteLine("Enter publisher ID: ");
+            int sifraIzdavaca;
+            while (!int.TryParse(Console.ReadLine(), out sifraIzdavaca))
+            {
+                Console.WriteLine("Invalid number. Please enter an integer for publisher ID: ");
+            }
+
+            
+            Izdavac izdavac = _izdavacDao.GetBySifra(sifraIzdavaca);
+            if (izdavac == null)
+            {
+                Console.WriteLine("Publisher not found. Setting as null.");
+            }
             List<Autor> autori = new List<Autor>();
             List<Posetilac> posetioci = new List<Posetilac>();
             List<Posetilac> posetiociListaZelja = new List<Posetilac>();
 
-            return new Knjiga
+          
+            if (autor != null)
+            {
+                autori.Add(autor);
+            }
+
+            Knjiga novaKnjiga = new Knjiga
             {
                 ISBN = isbn,
                 Naziv = naziv,
@@ -412,15 +500,32 @@ namespace ConsoleClient.Views
                 Posetioci = posetioci,
                 PosetiociListaZelja = posetiociListaZelja
             };
+
+            if (autor != null)
+            {
+                autor.Knjige.Add(novaKnjiga);
+            }
+            _autorKnjigaDao.AddVeza(autor.AutorID, novaKnjiga.ISBN);
+
+            return novaKnjiga;
         }
 
 
         private void AddKnjiga()
         {
             Knjiga knjiga = InputKnjiga();
-            _knjigaDao.addKnjiga(knjiga);
-            Console.WriteLine("Knjiga added successfully.");
 
+            _knjigaDao.addKnjiga(knjiga);
+
+            if (knjiga.Autori != null)
+            {
+                foreach (var autor in knjiga.Autori)
+                {
+                    _autorKnjigaDao.AddVeza(autor.AutorID, knjiga.ISBN);
+                }
+            }
+
+            Console.WriteLine("Knjiga added successfully.");
         }
 
 
@@ -429,9 +534,36 @@ namespace ConsoleClient.Views
             Console.WriteLine("Enter ISBN of the book to remove: ");
             string isbn = Console.ReadLine() ?? string.Empty;
 
+            var knjiga = _knjigaDao.GetByISBN(isbn);
+            if (knjiga == null)
+            {
+                Console.WriteLine("Book not found.");
+                return;
+            }
+
+            if (knjiga.Autori != null)
+            {
+                foreach (var autor in knjiga.Autori)
+                {
+                    autor.Knjige.Remove(knjiga);
+                }
+            }
+
+            if (knjiga.Izdavac != null)
+            {
+                knjiga.Izdavac.SpisakKnjiga.Remove(knjiga);
+            }
+
             try
             {
                 _knjigaDao.deleteKnjiga(isbn);
+                foreach (var izdavac in _izdavacDao.GetAll())
+                {
+                    izdavac.SpisakKnjiga.RemoveAll(k => k.ISBN == isbn);
+                }
+
+                _izdavacDao.SaveAll();
+                _autorKnjigaDao.RemoveByISBN(isbn);
                 Console.WriteLine("Knjiga removed successfully.");
             }
             catch (Exception ex)
@@ -453,19 +585,27 @@ namespace ConsoleClient.Views
                 return;
             }
 
-            Console.WriteLine("Enter new book details:");
-            Knjiga updatedData = InputKnjiga();
+            Console.WriteLine($"Current title: {existingKnjiga.Naziv}");
+            Console.Write("Enter new title (leave blank to keep): ");
+            string naziv = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(naziv)) existingKnjiga.Naziv = naziv;
 
+            Console.WriteLine($"Current genre: {existingKnjiga.Zanr}");
+            Console.Write("Enter new genre (leave blank to keep): ");
+            string zanr = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(zanr)) existingKnjiga.Zanr = zanr;
 
-            existingKnjiga.Naziv = updatedData.Naziv;
-            existingKnjiga.Zanr = updatedData.Zanr;
-            existingKnjiga.GodinaIzdanja = updatedData.GodinaIzdanja;
-            existingKnjiga.Cena = updatedData.Cena;
-            existingKnjiga.BrojStrana = updatedData.BrojStrana;
-            existingKnjiga.Izdavac = updatedData.Izdavac;
+            Console.WriteLine($"Current year: {existingKnjiga.GodinaIzdanja}");
+            if (int.TryParse(Console.ReadLine(), out int godina)) existingKnjiga.GodinaIzdanja = godina;
+
+            Console.WriteLine($"Current price: {existingKnjiga.Cena}");
+            if (int.TryParse(Console.ReadLine(), out int cena)) existingKnjiga.Cena = cena;
+
+            Console.WriteLine($"Current number of pages: {existingKnjiga.BrojStrana}");
+            if (int.TryParse(Console.ReadLine(), out int brStrana)) existingKnjiga.BrojStrana = brStrana;
 
             _knjigaDao.updateKnjiga(existingKnjiga);
-
+          
             Console.WriteLine("Book updated successfully.");
         }
 
@@ -499,6 +639,7 @@ namespace ConsoleClient.Views
                 {
                     Console.WriteLine("Lista želja: nema");
                 }
+                Console.WriteLine(new string('-', 100)); 
             }
         }
 
@@ -526,7 +667,6 @@ namespace ConsoleClient.Views
             }
 
             Adresa adresa = InputAdresa();
-            _adresaDao.Add(adresa);
 
             System.Console.WriteLine("Enter phone: ");
             string telefon = System.Console.ReadLine() ?? string.Empty;
@@ -587,33 +727,70 @@ namespace ConsoleClient.Views
 
         private void UpdatePosetilac()
         {
-            Console.WriteLine("Enter visitor membership of the visitor to update: ");
-            string brClanskeKarte = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Enter ID card number of visitor to update:");
+            string brKarte = Console.ReadLine() ?? string.Empty;
 
-            var existingVisitor = _posetilacDao.GetByBrClanskeKarte(brClanskeKarte);
-            if (existingVisitor == null)
+            var existingPosetilac = _posetilacDao.GetByBrClanskeKarte(brKarte);
+            if (existingPosetilac == null)
             {
                 Console.WriteLine("Visitor not found.");
                 return;
             }
 
-            Console.WriteLine("Enter new visitor details:");
-            Posetilac updatedData = InputPosetilac();
-            existingVisitor.Ime = updatedData.Ime;
-            existingVisitor.Prezime = updatedData.Prezime;
-            existingVisitor.Adresa = updatedData.Adresa;
-            existingVisitor.Telefon = updatedData.Telefon;
-            existingVisitor.Email = updatedData.Email;
-            existingVisitor.TrenutnaGodClanstva = updatedData.TrenutnaGodClanstva;
-            existingVisitor.Status = updatedData.Status;
-            existingVisitor.ProsecnaOcenaRec = updatedData.ProsecnaOcenaRec;
-            existingVisitor.DatumRodjenja = updatedData.DatumRodjenja;
+            Console.WriteLine("Enter new visitor details (leave blank to keep existing):");
+
+          
+            Console.WriteLine($"First name ({existingPosetilac.Ime}):");
+            string ime = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(ime)) existingPosetilac.Ime = ime;
+
+            Console.WriteLine($"Last name ({existingPosetilac.Prezime}):");
+            string prezime = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(prezime)) existingPosetilac.Prezime = prezime;
+
+            Console.WriteLine("Update address? (y/n)");
+            string input = Console.ReadLine() ?? "n";
+            if (input.ToLower() == "y")
+            {
+                
+                Adresa adresa = existingPosetilac.Adresa != null
+                    ? _adresaDao.GetBySifra(existingPosetilac.Adresa.Sifra)
+                    : InputAdresa();
+
+                Console.WriteLine($"Street ({adresa.Ulica}):");
+                string ulica = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(ulica)) adresa.Ulica = ulica;
+
+                Console.WriteLine($"Number ({adresa.Broj}):");
+                if (int.TryParse(Console.ReadLine(), out int broj)) adresa.Broj = broj;
+
+                Console.WriteLine($"City ({adresa.Grad}):");
+                string grad = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(grad)) adresa.Grad = grad;
+
+                Console.WriteLine($"Country ({adresa.Drzava}):");
+                string drzava = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(drzava)) adresa.Drzava = drzava;
+
+                _adresaDao.Update(adresa);
+                existingPosetilac.Adresa = adresa;
+            }
 
 
-            _posetilacDao.UpdatePosetilac(existingVisitor);
+            Console.WriteLine($"Phone ({existingPosetilac.Telefon}):");
+            string telefon = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(telefon)) existingPosetilac.Telefon = telefon;
+
+            Console.WriteLine($"Email ({existingPosetilac.Email}):");
+            string email = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(email)) existingPosetilac.Email = email;
+
+
+            _posetilacDao.UpdatePosetilac(existingPosetilac);
 
             Console.WriteLine("Visitor updated successfully.");
         }
+
 
         private void ShowKupovine()
         {
@@ -641,6 +818,7 @@ namespace ConsoleClient.Views
                 Console.WriteLine(
                     $"   {k.DatumKupovine:dd.MM.yyyy} | {k.Komentar}"
                 );
+                Console.WriteLine(new string('-', 100));
             }
         }
 
@@ -703,7 +881,7 @@ namespace ConsoleClient.Views
             kupovina.Kupac = kupac;
             kupovina.Knjiga = knjiga;
 
-            //povezivanje referenci
+  
             kupovina.BrClanskeKarteKupca = kupac.BrClanskeKarte;
             kupovina.ISBNKnjige = knjiga.ISBN;
 
@@ -759,7 +937,7 @@ namespace ConsoleClient.Views
             existingKupovina.Kupac = updatedData.Kupac;
             existingKupovina.Knjiga = updatedData.Knjiga;
 
-            //povezivanje referenci
+
             existingKupovina.BrClanskeKarteKupca = updatedData.BrClanskeKarteKupca;
             existingKupovina.ISBNKnjige = updatedData.ISBNKnjige;
 
@@ -883,19 +1061,23 @@ namespace ConsoleClient.Views
                     Console.WriteLine("   Šef: nije dodeljen");
 
                 Console.Write("   Autori: ");
-                if (i.SpisakAutora.Count > 0)
-                    Console.WriteLine(string.Join(", ",i.SpisakAutora.Select(a => $"{a.Ime} {a.Prezime}")
-                    ));
+                if (i.SpisakAutora != null && i.SpisakAutora.Any(a => !string.IsNullOrEmpty(a?.Ime)))
+                    Console.WriteLine(string.Join(", ", i.SpisakAutora
+                                                       .Where(a => a != null && !string.IsNullOrEmpty(a.Ime))
+                                                       .Select(a => $"{a.Ime} {a.Prezime}")));
                 else
                     Console.WriteLine("nema");
 
                 Console.Write("   Knjige: ");
-                if (i.SpisakKnjiga.Count > 0)
-                    Console.WriteLine(string.Join(", ",i.SpisakKnjiga.Select(k => k.Naziv)
-                    ));
+                if (i.SpisakKnjiga != null && i.SpisakKnjiga.Any(k => !string.IsNullOrEmpty(k?.Naziv)))
+                    Console.WriteLine(string.Join(", ", i.SpisakKnjiga
+                                                       .Where(k => k != null && !string.IsNullOrEmpty(k.Naziv))
+                                                       .Select(k => k.Naziv)));
                 else
                     Console.WriteLine("nema");
+                Console.WriteLine(new string('-', 100));
             }
+            
         }
     }
 }

@@ -41,7 +41,6 @@ namespace Core.Models
             ime,
             prezime,
             datumRodjenja.ToString("yyyy-MM-dd"),
-            // Pretpostavljamo da klasa Adresa ima metodu koja vraća string za CSV
             $"{adresa.Sifra}",
             telefon,
             brojLicneKarte,

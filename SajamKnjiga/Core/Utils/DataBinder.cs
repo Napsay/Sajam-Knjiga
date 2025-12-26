@@ -10,15 +10,34 @@ namespace Core.Utils
 {
     public class DataBinder
     {
-        private readonly AutorDao autorDao = new AutorDao();
-        private readonly KnjigaDao knjigaDao = new KnjigaDao();
-        private readonly PosetilacDao posetilacDao = new PosetilacDao();
+
+        /* private readonly AdresaDao adresaDao = new AdresaDao();
+         private readonly PosetilacDao posetilacDao;
+         private readonly KupovinaDao kupovinaDao = new KupovinaDao();
+         private readonly ListaZeljaDao listaZeljaDao = new ListaZeljaDao();
+         private readonly IzdavacDao izdavacDao = new IzdavacDao(adresaDao);
+
+         public DataBinder()
+         {
+             posetilacDao = new PosetilacDao(adresaDao);
+         }*/
+
+        private readonly AdresaDao adresaDao = new AdresaDao();
+        private readonly PosetilacDao posetilacDao;
         private readonly KupovinaDao kupovinaDao = new KupovinaDao();
         private readonly ListaZeljaDao listaZeljaDao = new ListaZeljaDao();
-        private readonly IzdavacDao izdavacDao = new IzdavacDao();
-        private readonly AdresaDao adresaDao = new AdresaDao();
+        private readonly IzdavacDao izdavacDao;
+        private readonly AutorDao autorDao;
 
-        public static void PoveziSve(List<Autor> autori,List<Knjiga> knjige,List<AutorKnjiga> autorKnjige,List<Posetilac> posetioci,List<Kupovina> kupovine,List<ListaZelja> listaZelja,List<Izdavac> izdavaci,List<Adresa> adrese)
+        public DataBinder()
+        {
+            // prvo inicijalizujemo DAO-e koji zavise od adresa
+            autorDao = new AutorDao(adresaDao);
+            izdavacDao = new IzdavacDao(adresaDao);
+            posetilacDao = new PosetilacDao(adresaDao);
+        }
+
+        public static void PoveziSve(List<Autor> autori, List<Knjiga> knjige, List<AutorKnjiga> autorKnjige, List<Posetilac> posetioci, List<Kupovina> kupovine, List<ListaZelja> listaZelja, List<Izdavac> izdavaci, List<Adresa> adrese)
         {
             PoveziAutoreIAdrese(autori, adrese);
             PoveziPosetioceIAdrese(posetioci, adrese);
@@ -28,7 +47,7 @@ namespace Core.Utils
             PoveziIzdavace(izdavaci, autori, knjige);
         }
 
-        private static void PoveziAutoreIAdrese(List<Autor> autori,List<Adresa> adrese)
+        private static void PoveziAutoreIAdrese(List<Autor> autori, List<Adresa> adrese)
         {
             foreach (var autor in autori)
             {
@@ -38,13 +57,13 @@ namespace Core.Utils
                 }
             }
         }
-        private static void PoveziKupovine(List<Posetilac> posetioci,List<Knjiga> knjige,List<Kupovina> kupovine)
+        private static void PoveziKupovine(List<Posetilac> posetioci, List<Knjiga> knjige, List<Kupovina> kupovine)
         {
             foreach (var kupovina in kupovine)
             {
-                var posetilac = posetioci.FirstOrDefault(p =>p.BrClanskeKarte == kupovina.BrClanskeKarteKupca);
+                var posetilac = posetioci.FirstOrDefault(p => p.BrClanskeKarte == kupovina.BrClanskeKarteKupca);
 
-                var knjiga = knjige.FirstOrDefault(k =>k.ISBN == kupovina.ISBNKnjige);
+                var knjiga = knjige.FirstOrDefault(k => k.ISBN == kupovina.ISBNKnjige);
 
                 if (posetilac != null && knjiga != null)
                 {
@@ -56,7 +75,7 @@ namespace Core.Utils
                 }
             }
         }
-        private static void PoveziPosetioceIAdrese(List<Posetilac> posetioci,List<Adresa> adrese)
+        private static void PoveziPosetioceIAdrese(List<Posetilac> posetioci, List<Adresa> adrese)
         {
             foreach (var posetilac in posetioci)
             {
@@ -66,7 +85,7 @@ namespace Core.Utils
                 }
             }
         }
-        public static void PoveziAutoreIKnjige(List<Autor> autori, List<Knjiga> knjige,List<AutorKnjiga> veze)
+        public static void PoveziAutoreIKnjige(List<Autor> autori, List<Knjiga> knjige, List<AutorKnjiga> veze)
         {
             foreach (var veza in veze)
             {
@@ -76,10 +95,12 @@ namespace Core.Utils
                 if (autor != null && knjiga != null)
                 {
                     autor.Knjige.Add(knjiga);
+                    knjiga.Autori.Add(autor);
                 }
             }
         }
 
+        
         private static void PoveziListuZelja(List<Posetilac> posetioci,List<Knjiga> knjige,List<ListaZelja> listaZelja)
         {
             foreach (var veza in listaZelja)
@@ -90,7 +111,11 @@ namespace Core.Utils
 
                 if (posetilac != null && knjiga != null)
                 {
-                    knjiga.PosetiociListaZelja.Add(posetilac);
+                    if (!posetilac.ListaZelja.Contains(knjiga))
+                        posetilac.ListaZelja.Add(knjiga);
+
+                    if (!knjiga.PosetiociListaZelja.Contains(posetilac))
+                        knjiga.PosetiociListaZelja.Add(posetilac);
                 }
             }
         }
@@ -109,46 +134,81 @@ namespace Core.Utils
                     posetilac.KupljeneKnjige.Add(kupovina);
                 }
             }
-            foreach (var veza in listaZelja)
-            {
-                var posetilac = posetioci.FirstOrDefault(p => p.BrClanskeKarte == veza.BrClanskeKarte);
-
-                var knjiga = knjige.FirstOrDefault(k => k.ISBN == veza.ISBN);
-
-                if (posetilac != null && knjiga != null)
-                {
-                    knjiga.PosetiociListaZelja.Add(posetilac);
-                }
-            }
         }
 
-        private static void PoveziIzdavace(List<Izdavac> izdavaci,List<Autor> autori, List<Knjiga> knjige)
+        /* private static void PoveziIzdavace(List<Izdavac> izdavaci,List<Autor> autori, List<Knjiga> knjige)
+         {
+             foreach (var izdavac in izdavaci)
+             {
+
+                 if (izdavac.Sef != null)
+                 {
+                     izdavac.Sef = autori.FirstOrDefault(a => a.AutorID == izdavac.Sef.AutorID);
+                 }
+
+                 for (int i = 0; i < izdavac.SpisakAutora.Count; i++)
+                 {
+                     var autor = autori.FirstOrDefault(a => a.AutorID == izdavac.SpisakAutora[i].AutorID);
+
+                     if (autor != null)
+                         izdavac.SpisakAutora[i] = autor;
+                 }
+
+                 for (int i = 0; i < izdavac.SpisakKnjiga.Count; i++)
+                 {
+                     var knjiga = knjige.FirstOrDefault(k => k.ISBN == izdavac.SpisakKnjiga[i].ISBN);
+
+                     if (knjiga != null)
+                         izdavac.SpisakKnjiga[i] = knjiga;
+
+                 }
+             }
+         }*/
+
+        private static void PoveziIzdavace(List<Izdavac> izdavaci, List<Autor> autori, List<Knjiga> knjige)
         {
             foreach (var izdavac in izdavaci)
             {
-             
+                // Poveži šefa
                 if (izdavac.Sef != null)
                 {
                     izdavac.Sef = autori.FirstOrDefault(a => a.AutorID == izdavac.Sef.AutorID);
                 }
 
-                for (int i = 0; i < izdavac.SpisakAutora.Count; i++)
+                // Poveži autore izdavača
+                if (izdavac.SpisakAutora != null)
                 {
-                    var autor = autori.FirstOrDefault(a => a.AutorID == izdavac.SpisakAutora[i].AutorID);
-
-                    if (autor != null)
-                        izdavac.SpisakAutora[i] = autor;
+                    for (int i = 0; i < izdavac.SpisakAutora.Count; i++)
+                    {
+                        var autor = autori.FirstOrDefault(a => a.AutorID == izdavac.SpisakAutora[i].AutorID);
+                        if (autor != null)
+                            izdavac.SpisakAutora[i] = autor;
+                    }
                 }
 
-                for (int i = 0; i < izdavac.SpisakKnjiga.Count; i++)
+                // Očisti postojeće knjige pre dodavanja
+                izdavac.SpisakKnjiga = new List<Knjiga>();
+            }
+            
+            // Poveži knjige sa izdavačima 
+            foreach (var knjiga in knjige)
+            {
+                if (knjiga.Izdavac != null && int.TryParse(knjiga.Izdavac.Sifra.ToString(), out int sifraIzdavaca))
                 {
-                    var knjiga = knjige.FirstOrDefault(k => k.ISBN == izdavac.SpisakKnjiga[i].ISBN);
+                    var izdavac = izdavaci.FirstOrDefault(i => i.Sifra == sifraIzdavaca);
+                    if (izdavac != null)
+                    {
+                        knjiga.Izdavac = izdavac; // postavi pravi objekat
+                        if (izdavac.SpisakKnjiga == null)
+                            izdavac.SpisakKnjiga = new List<Knjiga>();
 
-                    if (knjiga != null)
-                        izdavac.SpisakKnjiga[i] = knjiga;
-
+                        if (!izdavac.SpisakKnjiga.Contains(knjiga))
+                            izdavac.SpisakKnjiga.Add(knjiga);
+                    }
                 }
             }
         }
+
+
     }
 }

@@ -13,13 +13,14 @@ namespace Core.DAO
     {
         private readonly List<Autor> _autors;
         private readonly Storage<Autor> _storage;
-        //TO DO DODATI ADRESU DAO
-        private readonly AdresaDao _adresaDAO;
-        public AutorDao()
+        private readonly AdresaDao _adresaDao;
+        
+      
+        public AutorDao(AdresaDao adresaDao)
         {
             _storage = new Storage<Autor>("autori.csv");
             _autors = _storage.Load();
-            _adresaDAO = new AdresaDao();
+            _adresaDao = adresaDao;
         }
         private int GenerateId()
         {
@@ -60,6 +61,15 @@ namespace Core.DAO
                 throw new Exception("Autor not found");
             _autors.Remove(autor);
             _storage.Save(_autors);
+            if (autor.Adresa != null)
+            { 
+                bool adresaKoristiJosNeko = _autors.Any(a => a.Adresa?.Sifra == autor.Adresa.Sifra);
+                if (!adresaKoristiJosNeko)
+                {
+                    _adresaDao.Delete(autor.Adresa.Sifra);
+                }
+            }
+
             return autor;
         }
         public Autor GetBySifra(int sifra)

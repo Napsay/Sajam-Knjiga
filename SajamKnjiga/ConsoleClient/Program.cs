@@ -13,13 +13,15 @@ namespace ConsoleClient
     {
         static void Main(string[] args)
         {
-            AutorDao autori = new AutorDao();
             AdresaDao adrese = new AdresaDao();
-            KnjigaDao knjige = new KnjigaDao();
-            PosetilacDao posetioci = new PosetilacDao();
-            IzdavacDao izdavaci = new IzdavacDao();
+            AutorDao autori = new AutorDao(adrese);
+            PosetilacDao posetioci = new PosetilacDao(adrese);
+            IzdavacDao izdavaci = new IzdavacDao(adrese);
+            KnjigaDao knjige = new KnjigaDao(izdavaci);
             AutorKnjigaDao autorKnjiga = new AutorKnjigaDao();
             ListaZeljaDao listaZelja = new ListaZeljaDao();
+            
+
 
 
             KupovinaDao kupovine = new KupovinaDao();
@@ -36,7 +38,7 @@ namespace ConsoleClient
 
 
 
-            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine,izdavaci,listaZelja);
+            BibliotekaConsoleView view = new BibliotekaConsoleView(autori,adrese, knjige, posetioci, kupovine,izdavaci,listaZelja, autorKnjiga);
             view.RunMenu();
         }
     }
