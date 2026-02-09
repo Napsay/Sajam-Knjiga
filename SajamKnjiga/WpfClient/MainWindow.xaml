@@ -52,7 +52,7 @@
 
                 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Width="30" Margin="2" Click="Button_Click">➕</Button>
+                    <Button Width="30" Margin="2" Click="DodajEntitet_Click">➕</Button>
                     <Button Width="30" Margin="2">✏️</Button>
                     <Button Width="30" Margin="2">🗑️</Button>
                 </StackPanel>

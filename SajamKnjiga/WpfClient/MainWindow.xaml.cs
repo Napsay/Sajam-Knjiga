@@ -69,7 +69,7 @@ namespace WpfClient
         }
         private void UcitajPosetioce()
         {
-            // Kreiranje DAO objekata
+            
             AdresaDao adrese = new AdresaDao();
             AutorDao autori = new AutorDao(adrese);
             PosetilacDao posetioci = new PosetilacDao(adrese);
@@ -79,7 +79,7 @@ namespace WpfClient
             ListaZeljaDao listaZelja = new ListaZeljaDao();
             KupovinaDao kupovine = new KupovinaDao();
 
-            // Učitavanje lista iz fajlova
+           
             var listaAdresa = adrese.GetAll();
             var listaAutora = autori.GetAll();
             var listaPosetilaca = posetioci.GetAllPosetilac();
@@ -169,6 +169,36 @@ namespace WpfClient
             );
 
             dgKnjige.ItemsSource = listaKnjiga;
+        }
+
+        private void DodajEntitet_Click(object sender, RoutedEventArgs e)
+        {
+            switch (MainTabControl.SelectedIndex)
+            {
+                case 0: 
+                    DodajPosetiocaWindow posetilacWin = new DodajPosetiocaWindow();
+                    posetilacWin.Owner = this;
+
+                    if (posetilacWin.ShowDialog() == true)
+                        UcitajPosetioce();
+                    break;
+
+                /*case 1: 
+                    DodajAutoraWindow autorWin = new DodajAutoraWindow();
+                    autorWin.Owner = this;
+
+                    if (autorWin.ShowDialog() == true)
+                        UcitajAutore();
+                    break;
+
+                case 2: 
+                    DodajKnjiguWindow knjigaWin = new DodajKnjiguWindow();
+                    knjigaWin.Owner = this;
+
+                    if (knjigaWin.ShowDialog() == true)
+                        UcitajKnjige();
+                    break;*/
+            }
         }
     }
 }
