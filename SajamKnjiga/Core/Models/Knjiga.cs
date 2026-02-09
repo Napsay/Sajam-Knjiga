@@ -129,6 +129,19 @@ namespace Core.Models
 
           
         }
+        public string AutoriPrikaz
+        {
+            get
+            {
+                if (Autori == null || Autori.Count == 0)
+                    return "";
+
+                return string.Join(", ",
+                    Autori.Select(a => $"{a.Ime} {a.Prezime}")
+                );
+            }
+        }
+
         public string[] ToCSV()
         {
             string izdavacId = izdavac != null ? izdavac.Sifra.ToString() : "";
