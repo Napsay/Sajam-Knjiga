@@ -183,7 +183,7 @@ namespace WpfClient
                         UcitajPosetioce();
                     break;
 
-                /*case 1: 
+                case 1: 
                     DodajAutoraWindow autorWin = new DodajAutoraWindow();
                     autorWin.Owner = this;
 
@@ -191,7 +191,7 @@ namespace WpfClient
                         UcitajAutore();
                     break;
 
-                case 2: 
+               /* case 2: 
                     DodajKnjiguWindow knjigaWin = new DodajKnjiguWindow();
                     knjigaWin.Owner = this;
 
