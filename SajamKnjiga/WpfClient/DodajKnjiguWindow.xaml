@@ -1,0 +1,77 @@
+﻿<Window x:Class="WpfClient.DodajKnjiguWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dodavanje knjige"
+        Height="600" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Border Padding="20">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="ISBN *" Grid.Row="0"/>
+            <TextBox x:Name="txtISBN" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+            <TextBlock Text="Naziv *" Grid.Row="1"/>
+            <TextBox x:Name="txtNaziv" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+            <TextBlock Text="Žanr *" Grid.Row="2"/>
+            <TextBox x:Name="txtZanr" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+            <TextBlock Text="Godina izdanja *" Grid.Row="3"/>
+            <TextBox x:Name="txtGodina" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+            <TextBlock Text="Cena *" Grid.Row="4"/>
+            <TextBox x:Name="txtCena" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+            <TextBlock Text="Broj strana *" Grid.Row="5"/>
+            <TextBox x:Name="txtStrana" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+            <TextBlock Text="Izdavač *" Grid.Row="6"/>
+            <ComboBox x:Name="cmbIzdavac" Grid.Row="6" Grid.Column="1" Margin="5"
+                      DisplayMemberPath="Naziv"/>
+
+            <TextBlock Text="Autori *" Grid.Row="7" VerticalAlignment="Top"/>
+            <ListBox x:Name="lstAutori" Grid.Row="7" Grid.Column="1" Margin="5"
+                     Height="100" SelectionMode="Multiple"
+                     DisplayMemberPath="Ime"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Grid.Row="10"
+                        Grid.ColumnSpan="2"
+                        Margin="0,30,0,0">
+
+                <Button Content="Odustani"
+                        Width="110"
+                        Margin="0,0,15,0"
+                        Click="BtnOdustani_Click"/>
+
+                <Button x:Name="btnPotvrdi"
+                        Content="Potvrdi"
+                        Width="110"
+                        Click="BtnPotvrdi_Click"/>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>

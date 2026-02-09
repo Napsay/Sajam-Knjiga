@@ -21,6 +21,18 @@ namespace WpfClient
         public DodajAutoraWindow()
         {
             InitializeComponent();
+            btnPotvrdi.IsEnabled = false; 
+
+            txtIme.TextChanged += Provera;
+            txtPrezime.TextChanged += Provera;
+            dpDatumRodjenja.SelectedDateChanged += Provera;
+            txtTelefon.TextChanged += Provera;
+            txtEmail.TextChanged += Provera;
+            txtBrLicne.TextChanged += Provera;
+            txtGodineIskustva.TextChanged += Provera;
+            txtUlica.TextChanged += Provera;
+            txtBroj.TextChanged += Provera;
+            txtGrad.TextChanged += Provera;
         }
 
         private void BtnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -55,6 +67,20 @@ namespace WpfClient
             {
                 MessageBox.Show("Greška pri unosu podataka!");
             }
+        }
+        private void Provera(object sender, EventArgs e)
+        {
+            btnPotvrdi.IsEnabled =
+                !string.IsNullOrWhiteSpace(txtIme.Text) &&
+                !string.IsNullOrWhiteSpace(txtPrezime.Text) &&
+                dpDatumRodjenja.SelectedDate != null &&
+                !string.IsNullOrWhiteSpace(txtTelefon.Text) &&
+                !string.IsNullOrWhiteSpace(txtEmail.Text) &&
+                !string.IsNullOrWhiteSpace(txtBrLicne.Text) &&
+                !string.IsNullOrWhiteSpace(txtGodineIskustva.Text) &&
+                !string.IsNullOrWhiteSpace(txtUlica.Text) &&
+                !string.IsNullOrWhiteSpace(txtBroj.Text) &&
+                !string.IsNullOrWhiteSpace(txtGrad.Text);
         }
 
         private void BtnOdustani_Click(object sender, RoutedEventArgs e)

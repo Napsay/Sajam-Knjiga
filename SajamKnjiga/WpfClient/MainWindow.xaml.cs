@@ -157,6 +157,7 @@ namespace WpfClient
             var listaIzdavaca = izdavaci.GetAll();
             var vezeAutorKnjiga = autorKnjiga.GetAll();
 
+            
             DataBinder.PoveziSve(
                 listaAutora,
                 listaKnjiga,
@@ -168,8 +169,10 @@ namespace WpfClient
                 listaAdresa
             );
 
+            dgKnjige.ItemsSource = null;      
             dgKnjige.ItemsSource = listaKnjiga;
         }
+
 
         private void DodajEntitet_Click(object sender, RoutedEventArgs e)
         {
@@ -191,13 +194,13 @@ namespace WpfClient
                         UcitajAutore();
                     break;
 
-               /* case 2: 
+                case 2: 
                     DodajKnjiguWindow knjigaWin = new DodajKnjiguWindow();
                     knjigaWin.Owner = this;
 
                     if (knjigaWin.ShowDialog() == true)
                         UcitajKnjige();
-                    break;*/
+                    break;
             }
         }
     }
