@@ -127,7 +127,10 @@ namespace Core.Models
             Knjige = new List<Knjiga>();
 
         }
-
+        public string PunoIme
+        {
+            get { return Ime + " " + Prezime; }
+        }
         override public string ToString()
         {
             return 

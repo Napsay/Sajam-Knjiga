@@ -203,5 +203,56 @@ namespace WpfClient
                     break;
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (MainTabControl.SelectedIndex == 0)
+            {
+                Posetilac p = (Posetilac)dgPosetioci.SelectedItem;
+                if (p == null)
+                {
+                    MessageBox.Show("Izaberite posetioca iz tabele.");
+                    return;
+                }
+
+                IzmenaPosetiocaWindow win = new IzmenaPosetiocaWindow(p);
+                win.Owner = this;
+
+                if (win.ShowDialog() == true)
+                    UcitajPosetioce();
+            }
+            
+            else if (MainTabControl.SelectedIndex == 1)
+            {
+                Autor a = (Autor)dgAutori.SelectedItem;
+                if (a == null)
+                {
+                    MessageBox.Show("Izaberite autora iz tabele.");
+                    return;
+                }
+
+                IzmenaAutoraWindow win = new IzmenaAutoraWindow(a);
+                win.Owner = this;
+
+                if (win.ShowDialog() == true)
+                    UcitajAutore();
+            }
+          
+            else if (MainTabControl.SelectedIndex == 2)
+            {
+                Knjiga k = (Knjiga)dgKnjige.SelectedItem;
+                if (k == null)
+                {
+                    MessageBox.Show("Izaberite knjigu iz tabele.");
+                    return;
+                }
+
+                IzmenaKnjigeWindow win = new IzmenaKnjigeWindow(k);
+                win.Owner = this;
+
+                if (win.ShowDialog() == true)
+                    UcitajKnjige();
+            }
+        }
     }
 }

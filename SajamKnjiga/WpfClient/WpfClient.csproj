@@ -67,6 +67,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IzmenaAutoraWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmenaKnjigeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmenaPosetiocaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +95,15 @@
     </Compile>
     <Compile Include="DodajPosetiocaWindow.xaml.cs">
       <DependentUpon>DodajPosetiocaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzmenaAutoraWindow.xaml.cs">
+      <DependentUpon>IzmenaAutoraWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzmenaKnjigeWindow.xaml.cs">
+      <DependentUpon>IzmenaKnjigeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzmenaPosetiocaWindow.xaml.cs">
+      <DependentUpon>IzmenaPosetiocaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
