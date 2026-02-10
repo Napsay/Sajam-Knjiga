@@ -15,13 +15,11 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- GORNJI TAB (vizuelni stil kao kod posetioca) -->
             <TabControl Grid.Row="0" Margin="0,0,0,10">
                 <TabItem Header="Informacije"/>
             </TabControl>
 
-            <!-- FORMA -->
-            <Grid Grid.Row="1" Margin="10">
+            <Grid Grid.Row="1" Margin="10,10,10,0" Height="421" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -94,6 +92,8 @@
                         Content="Potvrdi"
                         Width="110"
                         Margin="5"
+                        Background="#2196F3"
+                        Foreground="White"
                         Click="BtnPotvrdi_Click"/>
             </StackPanel>
 

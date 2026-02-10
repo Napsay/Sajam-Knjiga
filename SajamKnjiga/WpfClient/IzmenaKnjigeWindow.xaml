@@ -86,6 +86,8 @@
                         Content="Potvrdi"
                         Width="110"
                         Margin="5"
+                        Background="#2196F3"
+                        Foreground="White"
                         Click="BtnPotvrdi_Click"/>
             </StackPanel>
 

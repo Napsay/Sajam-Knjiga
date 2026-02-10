@@ -211,7 +211,11 @@ namespace WpfClient
                 Posetilac p = (Posetilac)dgPosetioci.SelectedItem;
                 if (p == null)
                 {
-                    MessageBox.Show("Izaberite posetioca iz tabele.");
+                    MessageBox.Show(
+                   "Molimo izaberite posetioca iz tabele.",
+                   "Upozorenje",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Warning);
                     return;
                 }
 
@@ -227,7 +231,11 @@ namespace WpfClient
                 Autor a = (Autor)dgAutori.SelectedItem;
                 if (a == null)
                 {
-                    MessageBox.Show("Izaberite autora iz tabele.");
+                    MessageBox.Show(
+                   "Molimo izaberite autora iz tabele.",
+                   "Upozorenje",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Warning);
                     return;
                 }
 
@@ -243,7 +251,11 @@ namespace WpfClient
                 Knjiga k = (Knjiga)dgKnjige.SelectedItem;
                 if (k == null)
                 {
-                    MessageBox.Show("Izaberite knjigu iz tabele.");
+                    MessageBox.Show(
+                   "Molimo izaberite knjigu iz tabele.",
+                   "Upozorenje",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Warning);
                     return;
                 }
 
@@ -254,5 +266,113 @@ namespace WpfClient
                     UcitajKnjige();
             }
         }
+
+        private void ObrisiEntitet_Click(object sender, RoutedEventArgs e)
+        {
+            switch (MainTabControl.SelectedIndex)
+            {
+                case 0:
+                    ObrisiPosetioca();
+                    break;
+
+                case 1:
+                    ObrisiAutora();
+                    break;
+
+                case 2:
+                    ObrisiKnjigu();
+                    break;
+            }
+        }
+
+        private void ObrisiPosetioca()
+        {
+            Posetilac p = dgPosetioci.SelectedItem as Posetilac;
+
+            if (p == null)
+            {
+                MessageBox.Show(
+                    "Molimo izaberite posetioca iz tabele.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            PotvrdaBrisanjaWindow dlg = new PotvrdaBrisanjaWindow(
+                "Da li ste sigurni da želite da obrišete posetioca?",
+                "Brisanje posetioca");
+
+            dlg.Owner = this;
+
+            if (dlg.ShowDialog() == true)
+            {
+                PosetilacDao dao = new PosetilacDao(new AdresaDao());
+                dao.DeletePosetilac(p.BrClanskeKarte);
+                UcitajPosetioce();
+            }
+        }
+
+
+        private void ObrisiAutora()
+        {
+            Autor autor = dgAutori.SelectedItem as Autor;
+            if (autor == null)
+            {
+                MessageBox.Show(
+                    "Molimo izaberite autora iz tabele.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            PotvrdaBrisanjaWindow dlg = new PotvrdaBrisanjaWindow(
+                "Da li ste sigurni da želite da obrišete autora?",
+                "Brisanje autora");
+            dlg.Owner = this;
+
+            if (dlg.ShowDialog() == true)
+            {
+                AdresaDao adresaDao = new AdresaDao();
+                AutorDao autorDao = new AutorDao(adresaDao);
+
+                autorDao.Delete(autor.AutorID);
+                UcitajAutore();
+            }
+        }
+
+
+
+        private void ObrisiKnjigu()
+        {
+            Knjiga knjiga = dgKnjige.SelectedItem as Knjiga;
+            if (knjiga == null)
+            {
+                MessageBox.Show(
+                    "Molimo izaberite knjigu iz tabele.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            PotvrdaBrisanjaWindow dlg = new PotvrdaBrisanjaWindow(
+                "Da li ste sigurni da želite da obrišete knjigu?",
+                "Brisanje knjige");
+
+            dlg.Owner = this;
+
+            if (dlg.ShowDialog() == true)
+            {
+                AdresaDao adresaDao = new AdresaDao();
+                IzdavacDao izdavacDao = new IzdavacDao(adresaDao);
+                KnjigaDao knjigaDao = new KnjigaDao(izdavacDao);
+
+                knjigaDao.deleteKnjiga(knjiga.ISBN);
+                UcitajKnjige();
+            }
+        }
+
     }
 }
