@@ -18,17 +18,17 @@
         
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_New"/>
-                <MenuItem Header="_Save"/>
+                <MenuItem Header="_New" Click="New_Click"/>
+                <MenuItem Header="_Save" Click="Save_Click"/>
                 <Separator/>
                 <MenuItem Header="_Open">
-                    <MenuItem Header="Posetioci"/>
-                    <MenuItem Header="Knjige"/>
-                    <MenuItem Header="Autori"/>
-                    <MenuItem Header="Izdavači"/>
+                    <MenuItem Header="Posetioci" Click="OpenPosetioci_Click"/>
+                    <MenuItem Header="Knjige" Click="OpenKnjige_Click"/>
+                    <MenuItem Header="Autori" Click="OpenAutori_Click"/>
+                    <MenuItem Header="Izdavači" Click="OpenIzdavaci_Click"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="_Close"/>
+                <MenuItem Header="_Close" Click="CloseApp_Click"/>
             </MenuItem>
 
             <MenuItem Header="_Edit">

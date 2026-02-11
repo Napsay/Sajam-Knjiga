@@ -67,6 +67,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IzborNovogEntitetaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzdavaciWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IzmenaAutoraWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +103,12 @@
     </Compile>
     <Compile Include="DodajPosetiocaWindow.xaml.cs">
       <DependentUpon>DodajPosetiocaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzborNovogEntitetaWindow.xaml.cs">
+      <DependentUpon>IzborNovogEntitetaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzdavaciWindow.xaml.cs">
+      <DependentUpon>IzdavaciWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="IzmenaAutoraWindow.xaml.cs">
       <DependentUpon>IzmenaAutoraWindow.xaml</DependentUpon>

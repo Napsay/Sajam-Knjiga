@@ -374,5 +374,81 @@ namespace WpfClient
             }
         }
 
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            var izbor = new IzborNovogEntitetaWindow();
+            izbor.Owner = this;
+
+            if (izbor.ShowDialog() == true)
+            {
+                // Osveži sve tri tabele
+                UcitajPosetioce();
+                UcitajAutore();
+                UcitajKnjige();
+            }
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Kreiramo DAO instance sa postojećim Storage objektima
+                AdresaDao adresaDao = new AdresaDao();
+                PosetilacDao posetilacDao = new PosetilacDao(adresaDao);
+                AutorDao autorDao = new AutorDao(adresaDao);
+                IzdavacDao izdavacDao = new IzdavacDao(adresaDao);
+                KnjigaDao knjigaDao = new KnjigaDao(izdavacDao);
+                AutorKnjigaDao autorKnjigaDao = new AutorKnjigaDao();
+                ListaZeljaDao listaZeljaDao = new ListaZeljaDao();
+                KupovinaDao kupovinaDao = new KupovinaDao();
+
+                // Save svih kolekcija
+                adresaDao.GetAll();           
+                posetilacDao.GetAllPosetilac();
+                autorDao.GetAll();
+                izdavacDao.SaveAll();        
+                knjigaDao.getAllKnjige();
+                autorKnjigaDao.GetAll();
+                listaZeljaDao.GetAll();
+                kupovinaDao.getAllKupovine();
+
+                MessageBox.Show("Svi podaci su uspešno sačuvani!", "Save", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri čuvanju podataka: {ex.Message}", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void OpenPosetioci_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedIndex = 0; 
+            OsveziStatusBar();
+        }
+
+        private void OpenKnjige_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedIndex = 2; 
+            OsveziStatusBar();
+        }
+
+        private void OpenAutori_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedIndex = 1; 
+            OsveziStatusBar();
+        }
+
+        private void OpenIzdavaci_Click(object sender, RoutedEventArgs e)
+        {
+            var izdavacWin = new IzdavaciWindow(); 
+            izdavacWin.Owner = this;
+            izdavacWin.ShowDialog();
+        }
+
+        private void CloseApp_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
+    
 }
