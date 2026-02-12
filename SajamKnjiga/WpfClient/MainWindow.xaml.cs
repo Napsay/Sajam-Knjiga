@@ -34,9 +34,92 @@ namespace WpfClient
             UcitajKnjige();
             PokreniSat();
             OsveziStatusBar();
+            CommandBindings.Add(new CommandBinding(
+            ApplicationCommands.New,
+            (s, e) => OtvoriDodavanje()));
+            CommandBindings.Add(
+            new CommandBinding(
+                ApplicationCommands.Delete,
+                ObrisiEntitet_Click));
+
+
+            CommandBindings.Add(new CommandBinding(
+            NavigationCommands.Refresh,
+            (s, e) => OtvoriIzmenu()));
+
 
         }
 
+        private void OtvoriIzmenu()
+        {
+            if (MainTabControl.SelectedItem is TabItem tab)
+            {
+                if (tab.Header.ToString() == "Posetioci")
+                {
+                    if (dgPosetioci.SelectedItem is Posetilac selektovani)
+                    {
+                        var win = new IzmenaPosetiocaWindow(selektovani);
+                        win.Owner = this;
+                        win.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Morate izabrati posetioca za izmenu.");
+                    }
+                }
+                else if (tab.Header.ToString() == "Autori")
+                {
+                    if (dgAutori.SelectedItem is Autor selektovani)
+                    {
+                        var win = new IzmenaAutoraWindow(selektovani);
+                        win.Owner = this;
+                        win.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Morate izabrati posetioca za izmenu.");
+                    }
+                }
+                else if (tab.Header.ToString() == "Knjige")
+                {
+                    if (dgKnjige.SelectedItem is Knjiga selektovani)
+                    {
+                        var win = new IzmenaKnjigeWindow(selektovani);
+                        win.Owner = this;
+                        win.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Morate izabrati posetioca za izmenu.");
+                    }
+                }
+            }
+        }
+
+        private void OtvoriDodavanje()
+        {
+            if (MainTabControl.SelectedItem is TabItem tab)
+            {
+                if (tab.Header.ToString() == "Posetioci")
+                {
+                    var win = new DodajPosetiocaWindow();
+                    win.Owner = this;
+                    win.ShowDialog();
+                }
+                else if (tab.Header.ToString() == "Autori")
+                {
+                    var win = new DodajAutoraWindow();
+                    win.Owner = this;
+                    win.ShowDialog();
+                }
+                else if (tab.Header.ToString() == "Knjige")
+                {
+                    var win = new DodajKnjiguWindow();
+                    win.Owner = this;
+                    win.ShowDialog();
+                }
+            }
+        }
         private void PokreniSat()
         {
             timer = new DispatcherTimer();

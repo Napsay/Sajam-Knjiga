@@ -31,7 +31,9 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+
+				</Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"/>
@@ -74,8 +76,15 @@
 
                 <TextBlock Text="Grad" Grid.Row="9" Grid.Column="0" VerticalAlignment="Top" Margin="0,35,0,0"/>
                 <TextBox x:Name="txtGrad" Grid.Row="9" Margin="5,33,5,-2" TextChanged="txtGrad_TextChanged" Grid.Column="1"/>
+                
+				<TextBlock Text="Država" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
 
-            </Grid>
+                <TextBox x:Name="txtDrzava"
+                         Grid.Row="10"
+                         Grid.Column="1"
+                         Margin="5"/>
+			
+			    </Grid>
 
             <!-- DUGMAD -->
             <StackPanel Grid.Row="2"

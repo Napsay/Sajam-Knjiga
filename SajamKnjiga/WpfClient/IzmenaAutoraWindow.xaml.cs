@@ -43,6 +43,7 @@ namespace WpfClient
                 txtUlica.Text = _autor.Adresa.Ulica;
                 txtBroj.Text = _autor.Adresa.Broj.ToString();
                 txtGrad.Text = _autor.Adresa.Grad;
+                txtDrzava.Text = _autor.Adresa.Drzava;
             }
         }
 
@@ -64,7 +65,7 @@ namespace WpfClient
                 _autor.Adresa.Ulica = txtUlica.Text;
                 _autor.Adresa.Broj = int.Parse(txtBroj.Text);
                 _autor.Adresa.Grad = txtGrad.Text;
-                _autor.Adresa.Drzava = "Srbija";
+                _autor.Adresa.Drzava = txtDrzava.Text;
 
                 AdresaDao adresaDao = new AdresaDao();
                 AutorDao autorDao = new AutorDao(adresaDao);

@@ -2,6 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Sajam knjiga" Height="600" Width="1000">
+    <Window.InputBindings>
+        <KeyBinding Key="N"
+                Modifiers="Control"
+                Command="ApplicationCommands.New"/>
+        <KeyBinding Key="Delete"
+            Command="ApplicationCommands.Delete"/>
+        <KeyBinding Key="E"
+            Modifiers="Control"
+            Command="NavigationCommands.Refresh"/>
+        
+    </Window.InputBindings>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,8 +29,8 @@
         
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" Click="New_Click"/>
-                <MenuItem Header="_Save" Click="Save_Click"/>
+                <MenuItem Header="_New" Click="New_Click" InputGestureText="CTRL+N"/>
+                
                 <Separator/>
                 <MenuItem Header="_Open">
                     <MenuItem Header="Posetioci" Click="OpenPosetioci_Click"/>
@@ -28,12 +39,13 @@
                     <MenuItem Header="Izdavači" Click="OpenIzdavaci_Click"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="_Close" Click="CloseApp_Click"/>
+                <MenuItem Header="_Close" Click="CloseApp_Click" />
             </MenuItem>
 
             <MenuItem Header="_Edit">
                 <MenuItem Header="_Edit"
-                          Click="Button_Click_1"/>
+                          Click="Button_Click_1"
+                          InputGestureText="CTRL+E"/>
                 <MenuItem Header="_Delete"
                           Click="ObrisiEntitet_Click"
                           InputGestureText="Del"/>

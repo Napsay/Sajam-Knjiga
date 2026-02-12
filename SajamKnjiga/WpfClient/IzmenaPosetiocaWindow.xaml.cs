@@ -48,6 +48,7 @@ namespace WpfClient
                 txtUlica.Text = _posetilac.Adresa.Ulica;
                 txtBroj.Text = _posetilac.Adresa.Broj.ToString();
                 txtGrad.Text = _posetilac.Adresa.Grad;
+                txtDrzava.Text = _posetilac.Adresa.Drzava;
             }
 
         }
@@ -73,7 +74,7 @@ namespace WpfClient
                 _posetilac.Adresa.Ulica = txtUlica.Text;
                 _posetilac.Adresa.Broj = int.Parse(txtBroj.Text);
                 _posetilac.Adresa.Grad = txtGrad.Text;
-                _posetilac.Adresa.Drzava = "Srbija";
+                _posetilac.Adresa.Drzava = txtDrzava.Text;
 
                 // DAO update
                 AdresaDao adresaDao = new AdresaDao();
