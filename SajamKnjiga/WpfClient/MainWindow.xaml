@@ -32,12 +32,16 @@
             </MenuItem>
 
             <MenuItem Header="_Edit">
-                <MenuItem Header="_Edit"/>
-                <MenuItem Header="_Delete"/>
+                <MenuItem Header="_Edit"
+                          Click="Button_Click_1"/>
+                <MenuItem Header="_Delete"
+                          Click="ObrisiEntitet_Click"
+                          InputGestureText="Del"/>
             </MenuItem>
 
             <MenuItem Header="_Help">
-                <MenuItem Header="_About"/>
+                <MenuItem Header="_About"
+                          Click="About_Click"/>
             </MenuItem>
         </Menu>
 

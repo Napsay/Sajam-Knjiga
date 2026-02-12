@@ -449,6 +449,13 @@ namespace WpfClient
         {
             this.Close();
         }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow win = new AboutWindow();
+            win.Owner = this;
+            win.ShowDialog();
+        }
     }
     
 }
