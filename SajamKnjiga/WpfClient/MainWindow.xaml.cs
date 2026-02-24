@@ -3,6 +3,7 @@ using Core.Models;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace WpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private DispatcherTimer timer;
         private List<Posetilac> sviPosetioci;
         private List<Autor> sviAutori;
@@ -679,6 +681,7 @@ namespace WpfClient
 
             dgKnjige.ItemsSource = rezultat;
         }
+
     }
     
 }
