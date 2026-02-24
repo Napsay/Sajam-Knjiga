@@ -25,12 +25,17 @@ namespace WpfClient
     {
         private Posetilac _posetilac;
         private List<Kupovina> sveKupovine = new List<Kupovina>();
-        
-        public IzmenaPosetiocaWindow(Posetilac posetilac)
+        private KnjigaDao _knjigaDao;
+        private List<Knjiga> _sveKnjige;
+
+        public IzmenaPosetiocaWindow(Posetilac posetilac, List<Knjiga> sveKnjige)
         {
 
             InitializeComponent();
             _posetilac = posetilac;
+            AdresaDao adresaDao = new AdresaDao();
+            IzdavacDao izdavacDao = new IzdavacDao(adresaDao);
+            _sveKnjige = sveKnjige;
             UcitajKupovine();
             UcitajPodatke();
             UcitajListuZelja();
@@ -193,6 +198,47 @@ namespace WpfClient
 
         private void BtnDodajZelju_Click(object sender, RoutedEventArgs e)
         {
+            List<Knjiga> dostupneKnjige = new List<Knjiga>();
+
+            foreach (Knjiga knjiga in _sveKnjige)
+            {
+                bool uListiZelja = false;
+                bool uKupljenim = false;
+
+                foreach (Knjiga k in _posetilac.ListaZelja)
+                {
+                    if (k.ISBN == knjiga.ISBN)
+                    {
+                        uListiZelja = true;
+                        break;
+                    }
+                }
+
+                foreach (Kupovina kupovina in _posetilac.KupljeneKnjige)
+                {
+                    if (kupovina.Knjiga != null &&
+                        kupovina.Knjiga.ISBN == knjiga.ISBN)
+                    {
+                        uKupljenim = true;
+                        break;
+                    }
+                }
+
+                if (!uListiZelja && !uKupljenim)
+                {
+                    dostupneKnjige.Add(knjiga);
+                }
+            }
+
+            DodavanjeKnjigeWindow dialog = new DodavanjeKnjigeWindow(dostupneKnjige);
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true && dialog.IzabranaKnjiga != null)
+            {
+                _posetilac.ListaZelja.Add(dialog.IzabranaKnjiga);
+                dgListaZelja.ItemsSource = null;
+                dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+            }
 
         }
 

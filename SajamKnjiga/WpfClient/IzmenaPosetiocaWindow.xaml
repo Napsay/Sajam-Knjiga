@@ -197,7 +197,7 @@
                                     Width="2*"/>
 
                                 <DataGridTextColumn Header="Autor"
-                                    Binding="{Binding Autori[0].ImePrezime}"
+                                    Binding="{Binding Autori[0].PunoIme}"
                                     Width="2*"/>
 
                                 <DataGridTextColumn Header="Izdavač"

@@ -26,6 +26,7 @@ namespace WpfClient
     public partial class MainWindow : Window
     {
         private DispatcherTimer timer;
+        private List<Knjiga> _listaKnjiga;
         public MainWindow()
         {
             InitializeComponent();
@@ -58,7 +59,7 @@ namespace WpfClient
                 {
                     if (dgPosetioci.SelectedItem is Posetilac selektovani)
                     {
-                        var win = new IzmenaPosetiocaWindow(selektovani);
+                        var win = new IzmenaPosetiocaWindow(selektovani,_listaKnjiga);
                         win.Owner = this;
                         win.ShowDialog();
                     }
@@ -161,7 +162,6 @@ namespace WpfClient
             AutorKnjigaDao autorKnjiga = new AutorKnjigaDao();
             ListaZeljaDao listaZelja = new ListaZeljaDao();
             KupovinaDao kupovine = new KupovinaDao();
-
            
             var listaAdresa = adrese.GetAll();
             var listaAutora = autori.GetAll();
@@ -171,6 +171,7 @@ namespace WpfClient
             var listaListaZelja = listaZelja.GetAll();
             var listaIzdavaca = izdavaci.GetAll();
             var vezeAutorKnjiga = autorKnjiga.GetAll();
+            _listaKnjiga = listaKnjiga;
 
             DataBinder.PoveziSve(
                 listaAutora,
@@ -302,7 +303,7 @@ namespace WpfClient
                     return;
                 }
 
-                IzmenaPosetiocaWindow win = new IzmenaPosetiocaWindow(p);
+                IzmenaPosetiocaWindow win = new IzmenaPosetiocaWindow(p,_listaKnjiga);
                 win.Owner = this;
 
                 if (win.ShowDialog() == true)

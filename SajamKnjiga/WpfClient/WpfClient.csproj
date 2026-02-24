@@ -71,6 +71,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DodavanjeKnjigeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IzborNovogEntitetaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +114,9 @@
     </Compile>
     <Compile Include="DodajPosetiocaWindow.xaml.cs">
       <DependentUpon>DodajPosetiocaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodavanjeKnjigeWindow.xaml.cs">
+      <DependentUpon>DodavanjeKnjigeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="IzborNovogEntitetaWindow.xaml.cs">
       <DependentUpon>IzborNovogEntitetaWindow.xaml</DependentUpon>
