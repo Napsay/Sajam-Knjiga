@@ -29,11 +29,13 @@ namespace WpfClient
 
         private DispatcherTimer timer;
 
+
         private List<Posetilac> sviPosetioci;
         private List<Autor> sviAutori;
         private List<Knjiga> sveKnjige;
 
         private List<Knjiga> _listaKnjiga;
+
 
         public MainWindow()
         {

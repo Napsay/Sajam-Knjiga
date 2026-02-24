@@ -244,7 +244,31 @@ namespace WpfClient
 
         private void BtnObrisiZelju_Click(object sender, RoutedEventArgs e)
         {
+            if (dgListaZelja.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Morate označiti knjigu iz liste želja.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
 
+            Knjiga selektovanaKnjiga = (Knjiga)dgListaZelja.SelectedItem;
+
+            MessageBoxResult rezultat = MessageBox.Show(
+                "Da li ste sigurni da želite da uklonite knjigu iz liste želja?",
+                "Uklanjanje knjige",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (rezultat != MessageBoxResult.Yes)
+            {
+                return;
+            }
+            _posetilac.ListaZelja.Remove(selektovanaKnjiga);
+            dgListaZelja.ItemsSource = null;
+            dgListaZelja.ItemsSource = _posetilac.ListaZelja;
         }
 
         private void BtnKupovinaIzZelje_Click(object sender, RoutedEventArgs e)

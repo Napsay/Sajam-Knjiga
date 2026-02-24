@@ -152,17 +152,15 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Želje" HorizontalAlignment="Left" Margin="-2,-2,0,0" Width="41">
+                <TabItem Header="Želje" HorizontalAlignment="Left" Margin="-2,0,0,0" Width="41" Height="22" VerticalAlignment="Bottom">
                     <Grid Margin="10">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <!-- Dugmad -->
-                            <RowDefinition Height="*"/>
-                            <!-- Tabela -->
-                        </Grid.RowDefinitions>
 
-                        <!-- Dugmad iznad tabele (kao na slici 10) -->
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <Button Content="Dodaj"
                     Width="80"
@@ -178,8 +176,6 @@
                     Width="100"
                     Click="BtnKupovinaIzZelje_Click"/>
                         </StackPanel>
-
-                        <!-- Tabela liste želja -->
                         <DataGrid x:Name="dgListaZelja"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
@@ -213,7 +209,7 @@
 
                     </Grid>
                 </TabItem>
-                
+
             </TabControl>
 
         </Grid>
