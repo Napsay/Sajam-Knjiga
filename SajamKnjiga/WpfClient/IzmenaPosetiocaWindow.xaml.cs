@@ -25,14 +25,20 @@ namespace WpfClient
     {
         private Posetilac _posetilac;
         private List<Kupovina> sveKupovine = new List<Kupovina>();
-        
-        public IzmenaPosetiocaWindow(Posetilac posetilac)
+        private KnjigaDao _knjigaDao;
+        private List<Knjiga> _sveKnjige;
+
+        public IzmenaPosetiocaWindow(Posetilac posetilac, List<Knjiga> sveKnjige)
         {
 
             InitializeComponent();
             _posetilac = posetilac;
+            AdresaDao adresaDao = new AdresaDao();
+            IzdavacDao izdavacDao = new IzdavacDao(adresaDao);
+            _sveKnjige = sveKnjige;
             UcitajKupovine();
             UcitajPodatke();
+            UcitajListuZelja();
         }
         private void UcitajKupovine()
         {
@@ -43,7 +49,14 @@ namespace WpfClient
             IzracunajStatistiku();
             Console.WriteLine("Broj kupovina: " + _posetilac.KupljeneKnjige.Count);
         }
-    
+
+        private void UcitajListuZelja()
+        {
+            if (_posetilac == null)
+                return;
+
+            dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+        }
         private void UcitajPodatke()
         {
             
@@ -149,15 +162,10 @@ namespace WpfClient
         }
 
         private void BtnPonistiKupovinu_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             if (dgKupljeneKnjige.SelectedItem == null)
             {
-                MessageBox.Show(
-                    "Morate označiti knjigu iz tabele kupljenih knjiga.",
-                    "Poništi kupovinu",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-
+                MessageBox.Show("Morate označiti knjigu iz tabele kupljenih knjiga.");
                 return;
             }
 
@@ -169,32 +177,79 @@ namespace WpfClient
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
-            if (rezultat == MessageBoxResult.No)
-            {
+            if (rezultat != MessageBoxResult.Yes)
                 return;
-            }
 
             _posetilac.KupljeneKnjige.Remove(selektovanaKupovina);
+
             if (selektovanaKupovina.Knjiga != null)
             {
-                bool vecPostoji = false;
+                _posetilac.ListaZelja.Add(selektovanaKupovina.Knjiga);
+            }
 
-                foreach (var knjiga in _posetilac.ListaZelja)
+            dgKupljeneKnjige.ItemsSource = null;
+            dgKupljeneKnjige.ItemsSource = _posetilac.KupljeneKnjige;
+
+            dgListaZelja.ItemsSource = null;
+            dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+
+            IzracunajStatistiku();
+        }
+
+        private void BtnDodajZelju_Click(object sender, RoutedEventArgs e)
+        {
+            List<Knjiga> dostupneKnjige = new List<Knjiga>();
+
+            foreach (Knjiga knjiga in _sveKnjige)
+            {
+                bool uListiZelja = false;
+                bool uKupljenim = false;
+
+                foreach (Knjiga k in _posetilac.ListaZelja)
                 {
-                    if (knjiga.ISBN == selektovanaKupovina.Knjiga.ISBN)
+                    if (k.ISBN == knjiga.ISBN)
                     {
-                        vecPostoji = true;
+                        uListiZelja = true;
                         break;
                     }
                 }
 
-                if (!vecPostoji)
+                foreach (Kupovina kupovina in _posetilac.KupljeneKnjige)
                 {
-                    _posetilac.ListaZelja.Add(selektovanaKupovina.Knjiga);
+                    if (kupovina.Knjiga != null &&
+                        kupovina.Knjiga.ISBN == knjiga.ISBN)
+                    {
+                        uKupljenim = true;
+                        break;
+                    }
+                }
+
+                if (!uListiZelja && !uKupljenim)
+                {
+                    dostupneKnjige.Add(knjiga);
                 }
             }
-            dgKupljeneKnjige.Items.Refresh();
-            IzracunajStatistiku();
+
+            DodavanjeKnjigeWindow dialog = new DodavanjeKnjigeWindow(dostupneKnjige);
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true && dialog.IzabranaKnjiga != null)
+            {
+                _posetilac.ListaZelja.Add(dialog.IzabranaKnjiga);
+                dgListaZelja.ItemsSource = null;
+                dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+            }
+
+        }
+
+        private void BtnObrisiZelju_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnKupovinaIzZelje_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
