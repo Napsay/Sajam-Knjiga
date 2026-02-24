@@ -152,10 +152,68 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Želje">
-                    <Grid Margin="10"/>
-                </TabItem>
+                <TabItem Header="Želje" HorizontalAlignment="Left" Margin="-2,-2,0,0" Width="41">
+                    <Grid Margin="10">
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- Dugmad -->
+                            <RowDefinition Height="*"/>
+                            <!-- Tabela -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Dugmad iznad tabele (kao na slici 10) -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button Content="Dodaj"
+                    Width="80"
+                    Margin="0,0,10,0"
+                    Click="BtnDodajZelju_Click"/>
+
+                            <Button Content="Obriši"
+                    Width="80"
+                    Margin="0,0,10,0"
+                    Click="BtnObrisiZelju_Click"/>
+
+                            <Button Content="Kupovina"
+                    Width="100"
+                    Click="BtnKupovinaIzZelje_Click"/>
+                        </StackPanel>
+
+                        <!-- Tabela liste želja -->
+                        <DataGrid x:Name="dgListaZelja"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  Margin="0,5,0,5">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ISBN"
+                                    Binding="{Binding ISBN}"
+                                    Width="*"/>
+
+                                <DataGridTextColumn Header="Naziv"
+                                    Binding="{Binding Naziv}"
+                                    Width="2*"/>
+
+                                <DataGridTextColumn Header="Autor"
+                                    Binding="{Binding Autori[0].ImePrezime}"
+                                    Width="2*"/>
+
+                                <DataGridTextColumn Header="Izdavač"
+                                    Binding="{Binding Izdavac.Naziv}"
+                                    Width="2*"/>
+
+                                <DataGridTextColumn Header="Cena"
+                                    Binding="{Binding Cena}"
+                                    Width="*"/>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </Grid>
+                </TabItem>
+                
             </TabControl>
 
         </Grid>

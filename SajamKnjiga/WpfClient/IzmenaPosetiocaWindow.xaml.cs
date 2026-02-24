@@ -33,6 +33,7 @@ namespace WpfClient
             _posetilac = posetilac;
             UcitajKupovine();
             UcitajPodatke();
+            UcitajListuZelja();
         }
         private void UcitajKupovine()
         {
@@ -43,7 +44,14 @@ namespace WpfClient
             IzracunajStatistiku();
             Console.WriteLine("Broj kupovina: " + _posetilac.KupljeneKnjige.Count);
         }
-    
+
+        private void UcitajListuZelja()
+        {
+            if (_posetilac == null)
+                return;
+
+            dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+        }
         private void UcitajPodatke()
         {
             
@@ -149,15 +157,10 @@ namespace WpfClient
         }
 
         private void BtnPonistiKupovinu_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             if (dgKupljeneKnjige.SelectedItem == null)
             {
-                MessageBox.Show(
-                    "Morate označiti knjigu iz tabele kupljenih knjiga.",
-                    "Poništi kupovinu",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-
+                MessageBox.Show("Morate označiti knjigu iz tabele kupljenih knjiga.");
                 return;
             }
 
@@ -169,32 +172,38 @@ namespace WpfClient
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
-            if (rezultat == MessageBoxResult.No)
-            {
+            if (rezultat != MessageBoxResult.Yes)
                 return;
-            }
 
             _posetilac.KupljeneKnjige.Remove(selektovanaKupovina);
+
             if (selektovanaKupovina.Knjiga != null)
             {
-                bool vecPostoji = false;
-
-                foreach (var knjiga in _posetilac.ListaZelja)
-                {
-                    if (knjiga.ISBN == selektovanaKupovina.Knjiga.ISBN)
-                    {
-                        vecPostoji = true;
-                        break;
-                    }
-                }
-
-                if (!vecPostoji)
-                {
-                    _posetilac.ListaZelja.Add(selektovanaKupovina.Knjiga);
-                }
+                _posetilac.ListaZelja.Add(selektovanaKupovina.Knjiga);
             }
-            dgKupljeneKnjige.Items.Refresh();
+
+            dgKupljeneKnjige.ItemsSource = null;
+            dgKupljeneKnjige.ItemsSource = _posetilac.KupljeneKnjige;
+
+            dgListaZelja.ItemsSource = null;
+            dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+
             IzracunajStatistiku();
+        }
+
+        private void BtnDodajZelju_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnObrisiZelju_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnKupovinaIzZelje_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
