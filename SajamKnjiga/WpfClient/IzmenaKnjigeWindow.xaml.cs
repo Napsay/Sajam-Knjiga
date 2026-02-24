@@ -41,7 +41,7 @@ namespace WpfClient
             _sviIzdavaci = izdavacDao.GetAll();
 
             cmbIzdavac.ItemsSource = _sviIzdavaci;
-            lstAutori.ItemsSource = _sviAutori;
+            lstAutori.ItemsSource = _knjiga.Autori;
             txtISBN.Text = _knjiga.ISBN;
             txtNaziv.Text = _knjiga.Naziv;
             txtZanr.Text = _knjiga.Zanr;
@@ -77,7 +77,7 @@ namespace WpfClient
                 var autorKnjigaDao = new AutorKnjigaDao();
                 knjigaDao.updateKnjiga(_knjiga);
                 autorKnjigaDao.RemoveByISBN(_knjiga.ISBN);
-                foreach (Autor a in lstAutori.SelectedItems)
+                foreach (Autor a in lstAutori.Items)
                 {
                     autorKnjigaDao.AddVeza(a.AutorID, _knjiga.ISBN);
                 }
@@ -92,6 +92,72 @@ namespace WpfClient
         private void BtnOdustani_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btnPlus_Click(object sender, RoutedEventArgs e)
+        {
+            var dostupniAutori = _sviAutori
+                .Where(a => !_knjiga.Autori.Any(ka => ka.AutorID == a.AutorID))
+                .ToList();
+
+            //greska ako nema vise autora sa kojim bi povezali knjigu
+            if (dostupniAutori.Count == 0)
+            {
+                MessageBox.Show("Svi autori su već dodati ovoj knjizi.");
+                return;
+            }
+
+            var prozor = new DodajAutoraKnjiziWindow(dostupniAutori)
+            {
+                Owner = this 
+            };
+
+            if (prozor.ShowDialog() == true)
+            {
+                var noviAutor = prozor.SelectedAutor;
+                if (noviAutor != null)
+                {
+                    _knjiga.Autori.Add(noviAutor);
+                    lstAutori.Items.Refresh(); 
+
+                    var autorKnjigaDao = new AutorKnjigaDao();
+                    autorKnjigaDao.AddVeza(noviAutor.AutorID, _knjiga.ISBN);
+                }
+            }
+        }
+
+        private void btnMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstAutori.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Molimo izaberite autora za uklanjanje iz liste.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            var autorZaBrisanje = (Autor)lstAutori.SelectedItem;
+
+           
+            var potvrda = new PotvrdaBrisanjaWindow(
+                $"Да ли сте сигурни да желите да уклоните аутора {autorZaBrisanje.Ime} {autorZaBrisanje.Prezime} са књиге?",
+                "Потврда уклањања"
+            )
+            {
+                Owner = this
+            };
+
+            if (potvrda.ShowDialog() == true)
+            {
+             
+                _knjiga.Autori.Remove(autorZaBrisanje);
+                lstAutori.Items.Refresh();
+
+                var autorKnjigaDao = new AutorKnjigaDao();
+                autorKnjigaDao.RemoveVeza(autorZaBrisanje.AutorID, _knjiga.ISBN);
+            }
         }
     }
 }

@@ -8,19 +8,18 @@
 
     <Border Padding="15">
         <Grid>
-            <!-- Jedan red za TabControl, ostatak rasteže Tabove -->
+      
             <TabControl>
-                <!-- TAB Информације -->
+               
                 <TabItem Header="Информације">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <!-- Scrollable polja -->
+                        
                             <RowDefinition Height="Auto"/>
-                            <!-- Dugmad -->
+                 
                         </Grid.RowDefinitions>
 
-                        <!-- Scrollable polja -->
                         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
                             <Grid Margin="10">
                                 <Grid.RowDefinitions>
@@ -42,7 +41,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- Polja autora -->
+                              
                                 <TextBlock Text="Ime *" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
                                 <TextBox x:Name="txtIme" Grid.Row="0" Grid.Column="1" Margin="5"/>
                                 <TextBlock Text="Prezime *" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
@@ -69,7 +68,7 @@
                             </Grid>
                         </ScrollViewer>
 
-                        <!-- Dugmad na dnu -->
+                        
                         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                             <Button Content="Одустани" Width="110" Margin="5" Click="BtnOdustani_Click"/>
                             <Button Content="Потврди" Width="110" Margin="5" Background="#2196F3" Foreground="White" Click="BtnPotvrdi_Click"/>
@@ -77,23 +76,23 @@
                     </Grid>
                 </TabItem>
 
-                <!-- TAB Књиге -->
+          
                 <TabItem Header="Књиге">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <!-- dugmad Dodaj/Ukloni -->
+                          
                             <RowDefinition Height="*"/>
-                            <!-- DataGrid knjiga -->
+                        
                         </Grid.RowDefinitions>
 
-                        <!-- DUGMAD ZA KNJIGE -->
+                       
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <Button Content="Додај књигу" Width="120" Margin="5" Click="BtnDodajKnjigu_Click"/>
                             <Button Content="Уклони књигу" Width="120" Margin="5" Click="BtnUkloniKnjigu_Click"/>
                         </StackPanel>
 
-                        <!-- DATA GRID -->
+                        
                         <DataGrid x:Name="dgKnjige" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Extended">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="*"/>
