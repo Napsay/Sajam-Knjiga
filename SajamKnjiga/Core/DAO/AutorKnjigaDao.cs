@@ -46,6 +46,19 @@ namespace Core.DAO
             return _veze;
         }
 
+        public List<string> GetKnjigeZaAutora(int autorId)
+        {
+            return _veze
+                .Where(v => v.AutorId == autorId)
+                .Select(v => v.ISBN)
+                .ToList();
+        }
+
+        public void RemoveVeza(int autorId, string isbn)
+        {
+            _veze.RemoveAll(v => v.AutorId == autorId && v.ISBN == isbn);
+            _storage.Save(_veze);
+        }
     }
 
 }

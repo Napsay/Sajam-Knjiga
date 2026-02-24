@@ -143,6 +143,6 @@ namespace Core.Models
             $"{GodineIskustva,4} |";
         }
 
-
+        
     }
 }

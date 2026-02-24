@@ -28,13 +28,13 @@ namespace WpfClient
     {
 
         private DispatcherTimer timer;
-<<<<<<< HEAD
+
         private List<Posetilac> sviPosetioci;
         private List<Autor> sviAutori;
         private List<Knjiga> sveKnjige;
-=======
+
         private List<Knjiga> _listaKnjiga;
->>>>>>> 64855090d0991d5232bb185fea43a29ea5d1b0fe
+
         public MainWindow()
         {
             InitializeComponent();
@@ -686,6 +686,147 @@ namespace WpfClient
             dgKnjige.ItemsSource = rezultat;
         }
 
+        private void dgPosetioci_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            var list = dgPosetioci.ItemsSource.Cast<Posetilac>().ToList();
+
+            // ciklično određivanje pravca sortiranja
+            ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
+                                          ListSortDirection.Ascending :
+                                          ListSortDirection.Descending;
+
+            e.Handled = true;
+
+            switch (e.Column.Header.ToString())
+            {
+                case "Broj članske karte":
+                    if (direction == ListSortDirection.Ascending)
+                        dgPosetioci.ItemsSource = list
+                            .OrderBy(p => p.GodinaClanskeKarte)
+                            .ThenBy(p => p.RedniBroj)
+                            .ToList();
+                    else
+                        dgPosetioci.ItemsSource = list
+                            .OrderByDescending(p => p.GodinaClanskeKarte)
+                            .ThenByDescending(p => p.RedniBroj)
+                            .ToList();
+                    break;
+
+                case "Ime":
+                    if (direction == ListSortDirection.Ascending)
+                        dgPosetioci.ItemsSource = list.OrderBy(p => p.Ime).ToList();
+                    else
+                        dgPosetioci.ItemsSource = list.OrderByDescending(p => p.Ime).ToList();
+                    break;
+
+                case "Prezime":
+                    if (direction == ListSortDirection.Ascending)
+                        dgPosetioci.ItemsSource = list.OrderBy(p => p.Prezime).ToList();
+                    else
+                        dgPosetioci.ItemsSource = list.OrderByDescending(p => p.Prezime).ToList();
+                    break;
+
+                case "Status":
+                    if (direction == ListSortDirection.Ascending)
+                        dgPosetioci.ItemsSource = list.OrderBy(p => p.Status).ToList();
+                    else
+                        dgPosetioci.ItemsSource = list.OrderByDescending(p => p.Status).ToList();
+                    break;
+
+                   
+            }
+
+            // postavljanje strelice
+            e.Column.SortDirection = direction;
+        }
+
+        private void dgAutori_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            var list = dgAutori.ItemsSource.Cast<Autor>().ToList();
+            ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
+                                          ListSortDirection.Ascending :
+                                          ListSortDirection.Descending;
+
+            e.Handled = true; 
+
+            switch (e.Column.Header.ToString())
+            {
+                case "Ime":
+                    if (direction == ListSortDirection.Ascending)
+                        dgAutori.ItemsSource = list.OrderBy(a => a.Ime).ToList();
+                    else
+                        dgAutori.ItemsSource = list.OrderByDescending(a => a.Ime).ToList();
+                    break;
+
+                case "Prezime":
+                    if (direction == ListSortDirection.Ascending)
+                        dgAutori.ItemsSource = list.OrderBy(a => a.Prezime).ToList();
+                    else
+                        dgAutori.ItemsSource = list.OrderByDescending(a => a.Prezime).ToList();
+                    break;
+
+                case "Email":
+                    if (direction == ListSortDirection.Ascending)
+                        dgAutori.ItemsSource = list.OrderBy(a => a.Email[0]).ToList();
+                    else
+                        dgAutori.ItemsSource = list.OrderByDescending(a => a.Email[0]).ToList();
+                    break;
+
+            }
+
+            e.Column.SortDirection = direction; // postavljanje strelice
+        }
+
+        private void dgKnjige_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            var list = dgKnjige.ItemsSource.Cast<Knjiga>().ToList();
+            ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
+                                          ListSortDirection.Ascending :
+                                          ListSortDirection.Descending;
+
+            e.Handled = true;
+
+            switch (e.Column.Header.ToString())
+            {
+                case "Naziv":
+                    if (direction == ListSortDirection.Ascending)
+                        dgKnjige.ItemsSource = list.OrderBy(k => k.Naziv).ToList();
+                    else
+                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.Naziv).ToList();
+                    break;
+
+                case "Cena":
+                    if (direction == ListSortDirection.Ascending)
+                        dgKnjige.ItemsSource = list.OrderBy(k => k.Cena).ToList();
+                    else
+                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.Cena).ToList();
+                    break;
+
+                case "Godina":
+                    if (direction == ListSortDirection.Ascending)
+                        dgKnjige.ItemsSource = list.OrderBy(k => k.GodinaIzdanja).ToList();
+                    else
+                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.GodinaIzdanja).ToList();
+                    break;
+
+                case "ISBN":
+                    if (direction == ListSortDirection.Ascending)
+                        dgKnjige.ItemsSource = list.OrderBy(k => k.ISBN).ToList();
+                    else
+                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.ISBN).ToList();
+                    break;
+
+                case "Žanr":
+                    if (direction == ListSortDirection.Ascending)
+                        dgKnjige.ItemsSource = list.OrderBy(k => k.Zanr).ToList();
+                    else
+                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.Zanr).ToList();
+                    break;
+
+            }
+
+            e.Column.SortDirection = direction; // update strelice
+        }
     }
     
 }

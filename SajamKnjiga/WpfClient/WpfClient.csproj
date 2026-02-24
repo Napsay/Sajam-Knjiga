@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DodajKnjiguAutoruWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DodajKnjiguWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +112,9 @@
     </Compile>
     <Compile Include="DodajAutoraWindow.xaml.cs">
       <DependentUpon>DodajAutoraWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodajKnjiguAutoruWindow.xaml.cs">
+      <DependentUpon>DodajKnjiguAutoruWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajKnjiguWindow.xaml.cs">
       <DependentUpon>DodajKnjiguWindow.xaml</DependentUpon>

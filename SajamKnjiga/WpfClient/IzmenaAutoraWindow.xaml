@@ -8,104 +8,103 @@
 
     <Border Padding="15">
         <Grid>
+            <!-- Jedan red za TabControl, ostatak rasteže Tabove -->
+            <TabControl>
+                <!-- TAB Информације -->
+                <TabItem Header="Информације">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <!-- Scrollable polja -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Dugmad -->
+                        </Grid.RowDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+                        <!-- Scrollable polja -->
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-            <TabControl Grid.Row="0" Margin="0,0,0,10">
-                <TabItem Header="Informacije"/>
+                                <!-- Polja autora -->
+                                <TextBlock Text="Ime *" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtIme" Grid.Row="0" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Prezime *" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtPrezime" Grid.Row="1" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Datum rođenja *" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                                <DatePicker x:Name="dpDatumRodjenja" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Kontakt telefon *" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtTelefon" Grid.Row="3" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Email *" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEmail" Grid.Row="4" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Broj lične karte *" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtBrLicne" Grid.Row="5" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Godine iskustva *" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtGodineIskustva" Grid.Row="6" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Adresa *" FontWeight="Bold" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,15,0,5"/>
+                                <TextBlock Text="Ulica" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtUlica" Grid.Row="8" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Broj" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtBroj" Grid.Row="9" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Grad" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtGrad" Grid.Row="10" Grid.Column="1" Margin="5"/>
+                                <TextBlock Text="Država" Grid.Row="11" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtDrzava" Grid.Row="11" Grid.Column="1" Margin="5"/>
+                            </Grid>
+                        </ScrollViewer>
+
+                        <!-- Dugmad na dnu -->
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                            <Button Content="Одустани" Width="110" Margin="5" Click="BtnOdustani_Click"/>
+                            <Button Content="Потврди" Width="110" Margin="5" Background="#2196F3" Foreground="White" Click="BtnPotvrdi_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <!-- TAB Књиге -->
+                <TabItem Header="Књиге">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- dugmad Dodaj/Ukloni -->
+                            <RowDefinition Height="*"/>
+                            <!-- DataGrid knjiga -->
+                        </Grid.RowDefinitions>
+
+                        <!-- DUGMAD ZA KNJIGE -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button Content="Додај књигу" Width="120" Margin="5" Click="BtnDodajKnjigu_Click"/>
+                            <Button Content="Уклони књигу" Width="120" Margin="5" Click="BtnUkloniKnjigu_Click"/>
+                        </StackPanel>
+
+                        <!-- DATA GRID -->
+                        <DataGrid x:Name="dgKnjige" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Extended">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="*"/>
+                                <DataGridTextColumn Header="Назив" Binding="{Binding Naziv}" Width="2*"/>
+                                <DataGridTextColumn Header="Година издања" Binding="{Binding GodinaIzdanja}" Width="*"/>
+                                <DataGridTextColumn Header="Жанр" Binding="{Binding Zanr}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
             </TabControl>
-
-            <Grid Grid.Row="1" Margin="10,10,10,0" Height="421" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
-
-				</Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Ime *" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtIme" Grid.Row="0" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Prezime *" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtPrezime" Grid.Row="1" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Datum rođenja *" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-                <DatePicker x:Name="dpDatumRodjenja" Grid.Row="2" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Kontakt telefon *" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtTelefon" Grid.Row="3" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Email *" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtEmail" Grid.Row="4" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Broj lične karte *" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtBrLicne" Grid.Row="5" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Godine iskustva *" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtGodineIskustva" Grid.Row="6" Grid.Column="1" Margin="5"/>
-
-                <!-- NASLOV ADRESA -->
-                <TextBlock Text="Adresa *"
-                           FontWeight="Bold"
-                           Grid.Row="7"
-                           Grid.ColumnSpan="2"
-                           Margin="0,15,0,5"/>
-
-                <TextBlock Text="Ulica" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtUlica" Grid.Row="8" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Broj" Grid.Row="9" Grid.Column="0" VerticalAlignment="Top" Margin="0,9,0,0"/>
-                <TextBox x:Name="txtBroj" Grid.Row="9" Grid.Column="1" Margin="5,5,5,26"/>
-
-                <TextBlock Text="Grad" Grid.Row="9" Grid.Column="0" VerticalAlignment="Top" Margin="0,35,0,0"/>
-                <TextBox x:Name="txtGrad" Grid.Row="9" Margin="5,33,5,-2" TextChanged="txtGrad_TextChanged" Grid.Column="1"/>
-                
-				<TextBlock Text="Država" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
-
-                <TextBox x:Name="txtDrzava"
-                         Grid.Row="10"
-                         Grid.Column="1"
-                         Margin="5"/>
-			
-			    </Grid>
-
-            <!-- DUGMAD -->
-            <StackPanel Grid.Row="2"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        Margin="0,15,0,0">
-
-                <Button Content="Odustani"
-                        Width="110"
-                        Margin="5"
-                        Click="BtnOdustani_Click"/>
-
-                <Button x:Name="btnPotvrdi"
-                        Content="Potvrdi"
-                        Width="110"
-                        Margin="5"
-                        Background="#2196F3"
-                        Foreground="White"
-                        Click="BtnPotvrdi_Click"/>
-            </StackPanel>
-
         </Grid>
     </Border>
 </Window>

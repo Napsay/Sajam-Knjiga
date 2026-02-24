@@ -13,7 +13,7 @@
             Command="NavigationCommands.Refresh"/>
         
     </Window.InputBindings>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -100,15 +100,18 @@
                   AlternatingRowBackground="#F0F0F0"
                   GridLinesVisibility="None"
                   CanUserAddRows="False"
+                  CanUserSortColumns="True"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
-                  RowHeight="25">
+                  RowHeight="25" 
+                  Sorting="dgPosetioci_Sorting">
             
             <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
+                        <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="#D3D3D3"/>
                             <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="5,0"/>
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
@@ -143,7 +146,9 @@
                   CanUserAddRows="False"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
-                  RowHeight="25">
+                  RowHeight="25"
+                  CanUserSortColumns="True"
+                  Sorting="dgAutori_Sorting">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -193,7 +198,9 @@
               CanUserAddRows="False"
               SelectionMode="Single"
               SelectionUnit="FullRow"
-              RowHeight="25">
+              RowHeight="25"
+              CanUserSortColumns="True"
+              Sorting="dgKnjige_Sorting">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">

@@ -169,5 +169,28 @@ namespace Core.Models
             ProsecnaOcenaRec = double.Parse(values[9]);
 
         }
+
+        //parsiranje clankse karte za sortiranje
+        public int GodinaClanskeKarte
+        {
+            get
+            {
+                var parts = BrClanskeKarte.Split('-'); 
+                if (parts.Length == 3 && int.TryParse(parts[2], out int godina))
+                    return godina;
+                return 0;
+            }
+        }
+
+        public int RedniBroj
+        {
+            get
+            {
+                var parts = BrClanskeKarte.Split('-');
+                if (parts.Length >= 2 && int.TryParse(parts[1], out int broj))
+                    return broj;
+                return 0;
+            }
+        }
     }
 }
