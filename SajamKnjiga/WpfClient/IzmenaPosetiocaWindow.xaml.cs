@@ -149,14 +149,52 @@ namespace WpfClient
         }
 
         private void BtnPonistiKupovinu_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             if (dgKupljeneKnjige.SelectedItem == null)
             {
-                MessageBox.Show("Izaberite kupovinu za poništavanje.");
+                MessageBox.Show(
+                    "Morate označiti knjigu iz tabele kupljenih knjiga.",
+                    "Poništi kupovinu",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
                 return;
             }
 
-            MessageBox.Show("Kupovina poništena");
+            Kupovina selektovanaKupovina = (Kupovina)dgKupljeneKnjige.SelectedItem;
+
+            MessageBoxResult rezultat = MessageBox.Show(
+                "Da li ste sigurni da želite da poništite kupovinu?",
+                "Poništi kupovinu",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (rezultat == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            _posetilac.KupljeneKnjige.Remove(selektovanaKupovina);
+            if (selektovanaKupovina.Knjiga != null)
+            {
+                bool vecPostoji = false;
+
+                foreach (var knjiga in _posetilac.ListaZelja)
+                {
+                    if (knjiga.ISBN == selektovanaKupovina.Knjiga.ISBN)
+                    {
+                        vecPostoji = true;
+                        break;
+                    }
+                }
+
+                if (!vecPostoji)
+                {
+                    _posetilac.ListaZelja.Add(selektovanaKupovina.Knjiga);
+                }
+            }
+            dgKupljeneKnjige.Items.Refresh();
+            IzracunajStatistiku();
         }
     }
 }
