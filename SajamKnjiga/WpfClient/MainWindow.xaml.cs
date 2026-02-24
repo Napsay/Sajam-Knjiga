@@ -3,6 +3,7 @@ using Core.Models;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,15 @@ namespace WpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private DispatcherTimer timer;
+<<<<<<< HEAD
+        private List<Posetilac> sviPosetioci;
+        private List<Autor> sviAutori;
+        private List<Knjiga> sveKnjige;
+=======
         private List<Knjiga> _listaKnjiga;
+>>>>>>> 64855090d0991d5232bb185fea43a29ea5d1b0fe
         public MainWindow()
         {
             InitializeComponent();
@@ -173,6 +181,8 @@ namespace WpfClient
             var vezeAutorKnjiga = autorKnjiga.GetAll();
             _listaKnjiga = listaKnjiga;
 
+            
+
             DataBinder.PoveziSve(
                 listaAutora,
                 listaKnjiga,
@@ -184,7 +194,8 @@ namespace WpfClient
                 listaAdresa
             );
 
-            dgPosetioci.ItemsSource = listaPosetilaca;
+            sviPosetioci = listaPosetilaca;
+            dgPosetioci.ItemsSource = sviPosetioci;
         }
 
         private void UcitajAutore()
@@ -218,7 +229,8 @@ namespace WpfClient
                 listaAdresa
             );
 
-            dgAutori.ItemsSource = listaAutora;
+            sviAutori = listaAutora;
+            dgAutori.ItemsSource = sviAutori;
         }
 
         private void UcitajKnjige()
@@ -253,8 +265,9 @@ namespace WpfClient
                 listaAdresa
             );
 
-            dgKnjige.ItemsSource = null;      
-            dgKnjige.ItemsSource = listaKnjiga;
+            dgKnjige.ItemsSource = null;
+            sveKnjige = listaKnjiga;
+            dgKnjige.ItemsSource = sveKnjige;
         }
 
 
@@ -540,6 +553,139 @@ namespace WpfClient
             win.Owner = this;
             win.ShowDialog();
         }
+
+        private void Pretrazi_Click(object sender, RoutedEventArgs e)
+        {
+            switch (MainTabControl.SelectedIndex)
+            {
+                case 0:
+                    PretraziPosetioce();
+                    break;
+
+                case 1:
+                    PretraziAutore();
+                    break;
+
+                case 2:
+                    PretraziKnjige();
+                    break;
+            }
+        }
+
+        private void PretraziPosetioce()
+        {
+            string unos = txtPretraga.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(unos))
+            {
+                dgPosetioci.ItemsSource = sviPosetioci;
+                return;
+            }
+
+            string[] delovi = unos
+                .Split(',')
+                .Select(x => x.Trim())
+                .Where(x => x != "")
+                .ToArray();
+
+            List<Posetilac> rezultat = new List<Posetilac>();
+
+            if (delovi.Length == 1)
+            {
+                rezultat = sviPosetioci
+                    .Where(p => p.Prezime.ToLower().Contains(delovi[0]))
+                    .ToList();
+            }
+            else if (delovi.Length == 2)
+            {
+                rezultat = sviPosetioci
+                    .Where(p =>
+                        p.Prezime.ToLower().Contains(delovi[0]) &&
+                        p.Ime.ToLower().Contains(delovi[1]))
+                    .ToList();
+            }
+            else if (delovi.Length == 3)
+            {
+                rezultat = sviPosetioci
+                    .Where(p =>
+                        p.BrClanskeKarte.ToLower().Contains(delovi[0]) &&
+                        p.Ime.ToLower().Contains(delovi[1]) &&
+                        p.Prezime.ToLower().Contains(delovi[2]))
+                    .ToList();
+            }
+
+            dgPosetioci.ItemsSource = rezultat;
+        }
+
+        private void PretraziAutore()
+        {
+            string unos = txtPretraga.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(unos))
+            {
+                dgAutori.ItemsSource = sviAutori;
+                return;
+            }
+
+            string[] delovi = unos
+                .Split(',')
+                .Select(x => x.Trim())
+                .Where(x => x != "")
+                .ToArray();
+
+            List<Autor> rezultat;
+
+            if (delovi.Length == 1)
+            {
+                rezultat = sviAutori
+                    .Where(a => a.Prezime.ToLower().Contains(delovi[0]))
+                    .ToList();
+            }
+            else
+            {
+                rezultat = sviAutori
+                    .Where(a =>
+                        a.Prezime.ToLower().Contains(delovi[0]) &&
+                        a.Ime.ToLower().Contains(delovi[1]))
+                    .ToList();
+            }
+
+            dgAutori.ItemsSource = rezultat;
+        }
+
+        private void PretraziKnjige()
+        {
+            string unos = txtPretraga.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(unos))
+            {
+                dgKnjige.ItemsSource = sveKnjige;
+                return;
+            }
+
+            List<Knjiga> rezultat = sveKnjige
+                .Where(k =>
+                    (!string.IsNullOrEmpty(k.Naziv) &&
+                        k.Naziv.ToLower().Contains(unos)) ||
+
+                    (!string.IsNullOrEmpty(k.ISBN) &&
+                        k.ISBN.ToLower().Contains(unos)) ||
+
+                    (!string.IsNullOrEmpty(k.Zanr) &&
+                        k.Zanr.ToLower().Contains(unos)) ||
+
+                    (k.Izdavac != null &&
+                     !string.IsNullOrEmpty(k.Izdavac.Naziv) &&
+                        k.Izdavac.Naziv.ToLower().Contains(unos)) ||
+
+                    (!string.IsNullOrEmpty(k.AutoriPrikaz) &&
+                        k.AutoriPrikaz.ToLower().Contains(unos))
+                )
+                .ToList();
+
+            dgKnjige.ItemsSource = rezultat;
+        }
+
     }
     
 }
