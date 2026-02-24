@@ -103,6 +103,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="KupovinaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +150,9 @@
     </Compile>
     <Compile Include="IzmenaPosetiocaWindow.xaml.cs">
       <DependentUpon>IzmenaPosetiocaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KupovinaWindow.xaml.cs">
+      <DependentUpon>KupovinaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
