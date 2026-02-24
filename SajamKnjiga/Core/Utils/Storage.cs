@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utils
 {
-    internal class Storage<T> where T : ISerializable, new()
+    public class Storage<T> where T : ISerializable, new()
     {
         private readonly string _fileName = @"../../../Data/{0}";
         private readonly Serializer<T> _serializer = new Serializer<T>();

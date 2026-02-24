@@ -190,7 +190,7 @@ namespace Core.Utils
                 izdavac.SpisakKnjiga = new List<Knjiga>();
             }
             
-            // Poveži knjige sa izdavačima 
+         
             foreach (var knjiga in knjige)
             {
                 if (knjiga.Izdavac != null && int.TryParse(knjiga.Izdavac.Sifra.ToString(), out int sifraIzdavaca))

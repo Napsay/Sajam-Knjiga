@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Core.Models;
+using Core.Utils;
 
 namespace WpfClient
 {
@@ -22,14 +24,26 @@ namespace WpfClient
     public partial class IzmenaPosetiocaWindow : Window
     {
         private Posetilac _posetilac;
+        private List<Kupovina> sveKupovine = new List<Kupovina>();
+        
         public IzmenaPosetiocaWindow(Posetilac posetilac)
         {
 
             InitializeComponent();
             _posetilac = posetilac;
-
+            UcitajKupovine();
             UcitajPodatke();
         }
+        private void UcitajKupovine()
+        {
+            if (_posetilac == null)
+                return;
+
+            dgKupljeneKnjige.ItemsSource = _posetilac.KupljeneKnjige;
+            IzracunajStatistiku();
+            Console.WriteLine("Broj kupovina: " + _posetilac.KupljeneKnjige.Count);
+        }
+    
         private void UcitajPodatke()
         {
             
@@ -51,6 +65,45 @@ namespace WpfClient
                 txtDrzava.Text = _posetilac.Adresa.Drzava;
             }
 
+        }
+        private void IzracunajStatistiku()
+        {
+            
+            if (_posetilac == null)
+            {
+                txtProsecnaOcena.Text = "Prosečna ocena: 0";
+                txtUkupnaPotrosnja.Text = "Potrošeno: 0 RSD";
+                return;
+            }
+            List<Kupovina> kupovine = _posetilac.KupljeneKnjige;
+
+            
+            if (kupovine == null || kupovine.Count == 0)
+            {
+                txtProsecnaOcena.Text = "Prosečna ocena: 0";
+                txtUkupnaPotrosnja.Text = "Potrošeno: 0 RSD";
+                return;
+            }
+
+            double zbirOcena = 0;
+            double ukupnaPotrosnja = 0;
+            int brojKupovina = 0;
+
+            
+            foreach (Kupovina kupovina in kupovine)
+            { 
+                zbirOcena += kupovina.Ocena;
+                brojKupovina++;
+
+                
+                if (kupovina.Knjiga != null)
+                {
+                    ukupnaPotrosnja += kupovina.Knjiga.Cena;
+                }
+            }
+            double prosecnaOcena = zbirOcena / brojKupovina;
+            txtProsecnaOcena.Text = "Prosečna ocena: " + prosecnaOcena.ToString("F2");
+            txtUkupnaPotrosnja.Text = "Potrošeno: " + ukupnaPotrosnja.ToString("F2") + " RSD";
         }
 
         private void BtnPotvrdi_Click(object sender, RoutedEventArgs e)
@@ -76,7 +129,6 @@ namespace WpfClient
                 _posetilac.Adresa.Grad = txtGrad.Text;
                 _posetilac.Adresa.Drzava = txtDrzava.Text;
 
-                // DAO update
                 AdresaDao adresaDao = new AdresaDao();
                 PosetilacDao posetilacDao = new PosetilacDao(adresaDao);
 
@@ -94,6 +146,17 @@ namespace WpfClient
         private void BtnOdustani_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void BtnPonistiKupovinu_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgKupljeneKnjige.SelectedItem == null)
+            {
+                MessageBox.Show("Izaberite kupovinu za poništavanje.");
+                return;
+            }
+
+            MessageBox.Show("Kupovina poništena");
         }
     }
 }

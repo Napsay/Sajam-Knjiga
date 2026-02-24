@@ -14,7 +14,7 @@
                 <TabItem Header="Informacije">
                     <Grid Margin="10">
 
-                        
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
 
@@ -66,7 +66,7 @@
                                    Grid.Row="7"
                                    Grid.ColumnSpan="2"
                                    Margin="0,15,0,5"/>
-                        
+
                         <TextBlock Text="Ulica" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtUlica" Grid.Row="8" Grid.Column="1" Margin="5"/>
 
@@ -102,7 +102,54 @@
                 </TabItem>
 
                 <TabItem Header="Kupljene">
-                    <Grid Margin="10"/>
+                    <Grid Margin="10">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Button Content="Poništi kupovinu"
+                Width="150"
+                Margin="0,0,0,10"
+                HorizontalAlignment="Left"
+                Click="BtnPonistiKupovinu_Click"/>
+
+                        <DataGrid x:Name="dgKupljeneKnjige"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  Margin="0,5,0,5">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ISBN" Binding="{Binding Knjiga.ISBN}" Width="*"/>
+                                <DataGridTextColumn Header="Naziv" Binding="{Binding Knjiga.Naziv}" Width="2*"/>
+                                <DataGridTextColumn Header="Datum" Binding="{Binding DatumKupovine, StringFormat=dd.MM.yyyy}" Width="*"/>
+                                <DataGridTextColumn Header="Ocena" Binding="{Binding Ocena}" Width="*"/>
+                                <DataGridTextColumn Header="Cena" Binding="{Binding Knjiga.Cena}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+
+                        <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Margin="0,10,0,0">
+
+                            <TextBlock x:Name="txtProsecnaOcena"
+                       Text="Prosečna ocena: 0"
+                       FontWeight="SemiBold"
+                       Margin="0,2"/>
+
+                            <TextBlock x:Name="txtUkupnaPotrosnja"
+                       Text="Potrošeno: 0 RSD"
+                       FontWeight="SemiBold"
+                       Margin="0,2"/>
+                        </StackPanel>
+
+                    </Grid>
                 </TabItem>
 
                 <TabItem Header="Želje">
