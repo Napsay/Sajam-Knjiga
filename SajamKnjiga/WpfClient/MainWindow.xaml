@@ -93,7 +93,13 @@
             SelectionChanged="TabControl_SelectionChanged">
 
               <TabItem Header="Posetioci">
-        <DataGrid x:Name="dgPosetioci"
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Button Content="Prikazi autore knjiga na listi želja posetioca"
+                            Width="250"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,5"
+                            Click="BtnPrikaziAutore_Click"/>
+                    <DataGrid x:Name="dgPosetioci"
                   AutoGenerateColumns="False"
                   Margin="5"
                   RowBackground="White"
@@ -105,35 +111,36 @@
                   SelectionUnit="FullRow"
                   RowHeight="25" 
                   Sorting="dgPosetioci_Sorting">
-            
-            <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Background" Value="#D3D3D3"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="FontWeight" Value="Bold"/>
-                            <Setter Property="Padding" Value="5,0"/>
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Broj članske karte"
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#D3D3D3"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Padding" Value="5,0"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Broj članske karte"
                                     Binding="{Binding BrClanskeKarte}"
                                     Width="150"/>
-                <DataGridTextColumn Header="Ime"
+                            <DataGridTextColumn Header="Ime"
                                     Binding="{Binding Ime}"
                                     Width="100"/>
-                <DataGridTextColumn Header="Prezime"
+                            <DataGridTextColumn Header="Prezime"
                                     Binding="{Binding Prezime}"
                                     Width="120"/>
-                <DataGridTextColumn Header="Adresa"
+                            <DataGridTextColumn Header="Adresa"
                                     Binding="{Binding Adresa}"
                                     Width="*"/>
-                <DataGridTextColumn Header="Status"
+                            <DataGridTextColumn Header="Status"
                                     Binding="{Binding Status}"
                                     Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </TabItem>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
 
  
             <TabItem Header="Autori">

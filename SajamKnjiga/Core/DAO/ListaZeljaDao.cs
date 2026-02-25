@@ -45,5 +45,15 @@ namespace Core.DAO
                 _storage.Save(_listaZelja);
             }
         }
+        //metoda koja vraca sve knjige koje su na listi zelja datog posetioca
+        public List<string> GetKnjigeZaPosetioca(string brClanskeKarte)
+        {
+            // Vraca sve ISBN-ove knjiga za datog posetioca
+            return _listaZelja
+                .Where(l => l.BrClanskeKarte == brClanskeKarte)
+                .Select(l => l.ISBN)
+                .ToList();
+        }
+
     }
 }

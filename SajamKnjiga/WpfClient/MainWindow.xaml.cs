@@ -841,7 +841,11 @@ namespace WpfClient
             Autor izabraniAutor = dgAutori.SelectedItem as Autor;
             if (izabraniAutor == null)
             {
-                MessageBox.Show("Morate izabrati autora.");
+                MessageBox.Show(
+                    "Molimo izaberite autora iz tabele.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
@@ -855,7 +859,11 @@ namespace WpfClient
 
             if (!posetiociSaKnjigamaAutora.Any())
             {
-                MessageBox.Show("Nema posetilaca sa knjigama ovog autora na listi želja.");
+                MessageBox.Show(
+                     "Nema posetilaca sa knjigama ovog autora na listi želja.",
+                     "Upozorenje",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Warning);
                 return;
             }
             //otvranje novog prozora sa filtriranim posetiocima po ISBN knjiga autora
@@ -864,6 +872,44 @@ namespace WpfClient
      
         
     }
+
+        private void BtnPrikaziAutore_Click(object sender, RoutedEventArgs e)
+        {
+
+            Posetilac izabraniPosetilac = dgPosetioci.SelectedItem as Posetilac;
+            if (izabraniPosetilac == null)
+            {
+                MessageBox.Show(
+                    "Molimo izaberite posetioca iz tabele.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            ListaZeljaDao listaZeljaDao = new ListaZeljaDao();
+            List<string> isbnKnjigaNaListiZelja = listaZeljaDao.GetKnjigeZaPosetioca(izabraniPosetilac.BrClanskeKarte);
+
+            var autoriKnjigaNaListiZelja = sviAutori
+                .Where(a => a.Knjige != null &&
+                            a.Knjige.Any(k => isbnKnjigaNaListiZelja.Contains(k.ISBN)))
+                .GroupBy(a => a.AutorID)   // grupiše po jedinstvenom ID-u
+                .Select(g => g.First())    // uzmi samo jednog autora po grupi
+                .ToList();
+
+            if (!autoriKnjigaNaListiZelja.Any())
+            {
+                MessageBox.Show(
+                     "Nema autora sa knjigama na listi želja ovog posetioca.",
+                     "Upozorenje",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Warning);
+                return;
+            }
+
+            AutoriKnjigeListaZeljaWindow win = new AutoriKnjigeListaZeljaWindow(autoriKnjigaNaListiZelja);
+            win.ShowDialog();
+        }
     }
     
 }
