@@ -33,6 +33,9 @@ namespace WpfClient
         private List<Posetilac> sviPosetioci;
         private List<Autor> sviAutori;
         private List<Knjiga> sveKnjige;
+        private AutorKnjigaDao autorKnjigaDao;
+        private ListaZeljaDao listaZeljaDao;
+        private PosetilacDao posetilacDao;
 
         private List<Knjiga> _listaKnjiga;
 
@@ -172,7 +175,10 @@ namespace WpfClient
             AutorKnjigaDao autorKnjiga = new AutorKnjigaDao();
             ListaZeljaDao listaZelja = new ListaZeljaDao();
             KupovinaDao kupovine = new KupovinaDao();
-           
+            autorKnjigaDao = new AutorKnjigaDao();
+            listaZeljaDao = new ListaZeljaDao();
+            posetilacDao = new PosetilacDao(adrese);
+
             var listaAdresa = adrese.GetAll();
             var listaAutora = autori.GetAll();
             var listaPosetilaca = posetioci.GetAllPosetilac();
@@ -829,6 +835,35 @@ namespace WpfClient
 
             e.Column.SortDirection = direction; // update strelice
         }
+
+        private void BtnPrikaziPosetioce_Click(object sender, RoutedEventArgs e)
+        {
+            Autor izabraniAutor = dgAutori.SelectedItem as Autor;
+            if (izabraniAutor == null)
+            {
+                MessageBox.Show("Morate izabrati autora.");
+                return;
+            }
+
+            List<string> isbnKnjigeAutora = autorKnjigaDao.GetKnjigeZaAutora(izabraniAutor.AutorID);
+
+            var posetiociSaKnjigamaAutora = sviPosetioci
+                .Where(p => p.ListaZelja != null &&
+                            p.ListaZelja.Any(k => isbnKnjigeAutora.Contains(k.ISBN)))
+                .Distinct()
+                .ToList();
+
+            if (!posetiociSaKnjigamaAutora.Any())
+            {
+                MessageBox.Show("Nema posetilaca sa knjigama ovog autora na listi želja.");
+                return;
+            }
+            //otvranje novog prozora sa filtriranim posetiocima po ISBN knjiga autora
+            PosetiociListaZeljaAutorWindow win = new PosetiociListaZeljaAutorWindow(posetiociSaKnjigamaAutora);
+            win.ShowDialog();
+     
+        
+    }
     }
     
 }

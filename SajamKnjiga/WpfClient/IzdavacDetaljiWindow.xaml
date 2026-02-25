@@ -1,0 +1,60 @@
+﻿<Window x:Class="WpfClient.IzdavacDetaljiWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClient"
+        mc:Ignorable="d"
+        Title="Detalji o izdavacu" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="{Binding Naziv}"
+                       FontSize="18"
+                       FontWeight="Bold"/>
+            <TextBlock Text="{Binding Sef.PunoIme, StringFormat=Šef: {0}}"
+                       Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <GroupBox Header="Autori" Grid.Row="1" Margin="0,10,0,10">
+            <DataGrid x:Name="dgAutori"
+                      AutoGenerateColumns="False"
+                      SelectionMode="Single"
+                      CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*"/>
+                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*"/>
+                    <DataGridTextColumn Header="Godine iskustva" Binding="{Binding GodineIskustva}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right">
+            <Button Content="Dodaj šefa"
+                    Margin="0,0,10,0"
+                    Click="BtnDodajSefa_Click"/>
+            <Button Content="Ukloni šefa"
+                    Margin="0,0,10,0"
+                    Click="BtnUkloniSefa_Click"/>
+            <Button Content="Zatvori"
+                    Click="BtnZatvori_Click"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Text="{Binding Naziv}"
+               FontSize="18"
+               FontWeight="Bold"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="Šef: " FontWeight="Bold"/>
+                <TextBlock x:Name="txtSef"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

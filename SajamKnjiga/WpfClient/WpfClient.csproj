@@ -87,6 +87,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IzdavacDetaljiWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IzdavaciWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +143,9 @@
     <Compile Include="IzborNovogEntitetaWindow.xaml.cs">
       <DependentUpon>IzborNovogEntitetaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IzdavacDetaljiWindow.xaml.cs">
+      <DependentUpon>IzdavacDetaljiWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzdavaciWindow.xaml.cs">
       <DependentUpon>IzdavaciWindow.xaml</DependentUpon>
     </Compile>
@@ -158,12 +165,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PosetiociListaZeljaAutorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PotvrdaBrisanjaWindow.xaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PosetiociListaZeljaAutorWindow.xaml.cs">
+      <DependentUpon>PosetiociListaZeljaAutorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PotvrdaBrisanjaWindow.xaml.xaml.cs">
       <DependentUpon>PotvrdaBrisanjaWindow.xaml.xaml</DependentUpon>
     </Compile>

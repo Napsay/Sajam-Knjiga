@@ -135,9 +135,15 @@
         </DataGrid>
     </TabItem>
 
-
+ 
             <TabItem Header="Autori">
-                <DataGrid x:Name="dgAutori"
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Button Content="Prikaži posetioce sa knjigama autora na listi želja"
+                     Width="250"
+                     HorizontalAlignment="Left"
+                     Margin="0,0,0,5"
+                     Click="BtnPrikaziPosetioce_Click"/>
+                    <DataGrid x:Name="dgAutori"
                   AutoGenerateColumns="False"
                   Margin="5"
                   RowBackground="White"
@@ -150,41 +156,42 @@
                   CanUserSortColumns="True"
                   Sorting="dgAutori_Sorting">
 
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Background" Value="#D3D3D3"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="FontWeight" Value="Bold"/>
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#D3D3D3"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID"
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID"
                                     Binding="{Binding AutorID}"
                                     Width="60"/>
-                        <DataGridTextColumn Header="Ime"
+                            <DataGridTextColumn Header="Ime"
                                     Binding="{Binding Ime}"
                                     Width="120"/>
-                        <DataGridTextColumn Header="Prezime"
+                            <DataGridTextColumn Header="Prezime"
                                     Binding="{Binding Prezime}"
                                     Width="140"/>
-                        <DataGridTextColumn Header="Datum rođenja"
+                            <DataGridTextColumn Header="Datum rođenja"
                                     Binding="{Binding DatumRodjenja, StringFormat=dd.MM.yyyy}"
                                     Width="130"/>
-                        <DataGridTextColumn Header="Adresa"
+                            <DataGridTextColumn Header="Adresa"
                                     Binding="{Binding Adresa}"
                                     Width="*"/>
-                        <DataGridTextColumn Header="Telefon"
+                            <DataGridTextColumn Header="Telefon"
                                     Binding="{Binding Telefon}"
                                     Width="120"/>
-                        <DataGridTextColumn Header="Email"
+                            <DataGridTextColumn Header="Email"
                                     Binding="{Binding Email}"
                                     Width="160"/>
-                        <DataGridTextColumn Header="God. iskustva"
+                            <DataGridTextColumn Header="God. iskustva"
                                     Binding="{Binding GodineIskustva}"
                                     Width="110"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </TabItem>
 
 

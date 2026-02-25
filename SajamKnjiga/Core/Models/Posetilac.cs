@@ -192,5 +192,13 @@ namespace Core.Models
                 return 0;
             }
         }
+
+        public int AdresaID
+        {
+            get
+            {
+                return Adresa?.Sifra ?? 0;
+            }
+        }
     }
 }

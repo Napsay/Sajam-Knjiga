@@ -26,6 +26,8 @@ namespace Core.DAO
             _izdavaci = _storage.Load();
 
             _autorDao = new AutorDao(_adresaDao);
+
+            PoveziAutore();
         }
 
        
@@ -100,5 +102,24 @@ namespace Core.DAO
             _storage.Save(_izdavaci);
         }
 
+        private void PoveziAutore()
+        {
+            foreach (var izdavac in _izdavaci)
+            {
+                // Poveži šefa
+                if (izdavac.Sef != null)
+                {
+                    var praviAutor = _autorDao.GetBySifra(izdavac.Sef.AutorID);
+                    izdavac.Sef = praviAutor;
+                }
+
+                // Poveži listu autora
+                for (int i = 0; i < izdavac.SpisakAutora.Count; i++)
+                {
+                    var praviAutor = _autorDao.GetBySifra(izdavac.SpisakAutora[i].AutorID);
+                    izdavac.SpisakAutora[i] = praviAutor;
+                }
+            }
+        }
     }
 }

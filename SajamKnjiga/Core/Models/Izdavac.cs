@@ -115,5 +115,14 @@ namespace Core.Models
                    $"   Autori: {autoriStr}\n" +
                    $"   Knjige: {knjigeStr}";
         }
+
+        //za prikaz imena i prezimena sefa 
+        public string SefPunoIme
+        {
+            get
+            {
+                return Sef != null ? $"{Sef.Ime} {Sef.Prezime}" : "Nema šefa";
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="IzdavaciWindow" Height="450" Width="800">
+        Title="Svi izdavaci" Height="450" Width="800">
     <Grid Margin="5">
         <DataGrid x:Name="dgIzdavaci"
                   AutoGenerateColumns="False"
@@ -19,7 +19,7 @@
 
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="#D3D3D3"/>
+                    <Setter Property="Background" Value="LightGray"/>
                     <Setter Property="Foreground" Value="Black"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                 </Style>
@@ -28,13 +28,23 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Sifra}" Width="60"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="200"/>
-                <DataGridTextColumn Header="Šef" Binding="{Binding Sef.Ime}" Width="120"/>
+                <DataGridTextColumn Header="Šef" Binding="{Binding SefPunoIme}"  Width="120"/>
                 <DataGridTextColumn Header="Broj autora" Binding="{Binding SpisakAutora.Count}" Width="100"/>
                 <DataGridTextColumn Header="Broj knjiga" Binding="{Binding SpisakKnjiga.Count}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Zatvori" Width="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0"
-                Click="BtnZatvori_Click"/>
+        <StackPanel Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,0">
+            <Button Content="Prikaži detalje"
+            Width="120"
+            Margin="0,0,10,0"
+            Click="BtnDetalji_Click"/>
+            <Button Content="Zatvori"
+            Width="80"
+            Click="BtnZatvori_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
