@@ -910,6 +910,24 @@ namespace WpfClient
             AutoriKnjigeListaZeljaWindow win = new AutoriKnjigeListaZeljaWindow(autoriKnjigaNaListiZelja);
             win.ShowDialog();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void OpenAnalitika_Click(object sender, RoutedEventArgs e)
+        {
+            if (sviPosetioci == null || sveKnjige == null)
+            {
+                MessageBox.Show("Podaci nisu učitani.", "Greška",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            AnalitikaWindow prozor = new AnalitikaWindow(sviPosetioci, sveKnjige);
+            prozor.Owner = this;
+            prozor.ShowDialog();
+        }
     }
     
 }

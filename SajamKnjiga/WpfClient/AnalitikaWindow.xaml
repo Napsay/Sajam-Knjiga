@@ -1,0 +1,125 @@
+﻿<Window x:Class="WpfClient.AnalitikaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Analitika"
+        Height="550"
+        Width="850"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Prva knjiga:"
+                       VerticalAlignment="Center"
+                       Margin="0,0,5,0"/>
+
+            <ComboBox x:Name="cmbPrvaKnjiga"
+                      Width="200"
+                      Margin="0,0,20,0"
+                      DisplayMemberPath="Naziv"/>
+
+            <TextBlock Text="Druga knjiga:"
+                       VerticalAlignment="Center"
+                       Margin="0,0,5,0"/>
+
+            <ComboBox x:Name="cmbDrugaKnjiga"
+                      Width="200"
+                      Margin="0,0,20,0"
+                      DisplayMemberPath="Naziv"/>
+
+            <Button Content="Prikaži"
+                    Width="100"
+                    Click="BtnPrikazi_Click"/>
+        </StackPanel>
+
+       
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,0,10">
+
+            <TextBlock Text="Pretraga:"
+                       VerticalAlignment="Center"
+                       Margin="0,0,5,0"/>
+
+            <TextBox x:Name="txtPretraga"
+                     Width="180"
+                     Margin="0,0,5,0"/>
+
+            <Button Content="Pretraži"
+                    Width="80"
+                    Click="BtnPretrazi_Click"/>
+        </StackPanel>
+
+        
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Posetioci koji imaju obe knjige na listi želja"
+                           FontWeight="Bold"
+                           Margin="0,0,0,5"/>
+
+                <DataGrid x:Name="dgObeNaListiZelja"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Broj kartice"
+                                            Binding="{Binding BrClanskeKarte}"
+                                            Width="150"/>
+                        <DataGridTextColumn Header="Ime"
+                                            Binding="{Binding Ime}"
+                                            Width="120"/>
+                        <DataGridTextColumn Header="Prezime"
+                                            Binding="{Binding Prezime}"
+                                            Width="120"/>
+                        <DataGridTextColumn Header="Status"
+                                            Binding="{Binding Status}"
+                                            Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            
+            <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                <TextBlock Text="Posetioci koji su kupili prvu knjigu, a nisu drugu"
+                           FontWeight="Bold"
+                           Margin="0,0,0,5"/>
+
+                <DataGrid x:Name="dgKupiliPrvuNeDrugu"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Broj kartice"
+                                            Binding="{Binding BrClanskeKarte}"
+                                            Width="150"/>
+                        <DataGridTextColumn Header="Ime"
+                                            Binding="{Binding Ime}"
+                                            Width="120"/>
+                        <DataGridTextColumn Header="Prezime"
+                                            Binding="{Binding Prezime}"
+                                            Width="120"/>
+                        <DataGridTextColumn Header="Status"
+                                            Binding="{Binding Status}"
+                                            Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>
