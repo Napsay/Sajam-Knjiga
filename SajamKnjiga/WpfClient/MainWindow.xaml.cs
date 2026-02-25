@@ -553,7 +553,7 @@ namespace WpfClient
                 return;
             }
 
-            var win = new IzdavaciWindow(listaIzdavaca, sveKnjige);
+            var win = new IzdavaciWindow(listaIzdavaca, sveKnjige,sviAutori);
             win.Owner = this;
             win.ShowDialog();
         }

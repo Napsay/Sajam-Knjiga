@@ -25,7 +25,8 @@ namespace WpfClient
         private IzdavacDao _izdavacDao;
         private List<Knjiga> _sveKnjige;
         private List<Izdavac> _sviIzdavaci;
-        public IzdavaciWindow(List<Izdavac> izdavaci, List<Knjiga> knjige)
+        private List<Autor> _sviAutori;
+        public IzdavaciWindow(List<Izdavac> izdavaci, List<Knjiga> knjige, List<Autor> sviAutori)
         {
             InitializeComponent();
             _izdavacDao = new IzdavacDao(new AdresaDao());
@@ -33,7 +34,7 @@ namespace WpfClient
             _sveKnjige = knjige;
             dgIzdavaci.ItemsSource = _sviIzdavaci;
             UcitajIzdavace();
-
+            _sviAutori = sviAutori;
         }
 
         private void UcitajIzdavace()
@@ -94,6 +95,52 @@ namespace WpfClient
 
             dgKnjigeIzdavaca.ItemsSource = null;
             dgKnjigeIzdavaca.ItemsSource = knjigeIzdavaca;
+        }
+
+        private void BtnPrikaziAutore_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgIzdavaci.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Morate izabrati izdavača.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            Izdavac selektovaniIzdavac = (Izdavac)dgIzdavaci.SelectedItem;
+
+            List<Autor> autoriIzdavaca = new List<Autor>();
+
+            foreach (Knjiga knjiga in _sveKnjige)
+            {
+                if (knjiga.Izdavac != null &&
+                    knjiga.Izdavac.Sifra == selektovaniIzdavac.Sifra)
+                {
+                    foreach (Autor autor in knjiga.Autori)
+                    {
+                        bool vecPostoji = false;
+
+                        foreach (Autor a in autoriIzdavaca)
+                        {
+                            if (a.AutorID == autor.AutorID)
+                            {
+                                vecPostoji = true;
+                                break;
+                            }
+                        }
+
+                        if (!vecPostoji)
+                        {
+                            autoriIzdavaca.Add(autor);
+                        }
+                    }
+                }
+            }
+
+            dgAutoriIzdavaca.ItemsSource = null;
+            dgAutoriIzdavaca.ItemsSource = autoriIzdavaca;
         }
     }
 }
