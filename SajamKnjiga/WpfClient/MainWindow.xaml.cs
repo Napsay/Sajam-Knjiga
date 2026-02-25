@@ -30,22 +30,24 @@ namespace WpfClient
         private DispatcherTimer timer;
 
 
-        private List<Posetilac> sviPosetioci;
+        private List<Posetilac> sviPosetioci = new List<Posetilac>();
         private List<Autor> sviAutori;
-        private List<Knjiga> sveKnjige;
+        private List<Knjiga> sveKnjige = new List<Knjiga>();
         private AutorKnjigaDao autorKnjigaDao;
         private ListaZeljaDao listaZeljaDao;
         private PosetilacDao posetilacDao;
 
+        private List<Izdavac> listaIzdavaca = new List<Izdavac>();
         private List<Knjiga> _listaKnjiga;
 
 
         public MainWindow()
         {
             InitializeComponent();
+            UcitajKnjige();
             UcitajPosetioce();
             UcitajAutore();
-            UcitajKnjige();
+            
             PokreniSat();
             OsveziStatusBar();
             CommandBindings.Add(new CommandBinding(
@@ -254,27 +256,27 @@ namespace WpfClient
 
             var listaAdresa = adrese.GetAll();
             var listaAutora = autori.GetAll();
-            var listaPosetilaca = posetioci.GetAllPosetilac();
-            var listaKnjiga = knjige.getAllKnjige();
+            var listaPosetilacaLocal = posetioci.GetAllPosetilac();
             var listaKupovina = kupovine.getAllKupovine();
             var listaListaZelja = listaZelja.GetAll();
-            var listaIzdavaca = izdavaci.GetAll();
+            var listaKnjigaLocal = knjige.getAllKnjige();
+            var listaIzdavacaLocal = izdavaci.GetAll();
             var vezeAutorKnjiga = autorKnjiga.GetAll();
+            sveKnjige = listaKnjigaLocal;
+            listaIzdavaca = listaIzdavacaLocal;
+            sviPosetioci = listaPosetilacaLocal;
 
-            
             DataBinder.PoveziSve(
                 listaAutora,
-                listaKnjiga,
+                listaKnjigaLocal,
                 vezeAutorKnjiga,
-                listaPosetilaca,
+                listaPosetilacaLocal,
                 listaKupovina,
                 listaListaZelja,
-                listaIzdavaca,
+                listaIzdavacaLocal,
                 listaAdresa
             );
 
-            dgKnjige.ItemsSource = null;
-            sveKnjige = listaKnjiga;
             dgKnjige.ItemsSource = sveKnjige;
         }
 
@@ -486,7 +488,7 @@ namespace WpfClient
 
             if (izbor.ShowDialog() == true)
             {
-                // Osveži sve tri tabele
+                
                 UcitajPosetioce();
                 UcitajAutore();
                 UcitajKnjige();
@@ -497,7 +499,7 @@ namespace WpfClient
         {
             try
             {
-                // Kreiramo DAO instance sa postojećim Storage objektima
+                
                 AdresaDao adresaDao = new AdresaDao();
                 PosetilacDao posetilacDao = new PosetilacDao(adresaDao);
                 AutorDao autorDao = new AutorDao(adresaDao);
@@ -507,7 +509,7 @@ namespace WpfClient
                 ListaZeljaDao listaZeljaDao = new ListaZeljaDao();
                 KupovinaDao kupovinaDao = new KupovinaDao();
 
-                // Save svih kolekcija
+                
                 adresaDao.GetAll();           
                 posetilacDao.GetAllPosetilac();
                 autorDao.GetAll();
@@ -545,9 +547,15 @@ namespace WpfClient
 
         private void OpenIzdavaci_Click(object sender, RoutedEventArgs e)
         {
-            var izdavacWin = new IzdavaciWindow(); 
-            izdavacWin.Owner = this;
-            izdavacWin.ShowDialog();
+            if (sveKnjige == null || listaIzdavaca == null)
+            {
+                MessageBox.Show("Podaci nisu učitani!");
+                return;
+            }
+
+            var win = new IzdavaciWindow(listaIzdavaca, sveKnjige);
+            win.Owner = this;
+            win.ShowDialog();
         }
 
         private void CloseApp_Click(object sender, RoutedEventArgs e)
@@ -698,7 +706,7 @@ namespace WpfClient
         {
             var list = dgPosetioci.ItemsSource.Cast<Posetilac>().ToList();
 
-            // ciklično određivanje pravca sortiranja
+            
             ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
                                           ListSortDirection.Ascending :
                                           ListSortDirection.Descending;
@@ -744,7 +752,6 @@ namespace WpfClient
                    
             }
 
-            // postavljanje strelice
             e.Column.SortDirection = direction;
         }
 
@@ -782,7 +789,7 @@ namespace WpfClient
 
             }
 
-            e.Column.SortDirection = direction; // postavljanje strelice
+            e.Column.SortDirection = direction; 
         }
 
         private void dgKnjige_Sorting(object sender, DataGridSortingEventArgs e)
@@ -833,7 +840,7 @@ namespace WpfClient
 
             }
 
-            e.Column.SortDirection = direction; // update strelice
+            e.Column.SortDirection = direction; 
         }
 
         private void BtnPrikaziPosetioce_Click(object sender, RoutedEventArgs e)
@@ -866,7 +873,7 @@ namespace WpfClient
                      MessageBoxImage.Warning);
                 return;
             }
-            //otvranje novog prozora sa filtriranim posetiocima po ISBN knjiga autora
+            
             PosetiociListaZeljaAutorWindow win = new PosetiociListaZeljaAutorWindow(posetiociSaKnjigamaAutora);
             win.ShowDialog();
      
@@ -893,8 +900,8 @@ namespace WpfClient
             var autoriKnjigaNaListiZelja = sviAutori
                 .Where(a => a.Knjige != null &&
                             a.Knjige.Any(k => isbnKnjigaNaListiZelja.Contains(k.ISBN)))
-                .GroupBy(a => a.AutorID)   // grupiše po jedinstvenom ID-u
-                .Select(g => g.First())    // uzmi samo jednog autora po grupi
+                .GroupBy(a => a.AutorID)   
+                .Select(g => g.First())    
                 .ToList();
 
             if (!autoriKnjigaNaListiZelja.Any())
@@ -927,6 +934,13 @@ namespace WpfClient
             AnalitikaWindow prozor = new AnalitikaWindow(sviPosetioci, sveKnjige);
             prozor.Owner = this;
             prozor.ShowDialog();
+        }
+
+        
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
     

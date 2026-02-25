@@ -3,6 +3,7 @@ using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,12 +23,17 @@ namespace WpfClient
     public partial class IzdavaciWindow : Window
     {
         private IzdavacDao _izdavacDao;
-
-        public IzdavaciWindow()
+        private List<Knjiga> _sveKnjige;
+        private List<Izdavac> _sviIzdavaci;
+        public IzdavaciWindow(List<Izdavac> izdavaci, List<Knjiga> knjige)
         {
             InitializeComponent();
             _izdavacDao = new IzdavacDao(new AdresaDao());
+            _sviIzdavaci = izdavaci;
+            _sveKnjige = knjige;
+            dgIzdavaci.ItemsSource = _sviIzdavaci;
             UcitajIzdavace();
+
         }
 
         private void UcitajIzdavace()
@@ -59,6 +65,35 @@ namespace WpfClient
 
             detalji.ShowDialog();
             UcitajIzdavace();
+        }
+
+        private void BtnPrikaziKnjige_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgIzdavaci.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Morate izabrati izdavača.",
+                    "Upozorenje",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            Izdavac selektovaniIzdavac = (Izdavac)dgIzdavaci.SelectedItem;
+
+            List<Knjiga> knjigeIzdavaca = new List<Knjiga>();
+
+            foreach (Knjiga knjiga in _sveKnjige)
+            {
+                if (knjiga.Izdavac != null &&
+                    knjiga.Izdavac.Sifra == selektovaniIzdavac.Sifra)
+                {
+                    knjigeIzdavaca.Add(knjiga);
+                }
+            }
+
+            dgKnjigeIzdavaca.ItemsSource = null;
+            dgKnjigeIzdavaca.ItemsSource = knjigeIzdavaca;
         }
     }
 }
