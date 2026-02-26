@@ -547,15 +547,9 @@ namespace WpfClient
 
         private void OpenIzdavaci_Click(object sender, RoutedEventArgs e)
         {
-            if (sveKnjige == null || listaIzdavaca == null)
-            {
-                MessageBox.Show("Podaci nisu učitani!");
-                return;
-            }
-
-            var win = new IzdavaciWindow(listaIzdavaca, sveKnjige,sviAutori);
-            win.Owner = this;
-            win.ShowDialog();
+            var izdavacWin = new IzdavaciWindow();
+            izdavacWin.Owner = this;
+            izdavacWin.ShowDialog();
         }
 
         private void CloseApp_Click(object sender, RoutedEventArgs e)
@@ -941,6 +935,26 @@ namespace WpfClient
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void OpenAnalitikaIzdavaca_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (listaIzdavaca == null || sveKnjige == null || sviAutori == null)
+            {
+                MessageBox.Show("Podaci nisu učitani.", "Greška",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            AnalitikaIzdavaca prozor = new AnalitikaIzdavaca(
+                listaIzdavaca,
+                sveKnjige,
+                sviAutori
+            );
+
+            prozor.Owner = this;
+            prozor.ShowDialog();
         }
     }
     

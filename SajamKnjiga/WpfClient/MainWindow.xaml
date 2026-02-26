@@ -51,9 +51,12 @@
                           InputGestureText="Del"/>
             </MenuItem>
 
-            <MenuItem Header="_Analitika" Click="MenuItem_Click">
+            <MenuItem Header="_Analitika">
                 <MenuItem Header="Analiza po dve knjige"
-                  Click="OpenAnalitika_Click"/>
+              Click="OpenAnalitika_Click"/>
+
+                <MenuItem Header="Analitika izdavača"
+              Click="OpenAnalitikaIzdavaca_Click"/>
             </MenuItem>
 
             <MenuItem Header="_Help">

@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AnalitikaIzdavaca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AnalitikaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +129,9 @@
     </Page>
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AnalitikaIzdavaca.xaml.cs">
+      <DependentUpon>AnalitikaIzdavaca.xaml</DependentUpon>
     </Compile>
     <Compile Include="AnalitikaWindow.xaml.cs">
       <DependentUpon>AnalitikaWindow.xaml</DependentUpon>
