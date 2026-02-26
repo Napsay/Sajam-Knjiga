@@ -4,8 +4,11 @@ using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +20,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WpfClient.Properties;
+using WpfClient.Resources;
 
 
 namespace WpfClient
@@ -25,8 +30,7 @@ namespace WpfClient
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-
+    { 
         private DispatcherTimer timer;
 
 
@@ -58,6 +62,7 @@ namespace WpfClient
         public MainWindow()
         {
             InitializeComponent();
+
             UcitajKnjige();
             UcitajPosetioce();
             UcitajAutore();
@@ -77,8 +82,93 @@ namespace WpfClient
             NavigationCommands.Refresh,
             (s, e) => OtvoriIzmenu()));
 
-
+            this.Title = Strings.MainWindow_Title;
+            InitialLanguageSetup("sr-Latn-RS");
         }
+
+        private void InitialLanguageSetup(string cultureCode)
+        {
+            LocalizationManager.SetLanguage(cultureCode);
+
+            var culture = new CultureInfo(cultureCode);
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
+
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            MenuItem_Language.Header = LocalizationManager.GetString("Menu_Language");
+            this.Title = LocalizationManager.GetString("MainWindow_Title");
+
+            MenuItem_File.Header = LocalizationManager.GetString("Menu_File");
+            MenuItem_File_New.Header = LocalizationManager.GetString("Menu_File_New");
+            MenuItem_File_Open.Header = LocalizationManager.GetString("Menu_File_Open");
+            MenuItem_File_Open_Posetioci.Header = LocalizationManager.GetString("Menu_File_Open_Posetioci");
+            MenuItem_File_Open_Knjige.Header = LocalizationManager.GetString("Menu_File_Open_Knjige");
+            MenuItem_File_Open_Autori.Header = LocalizationManager.GetString("Menu_File_Open_Autori");
+            MenuItem_File_Open_Izdavaci.Header = LocalizationManager.GetString("Menu_File_Open_Izdavaci");
+            MenuItem_File_Save.Header = LocalizationManager.GetString("Menu_File_Save");
+            MenuItem_File_Close.Header = LocalizationManager.GetString("Menu_File_Close");
+
+            MenuItem_Edit.Header = LocalizationManager.GetString("Menu_Edit");
+            MenuItem_Edit_Edit.Header = LocalizationManager.GetString("Menu_Edit_Edit");
+            MenuItem_Edit_Delete.Header = LocalizationManager.GetString("Menu_Edit_Delete");
+
+            MenuItem_Analitika.Header = LocalizationManager.GetString("Menu_Analitika");
+            MenuItem_Analitika_Knjige.Header = LocalizationManager.GetString("Menu_Analitika_Knjige");
+            MenuItem_Analitika_Izdavaci.Header = LocalizationManager.GetString("Menu_Analitika_Izdavaci");
+
+            MenuItem_Help.Header = LocalizationManager.GetString("Menu_Help");
+            MenuItem_Help_About.Header = LocalizationManager.GetString("Menu_Help_About");
+
+            TabItem_Posetioci.Header = LocalizationManager.GetString("Tab_Posetioci");
+            TabItem_Autori.Header = LocalizationManager.GetString("Tab_Autori");
+            TabItem_Knjige.Header = LocalizationManager.GetString("Tab_Knjige");
+            txtPretraga.Text = LocalizationManager.GetString("Search_Placeholder");
+
+            Posetilac_ClanskaKarta.Header = LocalizationManager.GetString("Posetilac_ClanskaKarta");
+            Posetilac_Ime.Header = LocalizationManager.GetString("Posetilac_Ime");
+            Posetilac_Prezime.Header = LocalizationManager.GetString("Posetilac_Prezime");
+            Posetilac_Adresa.Header = LocalizationManager.GetString("Posetilac_Adresa");
+            Posetilac_Status.Header = LocalizationManager.GetString("Posetilac_Status");
+            Posetilac_GodinaClanstva.Header = LocalizationManager.GetString("Posetilac_GodinaClanstva");
+            Posetilac_ProsecnaOcena.Header = LocalizationManager.GetString("Posetilac_ProsecnaOcena");
+
+            Kolona_IDAutora.Header = LocalizationManager.GetString("Kolona_IDAutora");
+            Autor_Ime.Header = LocalizationManager.GetString("Autor_Ime");
+            Autor_Prezime.Header = LocalizationManager.GetString("Autor_Prezime");
+            Autor_DatumRodjenja.Header = LocalizationManager.GetString("Autor_DatumRodjenja");
+            Autor_Adresa.Header = LocalizationManager.GetString("Autor_Adresa");
+            Autor_Telefon.Header = LocalizationManager.GetString("Autor_Telefon");
+            Autor_Email.Header = LocalizationManager.GetString("Autor_Email");
+            Autor_GodIskustva.Header = LocalizationManager.GetString("Autor_GodIskustva");
+
+            Knjiga_ISBN.Header = LocalizationManager.GetString("Knjiga_ISBN");
+            Knjiga_Naziv.Header = LocalizationManager.GetString("Knjiga_Naziv");
+            Knjiga_Zanr.Header = LocalizationManager.GetString("Knjiga_Zanr");
+            Knjiga_GodIzdavanja.Header = LocalizationManager.GetString("Knjiga_GodIzdavanja");
+            Knjiga_Cena.Header = LocalizationManager.GetString("Knjiga_Cena");
+            Knjiga_BrStrana.Header = LocalizationManager.GetString("Knjiga_BrStrana");
+            Knjiga_Izdavac.Header = LocalizationManager.GetString("Knjiga_Izdavac");
+            Knjiga_Autori.Header = LocalizationManager.GetString("Knjiga_Autori");
+
+            btnFirstPageAutori.Content = LocalizationManager.GetString("btnFirstPageAutori");
+            btnLastPageAutori.Content = LocalizationManager.GetString("btnLastPageAutori");
+
+            btnFirstPagePosetioci.Content = LocalizationManager.GetString("btnFirstPagePosetioci");
+            btnLastPagePosetioci.Content = LocalizationManager.GetString("btnLastPagePosetioci");
+
+            btnFirstPageKnjige.Content = LocalizationManager.GetString("btnFirstPageKnjige");
+            btnLastPageKnjige.Content = LocalizationManager.GetString("btnLastPageKnjige");
+
+            Btn_GridPosetioci.Content = LocalizationManager.GetString("Btn_GridPosetioci");
+            Btn_GridAutori.Content = LocalizationManager.GetString("Btn_GridAutori");
+
+            OsveziStatusBar();
+        }
+
 
         private List<T> GetPage<T>(List<T> fullList, int pageNumber)
         {
@@ -96,7 +186,11 @@ namespace WpfClient
             totalPagesPosetioci = (int)Math.Ceiling((double)_filteredPosetioci.Count / PageSize);
             var pageItems = GetPage(_filteredPosetioci, currentPagePosetioci);
             dgPosetioci.ItemsSource = pageItems;
-            txtPosetiociPageInfo.Text = $"Strana {currentPagePosetioci} od {totalPagesPosetioci}";
+            txtPosetiociPageInfo.Text = string.Format(
+            LocalizationManager.GetString("Status_PageInfo"),
+            currentPagePosetioci,
+            totalPagesPosetioci
+            );
         }
 
         private void RefreshAutoriGrid()
@@ -106,7 +200,11 @@ namespace WpfClient
             totalPagesAutori = (int)Math.Ceiling((double)_filteredAutori.Count / PageSize);
             var pageItems = GetPage(_filteredAutori, currentPageAutori);
             dgAutori.ItemsSource = pageItems;
-            txtAutoriPageInfo.Text = $"Strana {currentPageAutori} od {totalPagesAutori}";
+            txtAutoriPageInfo.Text = string.Format(
+            LocalizationManager.GetString("Status_PageInfo"),
+            currentPageAutori,
+            totalPagesAutori
+            );
         }
 
         private void RefreshKnjigeGrid()
@@ -116,7 +214,11 @@ namespace WpfClient
             totalPagesKnjige = (int)Math.Ceiling((double)_filteredKnjige.Count / PageSize);
             var pageItems = GetPage(_filteredKnjige, currentPageKnjige);
             dgKnjige.ItemsSource = pageItems;
-            txtKnjigePageInfo.Text = $"Strana {currentPageKnjige} od {totalPagesKnjige}";
+            txtKnjigePageInfo.Text = string.Format(
+            LocalizationManager.GetString("Status_PageInfo"),
+            currentPageKnjige,
+            totalPagesKnjige
+            );
         }
 
         private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
@@ -233,7 +335,12 @@ namespace WpfClient
                     }
                     else
                     {
-                        MessageBox.Show("Morate izabrati posetioca za izmenu.");
+                        MessageBox.Show(
+                        LocalizationManager.GetString("Msg_SelectVisitorForEdit"),
+                        LocalizationManager.GetString("Msg_WarningTitle"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                        );
                     }
                 }
                 else if (tab.Header.ToString() == "Autori")
@@ -246,7 +353,12 @@ namespace WpfClient
                     }
                     else
                     {
-                        MessageBox.Show("Morate izabrati posetioca za izmenu.");
+                        MessageBox.Show(
+                        LocalizationManager.GetString("Msg_SelectAuthorForEdit"),
+                        LocalizationManager.GetString("Msg_WarningTitle"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                        );
                     }
                 }
                 else if (tab.Header.ToString() == "Knjige")
@@ -259,7 +371,12 @@ namespace WpfClient
                     }
                     else
                     {
-                        MessageBox.Show("Morate izabrati posetioca za izmenu.");
+                        MessageBox.Show(
+                        LocalizationManager.GetString("Msg_SelectBookForEdit"),
+                        LocalizationManager.GetString("Msg_WarningTitle"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                        );
                     }
                 }
             }
@@ -311,7 +428,9 @@ namespace WpfClient
         {
             if (MainTabControl.SelectedItem is TabItem tab)
             {
-                txtStatusLevo.Text = $"Sajam knjiga - {tab.Header}";
+                string sajamskaPoruka = LocalizationManager.GetString("Status_BookFair");
+
+                txtStatusLevo.Text = $"{sajamskaPoruka} - {tab.Header}";
             }
         }
 
@@ -495,10 +614,11 @@ namespace WpfClient
                 if (p == null)
                 {
                     MessageBox.Show(
-                   "Molimo izaberite posetioca iz tabele.",
-                   "Upozorenje",
-                   MessageBoxButton.OK,
-                   MessageBoxImage.Warning);
+                    LocalizationManager.GetString("Msg_SelectVisitor"),
+                    LocalizationManager.GetString("Msg_WarningTitle"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                     );
                     return;
                 }
 
@@ -514,11 +634,12 @@ namespace WpfClient
                 Autor a = (Autor)dgAutori.SelectedItem;
                 if (a == null)
                 {
-                    MessageBox.Show(
-                   "Molimo izaberite autora iz tabele.",
-                   "Upozorenje",
-                   MessageBoxButton.OK,
-                   MessageBoxImage.Warning);
+                     MessageBox.Show(
+                     LocalizationManager.GetString("Msg_SelectAuthor"),
+                     LocalizationManager.GetString("Msg_WarningTitle"),
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Warning
+                     );
                     return;
                 }
 
@@ -535,10 +656,11 @@ namespace WpfClient
                 if (k == null)
                 {
                     MessageBox.Show(
-                   "Molimo izaberite knjigu iz tabele.",
-                   "Upozorenje",
-                   MessageBoxButton.OK,
-                   MessageBoxImage.Warning);
+                    LocalizationManager.GetString("Msg_SelectBook"),
+                    LocalizationManager.GetString("Msg_WarningTitle"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                    );
                     return;
                 }
 
@@ -575,16 +697,18 @@ namespace WpfClient
             if (p == null)
             {
                 MessageBox.Show(
-                    "Molimo izaberite posetioca iz tabele.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+               LocalizationManager.GetString("Msg_SelectVisitor"),
+               LocalizationManager.GetString("Msg_WarningTitle"),
+               MessageBoxButton.OK,
+               MessageBoxImage.Warning
+               );
                 return;
             }
 
             PotvrdaBrisanjaWindow dlg = new PotvrdaBrisanjaWindow(
-                "Da li ste sigurni da želite da obrišete posetioca?",
-                "Brisanje posetioca");
+            LocalizationManager.GetString("Msg_ConfirmDeleteVisitor"),
+            LocalizationManager.GetString("Msg_DeleteVisitorTitle")
+            );
 
             dlg.Owner = this;
 
@@ -603,16 +727,18 @@ namespace WpfClient
             if (autor == null)
             {
                 MessageBox.Show(
-                    "Molimo izaberite autora iz tabele.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                LocalizationManager.GetString("Msg_SelectAuthor"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
                 return;
             }
 
             PotvrdaBrisanjaWindow dlg = new PotvrdaBrisanjaWindow(
-                "Da li ste sigurni da želite da obrišete autora?",
-                "Brisanje autora");
+            LocalizationManager.GetString("Msg_ConfirmDeleteAuthor"),
+            LocalizationManager.GetString("Msg_DeleteAuthorTitle")
+            );
             dlg.Owner = this;
 
             if (dlg.ShowDialog() == true)
@@ -633,16 +759,18 @@ namespace WpfClient
             if (knjiga == null)
             {
                 MessageBox.Show(
-                    "Molimo izaberite knjigu iz tabele.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                LocalizationManager.GetString("Msg_SelectBook"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
                 return;
             }
 
             PotvrdaBrisanjaWindow dlg = new PotvrdaBrisanjaWindow(
-                "Da li ste sigurni da želite da obrišete knjigu?",
-                "Brisanje knjige");
+            LocalizationManager.GetString("Msg_ConfirmDeleteBook"),
+            LocalizationManager.GetString("Msg_DeleteBookTitle")
+            );
 
             dlg.Owner = this;
 
@@ -695,11 +823,21 @@ namespace WpfClient
                 listaZeljaDao.GetAll();
                 kupovinaDao.getAllKupovine();
 
-                MessageBox.Show("Svi podaci su uspešno sačuvani!", "Save", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                LocalizationManager.GetString("Msg_DataSaved"),
+                LocalizationManager.GetString("Msg_SaveTitle"),           
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+                );
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Greška pri čuvanju podataka: {ex.Message}", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                string.Format(LocalizationManager.GetString("Msg_ErrorSavingData"), ex.Message),
+                LocalizationManager.GetString("Msg_ErrorTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Error
+                );
             }
         }
 
@@ -856,9 +994,9 @@ namespace WpfClient
                                           ListSortDirection.Ascending :
                                           ListSortDirection.Descending;
 
-            switch (e.Column.Header.ToString())
+            switch (e.Column.SortMemberPath)
             {
-                case "Broj članske karte":
+                case "BrClanskeKarte":
                     _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
                         _filteredPosetioci
                             .OrderBy(p => p.GodinaClanskeKarte)    
@@ -916,7 +1054,7 @@ namespace WpfClient
                                           ListSortDirection.Ascending :
                                           ListSortDirection.Descending;
 
-            switch (e.Column.Header.ToString())
+            switch (e.Column.SortMemberPath)
             {
                 case "Ime":
                     _filteredAutori = (direction == ListSortDirection.Ascending) ?
@@ -951,7 +1089,7 @@ namespace WpfClient
                                           ListSortDirection.Ascending :
                                           ListSortDirection.Descending;
 
-            switch (e.Column.Header.ToString())
+            switch (e.Column.SortMemberPath)
             {
                 case "Naziv":
                     _filteredKnjige = (direction == ListSortDirection.Ascending) ?
@@ -996,10 +1134,11 @@ namespace WpfClient
             if (izabraniAutor == null)
             {
                 MessageBox.Show(
-                    "Molimo izaberite autora iz tabele.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                LocalizationManager.GetString("Msg_SelectAuthor"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
                 return;
             }
 
@@ -1014,10 +1153,11 @@ namespace WpfClient
             if (!posetiociSaKnjigamaAutora.Any())
             {
                 MessageBox.Show(
-                     "Nema posetilaca sa knjigama ovog autora na listi želja.",
-                     "Upozorenje",
-                     MessageBoxButton.OK,
-                     MessageBoxImage.Warning);
+                LocalizationManager.GetString("Msg_NoVisitorsWithAuthorsBooks"),
+                LocalizationManager.GetString("Msg_WarningTitle"),            
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+);
                 return;
             }
             
@@ -1034,10 +1174,11 @@ namespace WpfClient
             if (izabraniPosetilac == null)
             {
                 MessageBox.Show(
-                    "Molimo izaberite posetioca iz tabele.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                LocalizationManager.GetString("Msg_SelectVisitor"),
+                LocalizationManager.GetString("Msg_WarningTitle"),        
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
                 return;
             }
 
@@ -1054,10 +1195,11 @@ namespace WpfClient
             if (!autoriKnjigaNaListiZelja.Any())
             {
                 MessageBox.Show(
-                     "Nema autora sa knjigama na listi želja ovog posetioca.",
-                     "Upozorenje",
-                     MessageBoxButton.OK,
-                     MessageBoxImage.Warning);
+                LocalizationManager.GetString("Msg_NoAuthorsForVisitorWishlist"),
+                LocalizationManager.GetString("Msg_WarningTitle"),                 
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+ );
                 return;
             }
 
@@ -1073,8 +1215,12 @@ namespace WpfClient
         {
             if (sviPosetioci == null || sveKnjige == null)
             {
-                MessageBox.Show("Podaci nisu učitani.", "Greška",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                LocalizationManager.GetString("Msg_DataNotLoaded"),
+                LocalizationManager.GetString("Msg_ErrorTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Error
+   );
                 return;
             }
 
@@ -1095,8 +1241,12 @@ namespace WpfClient
 
             if (listaIzdavaca == null || sveKnjige == null || sviAutori == null)
             {
-                MessageBox.Show("Podaci nisu učitani.", "Greška",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                LocalizationManager.GetString("Msg_DataNotLoaded"),
+                LocalizationManager.GetString("Msg_ErrorTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Error
+                );   
                 return;
             }
 
@@ -1108,6 +1258,26 @@ namespace WpfClient
 
             prozor.Owner = this;
             prozor.ShowDialog();
+        }
+
+        private void ChangeLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.Tag != null)
+            {
+                string noviJezik = element.Tag.ToString();
+
+                LocalizationManager.SetLanguage(noviJezik);
+
+                var culture = new CultureInfo(noviJezik);
+                CultureInfo.CurrentCulture = culture;
+                CultureInfo.CurrentUICulture = culture;
+
+                UpdateUI();
+
+                RefreshPosetiociGrid();
+                RefreshAutoriGrid();
+                RefreshKnjigeGrid();
+            }
         }
     }
     
