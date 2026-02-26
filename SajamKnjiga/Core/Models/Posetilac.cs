@@ -182,6 +182,21 @@ namespace Core.Models
             }
         }
 
+        public string GodineClanstvaPrikaz
+        {
+            get
+            {
+                int godinaClanstva = GodinaClanskeKarte; 
+                int trenutnaGodina = DateTime.Now.Year;
+
+                if (godinaClanstva == 0)
+                    return "-"; 
+
+                int brojGodina = trenutnaGodina - godinaClanstva + 1; 
+                return brojGodina.ToString() + ".";
+            }
+        }
+
         public int RedniBroj
         {
             get

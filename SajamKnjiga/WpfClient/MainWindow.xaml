@@ -146,6 +146,10 @@
                             <DataGridTextColumn Header="Status"
                                     Binding="{Binding Status}"
                                     Width="100"/>
+                            <DataGridTextColumn Header="Godina članstva" 
+                                     Binding="{Binding GodineClanstvaPrikaz}" />
+                            <DataGridTextColumn Header="Prosečna ocena" 
+                                     Binding="{Binding ProsecnaOcenaRec, StringFormat=F1}" />
                         </DataGrid.Columns>
                     </DataGrid>
 

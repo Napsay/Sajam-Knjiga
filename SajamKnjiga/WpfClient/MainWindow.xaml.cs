@@ -344,8 +344,6 @@ namespace WpfClient
             var vezeAutorKnjiga = autorKnjiga.GetAll();
             _listaKnjiga = listaKnjiga;
 
-            _filteredPosetioci = sviPosetioci;
-
             DataBinder.PoveziSve(
                 listaAutora,
                 listaKnjiga,
@@ -358,6 +356,23 @@ namespace WpfClient
             );
 
             sviPosetioci = listaPosetilaca;
+
+            foreach (var p in sviPosetioci)
+            {
+                if (p.KupljeneKnjige != null && p.KupljeneKnjige.Any())
+                {
+                    p.ProsecnaOcenaRec = p.KupljeneKnjige
+                        .Select(k => k.Ocena)
+                        .DefaultIfEmpty(0)
+                        .Average();
+                }
+                else
+                {
+                    p.ProsecnaOcenaRec = 0;
+                }
+            }
+
+            _filteredPosetioci = sviPosetioci;
             currentPagePosetioci = 1;
             RefreshPosetiociGrid();
         }
@@ -846,8 +861,8 @@ namespace WpfClient
                 case "Broj članske karte":
                     _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
                         _filteredPosetioci
-                            .OrderBy(p => p.GodinaClanskeKarte)
-                            .ThenBy(p => p.RedniBroj)
+                            .OrderBy(p => p.GodinaClanskeKarte)    
+                            .ThenBy(p => p.RedniBroj)             
                             .ToList() :
                         _filteredPosetioci
                             .OrderByDescending(p => p.GodinaClanskeKarte)
@@ -871,6 +886,19 @@ namespace WpfClient
                     _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
                         _filteredPosetioci.OrderBy(p => p.Status).ToList() :
                         _filteredPosetioci.OrderByDescending(p => p.Status).ToList();
+                    break;
+
+                case "Godina članstva":
+                    int trenutnaGodina = DateTime.Now.Year;
+                    _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
+                        _filteredPosetioci.OrderBy(p => trenutnaGodina - p.GodinaClanskeKarte + 1).ToList() :
+                        _filteredPosetioci.OrderByDescending(p => trenutnaGodina - p.GodinaClanskeKarte + 1).ToList();
+                    break;
+
+                case "Prosečna ocena":
+                    _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
+                        _filteredPosetioci.OrderBy(p => p.ProsecnaOcenaRec).ToList() :
+                        _filteredPosetioci.OrderByDescending(p => p.ProsecnaOcenaRec).ToList();
                     break;
             }
 
