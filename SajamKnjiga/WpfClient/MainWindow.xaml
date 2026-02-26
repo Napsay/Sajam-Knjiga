@@ -39,6 +39,7 @@
                     <MenuItem Header="Izdavači" Click="OpenIzdavaci_Click"/>
                 </MenuItem>
                 <Separator/>
+                <MenuItem Header="_Save" Click="Save_Click"/>
                 <MenuItem Header="_Close" Click="CloseApp_Click" />
             </MenuItem>
 
@@ -52,7 +53,7 @@
             </MenuItem>
 
             <MenuItem Header="_Analitika">
-                <MenuItem Header="Analiza po dve knjige"
+                <MenuItem Header="Analitika za dve knjige"
               Click="OpenAnalitika_Click"/>
 
                 <MenuItem Header="Analitika izdavača"
@@ -147,17 +148,33 @@
                                     Width="100"/>
                         </DataGrid.Columns>
                     </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <Button Name="btnFirstPagePosetioci" Tag="Posetioci" Click="BtnFirstPage_Click" Content="&lt; Prva" Margin="5"/>
+                        <Button Name="btnPrevPagePosetioci" Tag="Posetioci" Click="BtnPrevPage_Click" Content="&lt;&lt;" Margin="5"/>
+                        <TextBlock Name="txtPosetiociPageInfo" VerticalAlignment="Center" Margin="5"/>
+                        <Button Name="btnNextPagePosetioci" Tag="Posetioci" Click="BtnNextPage_Click" Content="&gt;&gt;" Margin="5"/>
+                        <Button Name="btnLastPagePosetioci" Tag="Posetioci" Click="BtnLastPage_Click" Content="Poslednja &gt;" Margin="5"/>
+                    </StackPanel>
+
                 </StackPanel>
             </TabItem>
 
- 
             <TabItem Header="Autori">
-                <StackPanel Orientation="Vertical" Margin="5">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
                     <Button Content="Prikaži posetioce sa knjigama autora na listi želja"
-                     Width="250"
-                     HorizontalAlignment="Left"
-                     Margin="0,0,0,5"
-                     Click="BtnPrikaziPosetioce_Click"/>
+                Width="300"
+                HorizontalAlignment="Left"
+                Margin="0,0,0,5"
+                Click="BtnPrikaziPosetioce_Click"
+                Grid.Row="0"/>
+
                     <DataGrid x:Name="dgAutori"
                   AutoGenerateColumns="False"
                   Margin="5"
@@ -169,8 +186,8 @@
                   SelectionUnit="FullRow"
                   RowHeight="25"
                   CanUserSortColumns="True"
-                  Sorting="dgAutori_Sorting">
-
+                  Sorting="dgAutori_Sorting"
+                  Grid.Row="1">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#D3D3D3"/>
@@ -181,90 +198,94 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID"
-                                    Binding="{Binding AutorID}"
-                                    Width="60"/>
+                            Binding="{Binding AutorID}"
+                            Width="60"/>
                             <DataGridTextColumn Header="Ime"
-                                    Binding="{Binding Ime}"
-                                    Width="120"/>
+                            Binding="{Binding Ime}"
+                            Width="120"/>
                             <DataGridTextColumn Header="Prezime"
-                                    Binding="{Binding Prezime}"
-                                    Width="140"/>
+                            Binding="{Binding Prezime}"
+                            Width="140"/>
                             <DataGridTextColumn Header="Datum rođenja"
-                                    Binding="{Binding DatumRodjenja, StringFormat=dd.MM.yyyy}"
-                                    Width="130"/>
+                            Binding="{Binding DatumRodjenja, StringFormat=dd.MM.yyyy}"
+                            Width="130"/>
                             <DataGridTextColumn Header="Adresa"
-                                    Binding="{Binding Adresa}"
-                                    Width="*"/>
+                            Binding="{Binding Adresa}"
+                            Width="*"/>
                             <DataGridTextColumn Header="Telefon"
-                                    Binding="{Binding Telefon}"
-                                    Width="120"/>
+                            Binding="{Binding Telefon}"
+                            Width="120"/>
                             <DataGridTextColumn Header="Email"
-                                    Binding="{Binding Email}"
-                                    Width="160"/>
+                            Binding="{Binding Email}"
+                            Width="160"/>
                             <DataGridTextColumn Header="God. iskustva"
-                                    Binding="{Binding GodineIskustva}"
-                                    Width="110"/>
+                            Binding="{Binding GodineIskustva}"
+                            Width="110"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Grid.Row="2">
+                        <Button Name="btnFirstPageAutori" Tag="Autori" Click="BtnFirstPage_Click" Content="&lt; Prva" Margin="5"/>
+                        <Button Name="btnPrevPageAutori" Tag="Autori" Click="BtnPrevPage_Click" Content="&lt;&lt;" Margin="5"/>
+                        <TextBlock Name="txtAutoriPageInfo" VerticalAlignment="Center" Margin="5"/>
+                        <Button Name="btnNextPageAutori" Tag="Autori" Click="BtnNextPage_Click" Content="&gt;&gt;" Margin="5"/>
+                        <Button Name="btnLastPageAutori" Tag="Autori" Click="BtnLastPage_Click" Content="Poslednja &gt;" Margin="5"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
 
 
             <TabItem Header="Knjige">
-                <DataGrid x:Name="dgKnjige"
-              AutoGenerateColumns="False"
-              Margin="5"
-              RowBackground="White"
-              AlternatingRowBackground="#F0F0F0"
-              GridLinesVisibility="None"
-              CanUserAddRows="False"
-              SelectionMode="Single"
-              SelectionUnit="FullRow"
-              RowHeight="25"
-              CanUserSortColumns="True"
-              Sorting="dgKnjige_Sorting">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Background" Value="#D3D3D3"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="FontWeight" Value="Bold"/>
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid x:Name="dgKnjige"
+                  AutoGenerateColumns="False"
+                  Margin="5"
+                  RowBackground="White"
+                  AlternatingRowBackground="#F0F0F0"
+                  GridLinesVisibility="None"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  RowHeight="25"
+                  CanUserSortColumns="True"
+                  Sorting="dgKnjige_Sorting"
+                  Grid.Row="0">
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ISBN"
-                                Binding="{Binding ISBN}"
-                                Width="140"/>
-                        <DataGridTextColumn Header="Naziv"
-                                Binding="{Binding Naziv}"
-                                Width="*"/>
-                        <DataGridTextColumn Header="Žanr"
-                                Binding="{Binding Zanr}"
-                                Width="120"/>
-                        <DataGridTextColumn Header="Godina"
-                                Binding="{Binding GodinaIzdanja}"
-                                Width="80"/>
-                        <DataGridTextColumn Header="Cena"
-                                Binding="{Binding Cena}"
-                                Width="80"/>
-                        <DataGridTextColumn Header="Strana"
-                                Binding="{Binding BrojStrana}"
-                                Width="80"/>
-                        <DataGridTextColumn Header="Izdavač"
-                                Binding="{Binding Izdavac.Naziv}"
-                                Width="160"/>
-                        <DataGridTextColumn Header="Autori"
-                                Binding="{Binding AutoriPrikaz}"
-                                Width="200"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#D3D3D3"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="140"/>
+                            <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                            <DataGridTextColumn Header="Žanr" Binding="{Binding Zanr}" Width="120"/>
+                            <DataGridTextColumn Header="Godina" Binding="{Binding GodinaIzdanja}" Width="80"/>
+                            <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="80"/>
+                            <DataGridTextColumn Header="Strana" Binding="{Binding BrojStrana}" Width="80"/>
+                            <DataGridTextColumn Header="Izdavač" Binding="{Binding Izdavac.Naziv}" Width="160"/>
+                            <DataGridTextColumn Header="Autori" Binding="{Binding AutoriPrikaz}" Width="200"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Grid.Row="1">
+                        <Button Name="btnFirstPageKnjige" Tag="Knjige" Click="BtnFirstPage_Click" Content="&lt; Prva" Margin="5"/>
+                        <Button Name="btnPrevPageKnjige" Tag="Knjige" Click="BtnPrevPage_Click" Content="&lt;&lt;" Margin="5"/>
+                        <TextBlock Name="txtKnjigePageInfo" VerticalAlignment="Center" Margin="5"/>
+                        <Button Name="btnNextPageKnjige" Tag="Knjige" Click="BtnNextPage_Click" Content="&gt;&gt;" Margin="5"/>
+                        <Button Name="btnLastPageKnjige" Tag="Knjige" Click="BtnLastPage_Click" Content="Poslednja &gt;" Margin="5"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
-
-
-
         </TabControl>
-
 
         <StatusBar Grid.Row="3">
             <StatusBarItem>
@@ -277,6 +298,7 @@
                 <TextBlock x:Name="txtDateTime"/>
             </StatusBarItem>
         </StatusBar>
+
 
     </Grid>
 </Window>

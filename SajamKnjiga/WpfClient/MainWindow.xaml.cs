@@ -39,7 +39,21 @@ namespace WpfClient
 
         private List<Izdavac> listaIzdavaca = new List<Izdavac>();
         private List<Knjiga> _listaKnjiga;
+        private List<Knjiga> _filteredKnjige;
+        private List<Autor> _filteredAutori;
+        private List<Posetilac> _filteredPosetioci;
 
+
+        private int currentPagePosetioci = 1;
+        private int totalPagesPosetioci = 1;
+
+        private int currentPageAutori = 1;
+        private int totalPagesAutori = 1;
+
+        private int currentPageKnjige = 1;
+        private int totalPagesKnjige = 1;
+
+        private const int PageSize = 16; 
 
         public MainWindow()
         {
@@ -64,6 +78,145 @@ namespace WpfClient
             (s, e) => OtvoriIzmenu()));
 
 
+        }
+
+        private List<T> GetPage<T>(List<T> fullList, int pageNumber)
+        {
+            return fullList
+                .Skip((pageNumber - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
+        }
+
+
+        private void RefreshPosetiociGrid()
+        {
+            if (_filteredPosetioci == null) return;
+
+            totalPagesPosetioci = (int)Math.Ceiling((double)_filteredPosetioci.Count / PageSize);
+            var pageItems = GetPage(_filteredPosetioci, currentPagePosetioci);
+            dgPosetioci.ItemsSource = pageItems;
+            txtPosetiociPageInfo.Text = $"Strana {currentPagePosetioci} od {totalPagesPosetioci}";
+        }
+
+        private void RefreshAutoriGrid()
+        {
+            if (_filteredAutori == null) return;
+
+            totalPagesAutori = (int)Math.Ceiling((double)_filteredAutori.Count / PageSize);
+            var pageItems = GetPage(_filteredAutori, currentPageAutori);
+            dgAutori.ItemsSource = pageItems;
+            txtAutoriPageInfo.Text = $"Strana {currentPageAutori} od {totalPagesAutori}";
+        }
+
+        private void RefreshKnjigeGrid()
+        {
+            if (_filteredKnjige == null) return;
+
+            totalPagesKnjige = (int)Math.Ceiling((double)_filteredKnjige.Count / PageSize);
+            var pageItems = GetPage(_filteredKnjige, currentPageKnjige);
+            dgKnjige.ItemsSource = pageItems;
+            txtKnjigePageInfo.Text = $"Strana {currentPageKnjige} od {totalPagesKnjige}";
+        }
+
+        private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            var tag = button.Tag?.ToString();
+            if (string.IsNullOrEmpty(tag)) return;
+
+            switch (tag)
+            {
+                case "Posetioci":
+                    currentPagePosetioci = 1;
+                    RefreshPosetiociGrid();
+                    break;
+                case "Autori":
+                    currentPageAutori = 1;
+                    RefreshAutoriGrid();
+                    break;
+                case "Knjige":
+                    currentPageKnjige = 1;
+                    RefreshKnjigeGrid();
+                    break;
+            }
+        }
+
+        private void BtnPrevPage_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            var tag = button.Tag?.ToString();
+            if (string.IsNullOrEmpty(tag)) return;
+
+            switch (tag)
+            {
+                case "Posetioci":
+                    if (currentPagePosetioci > 1) currentPagePosetioci--;
+                    RefreshPosetiociGrid();
+                    break;
+                case "Autori":
+                    if (currentPageAutori > 1) currentPageAutori--;
+                    RefreshAutoriGrid();
+                    break;
+                case "Knjige":
+                    if (currentPageKnjige > 1) currentPageKnjige--;
+                    RefreshKnjigeGrid();
+                    break;
+            }
+        }
+
+        private void BtnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            var tag = button.Tag?.ToString();
+            if (string.IsNullOrEmpty(tag)) return;
+
+            switch (tag)
+            {
+                case "Posetioci":
+                    if (currentPagePosetioci < totalPagesPosetioci) currentPagePosetioci++;
+                    RefreshPosetiociGrid();
+                    break;
+                case "Autori":
+                    if (currentPageAutori < totalPagesAutori) currentPageAutori++;
+                    RefreshAutoriGrid();
+                    break;
+                case "Knjige":
+                    if (currentPageKnjige < totalPagesKnjige) currentPageKnjige++;
+                    RefreshKnjigeGrid();
+                    break;
+            }
+        }
+
+        private void BtnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            var tag = button.Tag?.ToString();
+            if (string.IsNullOrEmpty(tag)) return;
+
+            switch (tag)
+            {
+                case "Posetioci":
+                    currentPagePosetioci = totalPagesPosetioci;
+                    RefreshPosetiociGrid();
+                    break;
+                case "Autori":
+                    currentPageAutori = totalPagesAutori;
+                    RefreshAutoriGrid();
+                    break;
+                case "Knjige":
+                    currentPageKnjige = totalPagesKnjige;
+                    RefreshKnjigeGrid();
+                    break;
+            }
         }
 
         private void OtvoriIzmenu()
@@ -191,7 +344,7 @@ namespace WpfClient
             var vezeAutorKnjiga = autorKnjiga.GetAll();
             _listaKnjiga = listaKnjiga;
 
-            
+            _filteredPosetioci = sviPosetioci;
 
             DataBinder.PoveziSve(
                 listaAutora,
@@ -205,7 +358,8 @@ namespace WpfClient
             );
 
             sviPosetioci = listaPosetilaca;
-            dgPosetioci.ItemsSource = sviPosetioci;
+            currentPagePosetioci = 1;
+            RefreshPosetiociGrid();
         }
 
         private void UcitajAutore()
@@ -227,6 +381,9 @@ namespace WpfClient
             var listaListaZelja = listaZelja.GetAll();
             var listaIzdavaca = izdavaci.GetAll();
             var vezeAutorKnjiga = autorKnjiga.GetAll();
+            sviAutori = listaAutora;
+
+            _filteredAutori = sviAutori;
 
             DataBinder.PoveziSve(
                 listaAutora,
@@ -239,8 +396,9 @@ namespace WpfClient
                 listaAdresa
             );
 
-            sviAutori = listaAutora;
-            dgAutori.ItemsSource = sviAutori;
+            
+            currentPageAutori = 1;
+            RefreshAutoriGrid();
         }
 
         private void UcitajKnjige()
@@ -266,6 +424,8 @@ namespace WpfClient
             listaIzdavaca = listaIzdavacaLocal;
             sviPosetioci = listaPosetilacaLocal;
 
+            _filteredKnjige = sveKnjige;
+
             DataBinder.PoveziSve(
                 listaAutora,
                 listaKnjigaLocal,
@@ -277,7 +437,8 @@ namespace WpfClient
                 listaAdresa
             );
 
-            dgKnjige.ItemsSource = sveKnjige;
+            currentPageKnjige = 1;
+            RefreshKnjigeGrid();
         }
 
 
@@ -588,43 +749,35 @@ namespace WpfClient
 
             if (string.IsNullOrWhiteSpace(unos))
             {
-                dgPosetioci.ItemsSource = sviPosetioci;
-                return;
+                _filteredPosetioci = sviPosetioci;
             }
-
-            string[] delovi = unos
-                .Split(',')
-                .Select(x => x.Trim())
-                .Where(x => x != "")
-                .ToArray();
-
-            List<Posetilac> rezultat = new List<Posetilac>();
-
-            if (delovi.Length == 1)
+            else
             {
-                rezultat = sviPosetioci
-                    .Where(p => p.Prezime.ToLower().Contains(delovi[0]))
-                    .ToList();
-            }
-            else if (delovi.Length == 2)
-            {
-                rezultat = sviPosetioci
-                    .Where(p =>
-                        p.Prezime.ToLower().Contains(delovi[0]) &&
-                        p.Ime.ToLower().Contains(delovi[1]))
-                    .ToList();
-            }
-            else if (delovi.Length == 3)
-            {
-                rezultat = sviPosetioci
-                    .Where(p =>
-                        p.BrClanskeKarte.ToLower().Contains(delovi[0]) &&
-                        p.Ime.ToLower().Contains(delovi[1]) &&
-                        p.Prezime.ToLower().Contains(delovi[2]))
-                    .ToList();
+                string[] delovi = unos.Split(',')
+                                      .Select(x => x.Trim())
+                                      .Where(x => x != "")
+                                      .ToArray();
+
+                _filteredPosetioci = sviPosetioci.Where(p =>
+                {
+                    if (delovi.Length == 1)
+                        return p.Prezime?.ToLower().Contains(delovi[0]) == true;
+
+                    if (delovi.Length == 2)
+                        return p.Prezime?.ToLower().Contains(delovi[0]) == true &&
+                               p.Ime?.ToLower().Contains(delovi[1]) == true;
+
+                    if (delovi.Length == 3)
+                        return p.BrClanskeKarte?.ToLower().Contains(delovi[0]) == true &&
+                               p.Ime?.ToLower().Contains(delovi[1]) == true &&
+                               p.Prezime?.ToLower().Contains(delovi[2]) == true;
+
+                    return false;
+                }).ToList();
             }
 
-            dgPosetioci.ItemsSource = rezultat;
+            currentPagePosetioci = 1;
+            RefreshPosetiociGrid();
         }
 
         private void PretraziAutore()
@@ -633,34 +786,30 @@ namespace WpfClient
 
             if (string.IsNullOrWhiteSpace(unos))
             {
-                dgAutori.ItemsSource = sviAutori;
-                return;
-            }
-
-            string[] delovi = unos
-                .Split(',')
-                .Select(x => x.Trim())
-                .Where(x => x != "")
-                .ToArray();
-
-            List<Autor> rezultat;
-
-            if (delovi.Length == 1)
-            {
-                rezultat = sviAutori
-                    .Where(a => a.Prezime.ToLower().Contains(delovi[0]))
-                    .ToList();
+                _filteredAutori = sviAutori;
             }
             else
             {
-                rezultat = sviAutori
-                    .Where(a =>
-                        a.Prezime.ToLower().Contains(delovi[0]) &&
-                        a.Ime.ToLower().Contains(delovi[1]))
-                    .ToList();
+                string[] delovi = unos.Split(',')
+                                       .Select(x => x.Trim())
+                                       .Where(x => x != "")
+                                       .ToArray();
+
+                _filteredAutori = sviAutori.Where(a =>
+                {
+                    if (delovi.Length == 1)
+                        return a.Prezime?.ToLower().Contains(delovi[0]) == true;
+
+                    if (delovi.Length >= 2)
+                        return a.Prezime?.ToLower().Contains(delovi[0]) == true &&
+                               a.Ime?.ToLower().Contains(delovi[1]) == true;
+
+                    return false;
+                }).ToList();
             }
 
-            dgAutori.ItemsSource = rezultat;
+            currentPageAutori = 1;
+            RefreshAutoriGrid();
         }
 
         private void PretraziKnjige()
@@ -669,172 +818,148 @@ namespace WpfClient
 
             if (string.IsNullOrWhiteSpace(unos))
             {
-                dgKnjige.ItemsSource = sveKnjige;
-                return;
+                _filteredKnjige = sveKnjige;
+            }
+            else
+            {
+                _filteredKnjige = sveKnjige.Where(k =>
+                    (k.Naziv?.ToLower().Contains(unos) == true) ||
+                    (k.ISBN?.ToLower().Contains(unos) == true)
+                ).ToList();
             }
 
-            List<Knjiga> rezultat = sveKnjige
-                .Where(k =>
-                    (!string.IsNullOrEmpty(k.Naziv) &&
-                        k.Naziv.ToLower().Contains(unos)) ||
-
-                    (!string.IsNullOrEmpty(k.ISBN) &&
-                        k.ISBN.ToLower().Contains(unos)) ||
-
-                    (!string.IsNullOrEmpty(k.Zanr) &&
-                        k.Zanr.ToLower().Contains(unos)) ||
-
-                    (k.Izdavac != null &&
-                     !string.IsNullOrEmpty(k.Izdavac.Naziv) &&
-                        k.Izdavac.Naziv.ToLower().Contains(unos)) ||
-
-                    (!string.IsNullOrEmpty(k.AutoriPrikaz) &&
-                        k.AutoriPrikaz.ToLower().Contains(unos))
-                )
-                .ToList();
-
-            dgKnjige.ItemsSource = rezultat;
+            currentPageKnjige = 1;
+            RefreshKnjigeGrid();
         }
 
+       
         private void dgPosetioci_Sorting(object sender, DataGridSortingEventArgs e)
         {
-            var list = dgPosetioci.ItemsSource.Cast<Posetilac>().ToList();
+            e.Handled = true;
 
-            
             ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
                                           ListSortDirection.Ascending :
                                           ListSortDirection.Descending;
 
-            e.Handled = true;
-
             switch (e.Column.Header.ToString())
             {
                 case "Broj članske karte":
-                    if (direction == ListSortDirection.Ascending)
-                        dgPosetioci.ItemsSource = list
+                    _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
+                        _filteredPosetioci
                             .OrderBy(p => p.GodinaClanskeKarte)
                             .ThenBy(p => p.RedniBroj)
-                            .ToList();
-                    else
-                        dgPosetioci.ItemsSource = list
+                            .ToList() :
+                        _filteredPosetioci
                             .OrderByDescending(p => p.GodinaClanskeKarte)
                             .ThenByDescending(p => p.RedniBroj)
                             .ToList();
                     break;
 
                 case "Ime":
-                    if (direction == ListSortDirection.Ascending)
-                        dgPosetioci.ItemsSource = list.OrderBy(p => p.Ime).ToList();
-                    else
-                        dgPosetioci.ItemsSource = list.OrderByDescending(p => p.Ime).ToList();
+                    _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
+                        _filteredPosetioci.OrderBy(p => p.Ime).ToList() :
+                        _filteredPosetioci.OrderByDescending(p => p.Ime).ToList();
                     break;
 
                 case "Prezime":
-                    if (direction == ListSortDirection.Ascending)
-                        dgPosetioci.ItemsSource = list.OrderBy(p => p.Prezime).ToList();
-                    else
-                        dgPosetioci.ItemsSource = list.OrderByDescending(p => p.Prezime).ToList();
+                    _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
+                        _filteredPosetioci.OrderBy(p => p.Prezime).ToList() :
+                        _filteredPosetioci.OrderByDescending(p => p.Prezime).ToList();
                     break;
 
                 case "Status":
-                    if (direction == ListSortDirection.Ascending)
-                        dgPosetioci.ItemsSource = list.OrderBy(p => p.Status).ToList();
-                    else
-                        dgPosetioci.ItemsSource = list.OrderByDescending(p => p.Status).ToList();
+                    _filteredPosetioci = (direction == ListSortDirection.Ascending) ?
+                        _filteredPosetioci.OrderBy(p => p.Status).ToList() :
+                        _filteredPosetioci.OrderByDescending(p => p.Status).ToList();
                     break;
-
-                   
             }
+
+            currentPagePosetioci = 1;
+            RefreshPosetiociGrid();
 
             e.Column.SortDirection = direction;
         }
 
         private void dgAutori_Sorting(object sender, DataGridSortingEventArgs e)
         {
-            var list = dgAutori.ItemsSource.Cast<Autor>().ToList();
+            e.Handled = true;
+
             ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
                                           ListSortDirection.Ascending :
                                           ListSortDirection.Descending;
-
-            e.Handled = true; 
 
             switch (e.Column.Header.ToString())
             {
                 case "Ime":
-                    if (direction == ListSortDirection.Ascending)
-                        dgAutori.ItemsSource = list.OrderBy(a => a.Ime).ToList();
-                    else
-                        dgAutori.ItemsSource = list.OrderByDescending(a => a.Ime).ToList();
+                    _filteredAutori = (direction == ListSortDirection.Ascending) ?
+                        _filteredAutori.OrderBy(a => a.Ime).ToList() :
+                        _filteredAutori.OrderByDescending(a => a.Ime).ToList();
                     break;
 
                 case "Prezime":
-                    if (direction == ListSortDirection.Ascending)
-                        dgAutori.ItemsSource = list.OrderBy(a => a.Prezime).ToList();
-                    else
-                        dgAutori.ItemsSource = list.OrderByDescending(a => a.Prezime).ToList();
+                    _filteredAutori = (direction == ListSortDirection.Ascending) ?
+                        _filteredAutori.OrderBy(a => a.Prezime).ToList() :
+                        _filteredAutori.OrderByDescending(a => a.Prezime).ToList();
                     break;
 
                 case "Email":
-                    if (direction == ListSortDirection.Ascending)
-                        dgAutori.ItemsSource = list.OrderBy(a => a.Email[0]).ToList();
-                    else
-                        dgAutori.ItemsSource = list.OrderByDescending(a => a.Email[0]).ToList();
+                    _filteredAutori = (direction == ListSortDirection.Ascending) ?
+                        _filteredAutori.OrderBy(a => a.Email[0]).ToList() :
+                        _filteredAutori.OrderByDescending(a => a.Email[0]).ToList();
                     break;
-
             }
 
-            e.Column.SortDirection = direction; 
+            currentPageAutori = 1;
+            RefreshAutoriGrid();
+
+            e.Column.SortDirection = direction;
         }
 
         private void dgKnjige_Sorting(object sender, DataGridSortingEventArgs e)
         {
-            var list = dgKnjige.ItemsSource.Cast<Knjiga>().ToList();
+            e.Handled = true;
+
             ListSortDirection direction = (e.Column.SortDirection != ListSortDirection.Ascending) ?
                                           ListSortDirection.Ascending :
                                           ListSortDirection.Descending;
 
-            e.Handled = true;
-
             switch (e.Column.Header.ToString())
             {
                 case "Naziv":
-                    if (direction == ListSortDirection.Ascending)
-                        dgKnjige.ItemsSource = list.OrderBy(k => k.Naziv).ToList();
-                    else
-                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.Naziv).ToList();
+                    _filteredKnjige = (direction == ListSortDirection.Ascending) ?
+                        _filteredKnjige.OrderBy(k => k.Naziv).ToList() :
+                        _filteredKnjige.OrderByDescending(k => k.Naziv).ToList();
                     break;
 
                 case "Cena":
-                    if (direction == ListSortDirection.Ascending)
-                        dgKnjige.ItemsSource = list.OrderBy(k => k.Cena).ToList();
-                    else
-                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.Cena).ToList();
+                    _filteredKnjige = (direction == ListSortDirection.Ascending) ?
+                        _filteredKnjige.OrderBy(k => k.Cena).ToList() :
+                        _filteredKnjige.OrderByDescending(k => k.Cena).ToList();
                     break;
 
                 case "Godina":
-                    if (direction == ListSortDirection.Ascending)
-                        dgKnjige.ItemsSource = list.OrderBy(k => k.GodinaIzdanja).ToList();
-                    else
-                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.GodinaIzdanja).ToList();
+                    _filteredKnjige = (direction == ListSortDirection.Ascending) ?
+                        _filteredKnjige.OrderBy(k => k.GodinaIzdanja).ToList() :
+                        _filteredKnjige.OrderByDescending(k => k.GodinaIzdanja).ToList();
                     break;
 
                 case "ISBN":
-                    if (direction == ListSortDirection.Ascending)
-                        dgKnjige.ItemsSource = list.OrderBy(k => k.ISBN).ToList();
-                    else
-                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.ISBN).ToList();
+                    _filteredKnjige = (direction == ListSortDirection.Ascending) ?
+                        _filteredKnjige.OrderBy(k => k.ISBN).ToList() :
+                        _filteredKnjige.OrderByDescending(k => k.ISBN).ToList();
                     break;
 
                 case "Žanr":
-                    if (direction == ListSortDirection.Ascending)
-                        dgKnjige.ItemsSource = list.OrderBy(k => k.Zanr).ToList();
-                    else
-                        dgKnjige.ItemsSource = list.OrderByDescending(k => k.Zanr).ToList();
+                    _filteredKnjige = (direction == ListSortDirection.Ascending) ?
+                        _filteredKnjige.OrderBy(k => k.Zanr).ToList() :
+                        _filteredKnjige.OrderByDescending(k => k.Zanr).ToList();
                     break;
-
             }
 
-            e.Column.SortDirection = direction; 
+            currentPageKnjige = 1;
+            RefreshKnjigeGrid();
+
+            e.Column.SortDirection = direction;
         }
 
         private void BtnPrikaziPosetioce_Click(object sender, RoutedEventArgs e)
