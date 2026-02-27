@@ -367,6 +367,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Btn_AddBook {
+            get {
+                return ResourceManager.GetString("Btn_AddBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Btn_Cancel {
@@ -633,6 +642,15 @@ namespace WpfClient.Resources {
         public static string DodajPosetiocaWindow_Title {
             get {
                 return ResourceManager.GetString("DodajPosetiocaWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Book.
+        /// </summary>
+        public static string DodavanjeKnjigeWindow_Title {
+            get {
+                return ResourceManager.GetString("DodavanjeKnjigeWindow_Title", resourceCulture);
             }
         }
         

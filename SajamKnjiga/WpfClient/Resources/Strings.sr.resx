@@ -555,4 +555,10 @@
   <data name="Posetilac_Status_Label" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="DodavanjeKnjigeWindow_Title" xml:space="preserve">
+    <value>Dodavanje Knjige</value>
+  </data>
+  <data name="Btn_AddBook" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
 </root>
