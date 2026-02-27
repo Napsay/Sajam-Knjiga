@@ -1,7 +1,8 @@
 ﻿<Window x:Class="WpfClient.AnalitikaWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Analitika za dve knjige"
+        xmlns:res="clr-namespace:WpfClient.Resources"
+        Title="{x:Static res:Strings.Menu_Analitika_Knjige}"
         Height="550"
         Width="850"
         WindowStartupLocation="CenterOwner">
@@ -15,7 +16,8 @@
 
         
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
-            <TextBlock Text="Prva knjiga:"
+
+            <TextBlock Text="{x:Static res:Strings.Analitika_PrvaKnjiga}"
                        VerticalAlignment="Center"
                        Margin="0,0,5,0"/>
 
@@ -24,7 +26,7 @@
                       Margin="0,0,20,0"
                       DisplayMemberPath="Naziv"/>
 
-            <TextBlock Text="Druga knjiga:"
+            <TextBlock Text="{x:Static res:Strings.Analitika_DrugaKnjiga}"
                        VerticalAlignment="Center"
                        Margin="0,0,5,0"/>
 
@@ -33,18 +35,18 @@
                       Margin="0,0,20,0"
                       DisplayMemberPath="Naziv"/>
 
-            <Button Content="Prikaži"
+            <Button Content="{x:Static res:Strings.Btn_Prkazi}"
                     Width="100"
                     Click="BtnPrikazi_Click"/>
         </StackPanel>
 
-       
+        
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     HorizontalAlignment="Right"
                     Margin="0,0,0,10">
 
-            <TextBlock Text="Pretraga:"
+            <TextBlock Text="{x:Static res:Strings.Analitika_Pretraga}"
                        VerticalAlignment="Center"
                        Margin="0,0,5,0"/>
 
@@ -52,12 +54,12 @@
                      Width="180"
                      Margin="0,0,5,0"/>
 
-            <Button Content="Pretraži"
+            <Button Content="{x:Static res:Strings.Analitika_Pretrazi}"
                     Width="80"
                     Click="BtnPretrazi_Click"/>
         </StackPanel>
 
-        
+       
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -66,54 +68,56 @@
 
             
             <StackPanel Grid.Row="0">
-                <TextBlock Text="Posetioci koji imaju obe knjige na listi želja"
+                <TextBlock Text="{x:Static res:Strings.Analitika_ObeZelje}"
                            FontWeight="Bold"
                            Margin="0,0,0,5"/>
 
                 <DataGrid x:Name="dgObeNaListiZelja"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
+                          CanUserAddRows="False"
                           SelectionMode="Single">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Broj kartice"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_ClanskaKarta}"
                                             Binding="{Binding BrClanskeKarte}"
                                             Width="150"/>
-                        <DataGridTextColumn Header="Ime"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_Ime}"
                                             Binding="{Binding Ime}"
                                             Width="120"/>
-                        <DataGridTextColumn Header="Prezime"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_Prezime}"
                                             Binding="{Binding Prezime}"
                                             Width="120"/>
-                        <DataGridTextColumn Header="Status"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_Status}"
                                             Binding="{Binding Status}"
                                             Width="100"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
 
-            
+           
             <StackPanel Grid.Row="1" Margin="0,10,0,0">
-                <TextBlock Text="Posetioci koji su kupili prvu knjigu, a nisu drugu"
+                <TextBlock Text="{x:Static res:Strings.Analitika_KupiliPrvu}"
                            FontWeight="Bold"
                            Margin="0,0,0,5"/>
 
                 <DataGrid x:Name="dgKupiliPrvuNeDrugu"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
+                          CanUserAddRows="False"
                           SelectionMode="Single">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Broj kartice"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_ClanskaKarta}"
                                             Binding="{Binding BrClanskeKarte}"
                                             Width="150"/>
-                        <DataGridTextColumn Header="Ime"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_Ime}"
                                             Binding="{Binding Ime}"
                                             Width="120"/>
-                        <DataGridTextColumn Header="Prezime"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_Prezime}"
                                             Binding="{Binding Prezime}"
                                             Width="120"/>
-                        <DataGridTextColumn Header="Status"
+                        <DataGridTextColumn Header="{x:Static res:Strings.Posetilac_Status}"
                                             Binding="{Binding Status}"
                                             Width="100"/>
                     </DataGrid.Columns>

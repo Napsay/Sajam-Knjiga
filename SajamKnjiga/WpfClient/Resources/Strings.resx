@@ -376,7 +376,37 @@
   <data name="About_Authors_Text" xml:space="preserve">
     <value>The application was developed by Stefan Karać and Milica Stanković, third-year students at the Faculty of Technical Sciences in Novi Sad, Computer Science and Automation.</value>
   </data>
+  <data name="Pr" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Analitika_PrvaKnjiga" xml:space="preserve">
+    <value>First Book</value>
+  </data>
+  <data name="Analitika_DrugaKnjiga" xml:space="preserve">
+    <value>Second Book</value>
+  </data>
+  <data name="Analitika_ObeZelje" xml:space="preserve">
+    <value>Visitors with both books in wishlist</value>
+  </data>
+  <data name="Analitika_KupiliPrvu" xml:space="preserve">
+    <value>Visitors who bought first but not second</value>
+  </data>
+  <data name="Btn_Prkazi" xml:space="preserve">
+    <value>Show results</value>
+  </data>
+  <data name="Msg_SelectBothBooks" xml:space="preserve">
+    <value>You must select both books.</value>
+  </data>
+  <data name="Msg_SelectDifferentBooks" xml:space="preserve">
+    <value>You must select two different books.</value>
+  </data>
   <data name="About_Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="Analitika_Pretraga" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="Analitika_Pretrazi" xml:space="preserve">
+    <value>Search</value>
   </data>
 </root>

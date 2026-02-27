@@ -115,6 +115,60 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Second Book.
+        /// </summary>
+        public static string Analitika_DrugaKnjiga {
+            get {
+                return ResourceManager.GetString("Analitika_DrugaKnjiga", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visitors who bought first but not second.
+        /// </summary>
+        public static string Analitika_KupiliPrvu {
+            get {
+                return ResourceManager.GetString("Analitika_KupiliPrvu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visitors with both books in wishlist.
+        /// </summary>
+        public static string Analitika_ObeZelje {
+            get {
+                return ResourceManager.GetString("Analitika_ObeZelje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search:.
+        /// </summary>
+        public static string Analitika_Pretraga {
+            get {
+                return ResourceManager.GetString("Analitika_Pretraga", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Analitika_Pretrazi {
+            get {
+                return ResourceManager.GetString("Analitika_Pretrazi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Book.
+        /// </summary>
+        public static string Analitika_PrvaKnjiga {
+            get {
+                return ResourceManager.GetString("Analitika_PrvaKnjiga", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Autor_Adresa {
@@ -219,6 +273,15 @@ namespace WpfClient.Resources {
         public static string Btn_GridPosetioci {
             get {
                 return ResourceManager.GetString("Btn_GridPosetioci", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show results.
+        /// </summary>
+        public static string Btn_Prkazi {
+            get {
+                return ResourceManager.GetString("Btn_Prkazi", resourceCulture);
             }
         }
         
@@ -700,6 +763,24 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select both books..
+        /// </summary>
+        public static string Msg_SelectBothBooks {
+            get {
+                return ResourceManager.GetString("Msg_SelectBothBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select two different books..
+        /// </summary>
+        public static string Msg_SelectDifferentBooks {
+            get {
+                return ResourceManager.GetString("Msg_SelectDifferentBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a visitor from the table..
         /// </summary>
         public static string Msg_SelectVisitor {
@@ -786,6 +867,15 @@ namespace WpfClient.Resources {
         public static string Posetilac_Status {
             get {
                 return ResourceManager.GetString("Posetilac_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Pr {
+            get {
+                return ResourceManager.GetString("Pr", resourceCulture);
             }
         }
         

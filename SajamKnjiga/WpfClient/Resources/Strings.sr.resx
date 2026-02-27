@@ -375,7 +375,37 @@
   <data name="About_Authors_Text" xml:space="preserve">
     <value>Aplikaciju su razvili Stefan Karać i Milica Stanković, studenti treće godine Fakulteta tehničkih nauka u Novom Sadu, smer Računarstvo i automatika.</value>
   </data>
+  <data name="Pr" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
+  <data name="Analitika_PrvaKnjiga" xml:space="preserve">
+    <value>Prva Knjiga</value>
+  </data>
+  <data name="Analitika_DrugaKnjiga" xml:space="preserve">
+    <value>Druga Knjiga</value>
+  </data>
+  <data name="Analitika_ObeZelje" xml:space="preserve">
+    <value>Posetioci sa obe knjige na listi želja</value>
+  </data>
+  <data name="Analitika_KupiliPrvu" xml:space="preserve">
+    <value>Posetioci koji su kupili prvu a ne drugu</value>
+  </data>
+  <data name="Btn_Prkazi" xml:space="preserve">
+    <value>Prikaži rezultate</value>
+  </data>
+  <data name="Msg_SelectBothBooks" xml:space="preserve">
+    <value>Morate izabrati obe knjige</value>
+  </data>
+  <data name="Msg_SelectDifferentBooks" xml:space="preserve">
+    <value> Morate izabrati dve različite knjige</value>
+  </data>
   <data name="About_Close" xml:space="preserve">
     <value>Zatvori</value>
+  </data>
+  <data name="Analitika_Pretraga" xml:space="preserve">
+    <value>Pretraga:</value>
+  </data>
+  <data name="Analitika_Pretrazi" xml:space="preserve">
+    <value>Pretrazi</value>
   </data>
 </root>
