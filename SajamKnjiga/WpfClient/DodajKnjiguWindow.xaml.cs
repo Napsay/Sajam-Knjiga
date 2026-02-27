@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace WpfClient
 {
@@ -49,15 +51,47 @@ namespace WpfClient
         }
         private void Provera(object sender, EventArgs e)
         {
-            btnPotvrdi.IsEnabled =
-                !string.IsNullOrWhiteSpace(txtISBN.Text) &&
-                !string.IsNullOrWhiteSpace(txtNaziv.Text) &&
-                !string.IsNullOrWhiteSpace(txtZanr.Text) &&
-                !string.IsNullOrWhiteSpace(txtGodina.Text) &&
-                !string.IsNullOrWhiteSpace(txtCena.Text) &&
-                !string.IsNullOrWhiteSpace(txtStrana.Text) &&
-                cmbIzdavac.SelectedItem != null &&
-                lstAutori.SelectedItems.Count > 0;
+            btnPotvrdi.IsEnabled = ValidirajFormu();
+        }
+
+        private bool SadrziBroj(string tekst)
+        {
+            return Regex.IsMatch(tekst, @"\d");
+        }
+
+        private bool ValidirajFormu()
+        {
+
+            if (string.IsNullOrWhiteSpace(txtISBN.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtZanr.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtGodina.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtCena.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtStrana.Text))
+                return false;
+            if (cmbIzdavac.SelectedItem == null)
+                return false;
+            if (lstAutori.SelectedItems.Count == 0)
+                return false;
+            if (SadrziBroj(txtNaziv.Text))
+                return false;
+            if (SadrziBroj(txtZanr.Text))
+                return false;
+            if (!int.TryParse(txtGodina.Text, out int godina) || godina <= 0 || godina > DateTime.Now.Year)
+                return false;
+            if (!int.TryParse(txtCena.Text, out int cena) || cena <= 0)
+                return false;
+            if (!int.TryParse(txtStrana.Text, out int strane) || strane <= 0)
+                return false;
+            if (txtISBN.Text.Contains(" "))
+                return false;
+
+            return true;
         }
         private void BtnPotvrdi_Click(object sender, RoutedEventArgs e)
         {

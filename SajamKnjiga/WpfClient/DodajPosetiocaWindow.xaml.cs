@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace WpfClient
 {
@@ -41,17 +44,75 @@ namespace WpfClient
 
         private void Provera(object sender, EventArgs e)
         {
-                 btnPotvrdi.IsEnabled =
-                !string.IsNullOrWhiteSpace(txtIme.Text) &&
-                !string.IsNullOrWhiteSpace(txtPrezime.Text) &&
-                dpDatumRodjenja.SelectedDate != null &&
-                !string.IsNullOrWhiteSpace(txtTelefon.Text) &&
-                !string.IsNullOrWhiteSpace(txtEmail.Text) &&
-                cmbStatus.SelectedItem != null &&
-                !string.IsNullOrWhiteSpace(txtUlica.Text) &&
-                !string.IsNullOrWhiteSpace(txtBroj.Text) &&
-                !string.IsNullOrWhiteSpace(txtGrad.Text) &&
-                !string.IsNullOrWhiteSpace(txtDrzava.Text);
+            btnPotvrdi.IsEnabled = ValidirajFormu();
+        }
+
+        private bool SadrziBroj(string tekst)
+        {
+            return Regex.IsMatch(tekst, @"\d");
+        }
+
+        private bool ValidanEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool ValidirajFormu()
+        {
+            
+            if (string.IsNullOrWhiteSpace(txtBrClanskeKarte.Text))
+               return false;
+            if (string.IsNullOrWhiteSpace(txtIme.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtPrezime.Text))
+                return false;
+            if (dpDatumRodjenja.SelectedDate == null)
+               return false;
+            if (string.IsNullOrWhiteSpace(txtTelefon.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                return false;
+            if (cmbStatus.SelectedItem == null)
+                return false;
+            if (string.IsNullOrWhiteSpace(txtUlica.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtBroj.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtGrad.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtDrzava.Text))
+                return false;
+            
+            if (SadrziBroj(txtIme.Text))
+                return false;
+
+            if (SadrziBroj(txtPrezime.Text))
+                return false;
+
+            if (SadrziBroj(txtGrad.Text))
+                return false;
+
+            if (SadrziBroj(txtDrzava.Text))
+                return false;
+
+            if (!int.TryParse(txtBroj.Text, out _))
+                return false;
+
+            if (!ValidanEmail(txtEmail.Text))
+                return false;
+
+            return true;
         }
 
         private void BtnOdustani_Click(object sender, RoutedEventArgs e)
