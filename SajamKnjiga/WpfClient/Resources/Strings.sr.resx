@@ -561,4 +561,16 @@
   <data name="Btn_AddBook" xml:space="preserve">
     <value>Dodaj</value>
   </data>
+  <data name="IzborNovogEntitetaWindow_Title" xml:space="preserve">
+    <value>Izbor novog entiteta</value>
+  </data>
+  <data name="Izbor_NoviPosetilac" xml:space="preserve">
+    <value>Novi posetilac</value>
+  </data>
+  <data name="Izbor_NoviAutor" xml:space="preserve">
+    <value>Novi Autor</value>
+  </data>
+  <data name="Izbor_NovaKnjiga" xml:space="preserve">
+    <value>Nova knjiga</value>
+  </data>
 </root>

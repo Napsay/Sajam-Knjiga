@@ -655,6 +655,42 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New book.
+        /// </summary>
+        public static string Izbor_NovaKnjiga {
+            get {
+                return ResourceManager.GetString("Izbor_NovaKnjiga", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New author.
+        /// </summary>
+        public static string Izbor_NoviAutor {
+            get {
+                return ResourceManager.GetString("Izbor_NoviAutor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New visitor.
+        /// </summary>
+        public static string Izbor_NoviPosetilac {
+            get {
+                return ResourceManager.GetString("Izbor_NoviPosetilac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select New Entity.
+        /// </summary>
+        public static string IzborNovogEntitetaWindow_Title {
+            get {
+                return ResourceManager.GetString("IzborNovogEntitetaWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authors.
         /// </summary>
         public static string Knjiga_Autori {

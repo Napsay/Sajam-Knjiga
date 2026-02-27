@@ -4,28 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
+        xmlns:res="clr-namespace:WpfClient.Resources"
         mc:Ignorable="d"
-        Title="IzborNovogEntitetaWindow" Height="450" Width="800">
+        Title="{x:Static res:Strings.IzborNovogEntitetaWindow_Title}"
+        Height="450" Width="800">
+
     <Grid>
         <StackPanel Margin="20" VerticalAlignment="Center">
 
-            <Button Content="Novi posetilac"
-                Margin="5"
-                Click="BtnPosetilac_Click"/>
+            <Button Content="{x:Static res:Strings.Izbor_NoviPosetilac}"
+                    Margin="5"
+                    Click="BtnPosetilac_Click"/>
 
-            <Button Content="Novi autor"
-                Margin="5"
-                Click="BtnAutor_Click"/>
+            <Button Content="{x:Static res:Strings.Izbor_NoviAutor}"
+                    Margin="5"
+                    Click="BtnAutor_Click"/>
 
-            <Button Content="Nova knjiga"
-                Margin="5"
-                Click="BtnKnjiga_Click"/>
-            
-            <Button Content="Odustani"
-            Margin="5"
-             Background="LightGray"
-             Foreground="Black"       
-            Click="BtnOdustani_Click" Width="750"/>
+            <Button Content="{x:Static res:Strings.Izbor_NovaKnjiga}"
+                    Margin="5"
+                    Click="BtnKnjiga_Click"/>
+
+            <Button Content="{x:Static res:Strings.Btn_Cancel}"
+                    Margin="5"
+                    Background="LightGray"
+                    Foreground="Black"
+                    Click="BtnOdustani_Click"
+                    Width="750"/>
 
         </StackPanel>
     </Grid>
