@@ -510,4 +510,31 @@
   <data name="DodajKnjiguAutoru_Opis" xml:space="preserve">
     <value>Izaberite knjigu  koje želite da dodate autoru:</value>
   </data>
+  <data name="DodajKnjiguWindow_Title" xml:space="preserve">
+    <value>Dodavanje knjige</value>
+  </data>
+  <data name="DodajKnjigu_ISBN" xml:space="preserve">
+    <value>ISBN</value>
+  </data>
+  <data name="DodajKnjigu_Naziv" xml:space="preserve">
+    <value>Naziv knjige</value>
+  </data>
+  <data name="DodajKnjigu_Zanr" xml:space="preserve">
+    <value>Zanr</value>
+  </data>
+  <data name="DodajKnjigu_Godina" xml:space="preserve">
+    <value>Godina</value>
+  </data>
+  <data name="DodajKnjigu_Cena" xml:space="preserve">
+    <value>Cena</value>
+  </data>
+  <data name="DodajKnjigu_BrojStrana" xml:space="preserve">
+    <value>Broj strana</value>
+  </data>
+  <data name="DodajKnjigu_Izdavac" xml:space="preserve">
+    <value>Izdavac</value>
+  </data>
+  <data name="DodajKnjigu_Autori" xml:space="preserve">
+    <value>Autori</value>
+  </data>
 </root>

@@ -520,6 +520,78 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authors.
+        /// </summary>
+        public static string DodajKnjigu_Autori {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_Autori", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of pages.
+        /// </summary>
+        public static string DodajKnjigu_BrojStrana {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_BrojStrana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string DodajKnjigu_Cena {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_Cena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Year of issue.
+        /// </summary>
+        public static string DodajKnjigu_Godina {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_Godina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISBN.
+        /// </summary>
+        public static string DodajKnjigu_ISBN {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_ISBN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publisher.
+        /// </summary>
+        public static string DodajKnjigu_Izdavac {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_Izdavac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book name.
+        /// </summary>
+        public static string DodajKnjigu_Naziv {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_Naziv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genre.
+        /// </summary>
+        public static string DodajKnjigu_Zanr {
+            get {
+                return ResourceManager.GetString("DodajKnjigu_Zanr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the book you want to add to the author:.
         /// </summary>
         public static string DodajKnjiguAutoru_Opis {
@@ -534,6 +606,15 @@ namespace WpfClient.Resources {
         public static string DodajKnjiguAutoru_Title {
             get {
                 return ResourceManager.GetString("DodajKnjiguAutoru_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Book .
+        /// </summary>
+        public static string DodajKnjiguWindow_Title {
+            get {
+                return ResourceManager.GetString("DodajKnjiguWindow_Title", resourceCulture);
             }
         }
         
