@@ -708,4 +708,31 @@
   <data name="Stat_UkupnaPotrosnjaZero" xml:space="preserve">
     <value>Potrošeno: 0 RSD</value>
   </data>
+  <data name="IzmenaKnjigeWindow_Title" xml:space="preserve">
+    <value>Izmena knjige</value>
+  </data>
+  <data name="Knjiga_Autori_Label" xml:space="preserve">
+    <value>Autori</value>
+  </data>
+  <data name="Btn_AddAuthor_Short" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="Btn_RemoveAuthor_Short" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="Msg_EditBookError" xml:space="preserve">
+    <value>Greška pri izmeni knjige!</value>
+  </data>
+  <data name="Msg_AllAuthorsAlreadyAdded" xml:space="preserve">
+    <value>Svi autori su već dodati ovoj knjizi.</value>
+  </data>
+  <data name="Msg_SelectAuthorForRemoval" xml:space="preserve">
+    <value>Molimo izaberite autora za uklanjanje iz liste.</value>
+  </data>
+  <data name="Msg_RemoveAuthorFromBookConfirm" xml:space="preserve">
+    <value>Da li ste sigurni da želite da uklonite autora {0} {1} sa knjige?</value>
+  </data>
+  <data name="Msg_RemoveAuthorTitle" xml:space="preserve">
+    <value>Potvrda uklanjanja</value>
+  </data>
 </root>

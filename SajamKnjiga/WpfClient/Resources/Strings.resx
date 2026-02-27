@@ -409,10 +409,10 @@
     <value>Search</value>
   </data>
   <data name="AnalitikaIzdavaci_Title" xml:space="preserve">
-    <value>AnalitikaIzdavaci_Title</value>
+    <value>Analythic publishers</value>
   </data>
   <data name="AnalitikaIzdavaci_Svi" xml:space="preserve">
-    <value>AnalitikaIzdavaci_Svi</value>
+    <value>All publishers:</value>
   </data>
   <data name="AnalitikaIzdavaci_PrkaziKnjige" xml:space="preserve">
     <value>Show publisher books</value>
@@ -707,5 +707,32 @@
   </data>
   <data name="Stat_UkupnaPotrosnjaZero" xml:space="preserve">
     <value>Total spent: 0 RSD</value>
+  </data>
+  <data name="IzmenaKnjigeWindow_Title" xml:space="preserve">
+    <value>Edit book</value>
+  </data>
+  <data name="Knjiga_Autori_Label" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="Btn_AddAuthor_Short" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="Btn_RemoveAuthor_Short" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="Msg_EditBookError" xml:space="preserve">
+    <value>Error while editing the book!</value>
+  </data>
+  <data name="Msg_AllAuthorsAlreadyAdded" xml:space="preserve">
+    <value>All authors are already added to this book</value>
+  </data>
+  <data name="Msg_SelectAuthorForRemoval" xml:space="preserve">
+    <value>Please select an author to remove from the list.</value>
+  </data>
+  <data name="Msg_RemoveAuthorFromBookConfirm" xml:space="preserve">
+    <value>Are you sure you want to remove author {0} {1} from the book?</value>
+  </data>
+  <data name="Msg_RemoveAuthorTitle" xml:space="preserve">
+    <value> Remove author</value>
   </data>
 </root>

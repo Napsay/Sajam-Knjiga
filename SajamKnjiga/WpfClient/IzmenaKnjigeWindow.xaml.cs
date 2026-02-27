@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfClient.Resources;
+using WpfClient.Resources;
 
 namespace WpfClient
 {
@@ -86,8 +88,12 @@ namespace WpfClient
             }
             catch
             {
-                MessageBox.Show("Greška pri izmeni knjige!");
-            }
+                MessageBox.Show(
+                    Strings.Msg_EditBookError,
+                    Strings.Msg_ErrorTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                            }
         }
         private void BtnOdustani_Click(object sender, RoutedEventArgs e)
         {
@@ -100,10 +106,14 @@ namespace WpfClient
                 .Where(a => !_knjiga.Autori.Any(ka => ka.AutorID == a.AutorID))
                 .ToList();
 
-            //greska ako nema vise autora sa kojim bi povezali knjigu
+            
             if (dostupniAutori.Count == 0)
             {
-                MessageBox.Show("Svi autori su već dodati ovoj knjizi.");
+                MessageBox.Show(
+                Strings.Msg_AllAuthorsAlreadyAdded,
+                Strings.Msg_WarningTitle,
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
                 return;
             }
 
@@ -131,8 +141,8 @@ namespace WpfClient
             if (lstAutori.SelectedItem == null)
             {
                 MessageBox.Show(
-                    "Molimo izaberite autora za uklanjanje iz liste.",
-                    "Upozorenje",
+                    Strings.Msg_SelectAuthorForRemoval,
+                    Strings.Msg_WarningTitle,
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
                 return;
@@ -140,15 +150,20 @@ namespace WpfClient
 
             var autorZaBrisanje = (Autor)lstAutori.SelectedItem;
 
-           
+
+            var poruka = string.Format(
+            Strings.Msg_RemoveAuthorFromBookConfirm,
+            autorZaBrisanje.Ime,
+            autorZaBrisanje.Prezime);
+
             var potvrda = new PotvrdaBrisanjaWindow(
-                $"Да ли сте сигурни да желите да уклоните аутора {autorZaBrisanje.Ime} {autorZaBrisanje.Prezime} са књиге?",
-                "Потврда уклањања"
+                poruka,
+                Strings.Msg_RemoveAuthorTitle
             )
             {
                 Owner = this
             };
-
+            
             if (potvrda.ShowDialog() == true)
             {
              

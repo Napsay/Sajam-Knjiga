@@ -1,7 +1,8 @@
 ﻿<Window x:Class="WpfClient.IzmenaKnjigeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Izmena knjige"
+        xmlns:res="clr-namespace:WpfClient.Resources"
+        Title="{x:Static res:Strings.IzmenaKnjigeWindow_Title}"
         Height="650" Width="650"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
@@ -31,32 +32,32 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="ISBN *" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:Strings.Knjiga_ISBN}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtISBN" Grid.Row="0" Grid.Column="1" Margin="5" IsReadOnly="True"/>
 
-                <TextBlock Text="Naziv *" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:Strings.Knjiga_Naziv}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtNaziv" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
-                <TextBlock Text="Žanr *" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:Strings.Knjiga_Zanr}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtZanr" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-                <TextBlock Text="Godina izdanja *" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:Strings.Knjiga_GodIzdavanja}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtGodina" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
-                <TextBlock Text="Cena *" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:Strings.Knjiga_Cena}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtCena" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
-                <TextBlock Text="Broj strana *" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:Strings.Knjiga_BrStrana}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtStrana" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
-                <TextBlock Text="Izdavač *" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static res:Strings.Knjiga_Izdavac}" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
                 <ComboBox x:Name="cmbIzdavac"
                           Grid.Row="6"
                           Grid.Column="1"
                           Margin="5"
                           DisplayMemberPath="Naziv"/>
 
-                <TextBlock Text="Autori *"
+                <TextBlock Text="{x:Static res:Strings.Knjiga_Autori_Label}"
                            Grid.Row="7"
                            Grid.Column="0"
                            VerticalAlignment="Top"
@@ -80,17 +81,15 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Button 
-                                Grid.Row="0"
-                                Content="+"
+                        <Button Grid.Row="0"
+                                Content="{x:Static res:Strings.Btn_AddAuthor_Short}"
                                 Width="35"
                                 Height="35"
                                 VerticalAlignment="Top"
                                 Click="btnPlus_Click"/>
 
-                        <Button 
-                                Grid.Row="1"
-                                Content="–"
+                        <Button Grid.Row="1"
+                                Content="{x:Static res:Strings.Btn_RemoveAuthor_Short}"
                                 Width="35"
                                 Height="35"
                                 Margin="0,5,0,0"
@@ -105,13 +104,13 @@
                         HorizontalAlignment="Right"
                         Margin="0,15,0,0">
 
-                <Button Content="Odustani"
+                <Button Content="{x:Static res:Strings.Btn_Cancel}"
                         Width="110"
                         Margin="5"
                         Click="BtnOdustani_Click"/>
 
                 <Button x:Name="btnPotvrdi"
-                        Content="Potvrdi"
+                        Content="{x:Static res:Strings.Btn_Confirm}"
                         Width="110"
                         Margin="5"
                         Background="#2196F3"

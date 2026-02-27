@@ -232,7 +232,7 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AnalitikaIzdavaci_Svi.
+        ///   Looks up a localized string similar to All publishers:.
         /// </summary>
         public static string AnalitikaIzdavaci_Svi {
             get {
@@ -241,7 +241,7 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AnalitikaIzdavaci_Title.
+        ///   Looks up a localized string similar to Analythic publishers.
         /// </summary>
         public static string AnalitikaIzdavaci_Title {
             get {
@@ -376,6 +376,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to +.
+        /// </summary>
+        public static string Btn_AddAuthor_Short {
+            get {
+                return ResourceManager.GetString("Btn_AddAuthor_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Btn_AddBook {
@@ -489,6 +498,15 @@ namespace WpfClient.Resources {
         public static string Btn_Purchase {
             get {
                 return ResourceManager.GetString("Btn_Purchase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -.
+        /// </summary>
+        public static string Btn_RemoveAuthor_Short {
+            get {
+                return ResourceManager.GetString("Btn_RemoveAuthor_Short", resourceCulture);
             }
         }
         
@@ -853,6 +871,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit book.
+        /// </summary>
+        public static string IzmenaKnjigeWindow_Title {
+            get {
+                return ResourceManager.GetString("IzmenaKnjigeWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Visitor.
         /// </summary>
         public static string IzmenaPosetiocaWindow_Title {
@@ -867,6 +894,15 @@ namespace WpfClient.Resources {
         public static string Knjiga_Autori {
             get {
                 return ResourceManager.GetString("Knjiga_Autori", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authors.
+        /// </summary>
+        public static string Knjiga_Autori_Label {
+            get {
+                return ResourceManager.GetString("Knjiga_Autori_Label", resourceCulture);
             }
         }
         
@@ -1177,6 +1213,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All authors are already added to this book.
+        /// </summary>
+        public static string Msg_AllAuthorsAlreadyAdded {
+            get {
+                return ResourceManager.GetString("Msg_AllAuthorsAlreadyAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author already has all books..
         /// </summary>
         public static string Msg_AuthorHasAllBooks {
@@ -1330,6 +1375,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while editing the book!.
+        /// </summary>
+        public static string Msg_EditBookError {
+            get {
+                return ResourceManager.GetString("Msg_EditBookError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error while editing visitor data!.
         /// </summary>
         public static string Msg_EditVisitorError {
@@ -1389,6 +1443,24 @@ namespace WpfClient.Resources {
         public static string Msg_OK {
             get {
                 return ResourceManager.GetString("Msg_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove author {0} {1} from the book?.
+        /// </summary>
+        public static string Msg_RemoveAuthorFromBookConfirm {
+            get {
+                return ResourceManager.GetString("Msg_RemoveAuthorFromBookConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Remove author.
+        /// </summary>
+        public static string Msg_RemoveAuthorTitle {
+            get {
+                return ResourceManager.GetString("Msg_RemoveAuthorTitle", resourceCulture);
             }
         }
         
@@ -1461,6 +1533,15 @@ namespace WpfClient.Resources {
         public static string Msg_SelectAuthorForEdit {
             get {
                 return ResourceManager.GetString("Msg_SelectAuthorForEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an author to remove from the list..
+        /// </summary>
+        public static string Msg_SelectAuthorForRemoval {
+            get {
+                return ResourceManager.GetString("Msg_SelectAuthorForRemoval", resourceCulture);
             }
         }
         
