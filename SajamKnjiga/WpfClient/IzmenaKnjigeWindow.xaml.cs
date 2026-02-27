@@ -64,6 +64,16 @@ namespace WpfClient
 
         private void BtnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidirajFormu())
+            {
+                MessageBox.Show(
+                    Strings.Msg_DataEntry,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
             try
             {
 
@@ -173,6 +183,56 @@ namespace WpfClient
                 var autorKnjigaDao = new AutorKnjigaDao();
                 autorKnjigaDao.RemoveVeza(autorZaBrisanje.AutorID, _knjiga.ISBN);
             }
+        }
+
+        private bool ValidirajFormu()
+        {
+
+            if (string.IsNullOrWhiteSpace(txtISBN.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtZanr.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtGodina.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtCena.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtStrana.Text))
+                return false;
+
+            if (cmbIzdavac.SelectedItem == null)
+                return false;
+
+            if (lstAutori.Items.Count == 0)
+                return false;
+
+            if (SadrziSamoBrojeve(txtNaziv.Text))
+                return false;
+
+            if (SadrziSamoBrojeve(txtZanr.Text))
+                return false;
+
+            if (!int.TryParse(txtGodina.Text, out _))
+                return false;
+
+            if (!int.TryParse(txtCena.Text, out _))
+                return false;
+
+            if (!int.TryParse(txtStrana.Text, out _))
+                return false;
+
+            return true;
+        }
+
+        private bool SadrziSamoBrojeve(string tekst)
+        {
+            return tekst.All(char.IsDigit);
         }
     }
 }
