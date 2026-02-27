@@ -619,6 +619,33 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date of purchase.
+        /// </summary>
+        public static string Kupovina_Datum {
+            get {
+                return ResourceManager.GetString("Kupovina_Datum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating.
+        /// </summary>
+        public static string Kupovina_Ocena {
+            get {
+                return ResourceManager.GetString("Kupovina_Ocena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buying a book.
+        /// </summary>
+        public static string KupovinaKnjige_Title {
+            get {
+                return ResourceManager.GetString("KupovinaKnjige_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Book Fair.
         /// </summary>
         public static string MainWindow_Title {
@@ -835,6 +862,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must enter the purchase date!.
+        /// </summary>
+        public static string Msg_DatumKupovina {
+            get {
+                return ResourceManager.GetString("Msg_DatumKupovina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Author.
         /// </summary>
         public static string Msg_DeleteAuthorTitle {
@@ -894,6 +930,15 @@ namespace WpfClient.Resources {
         public static string Msg_NoVisitorsWithAuthorsBooks {
             get {
                 return ResourceManager.GetString("Msg_NoVisitorsWithAuthorsBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The rating must be a number from 1 to 5!.
+        /// </summary>
+        public static string Msg_Ocena {
+            get {
+                return ResourceManager.GetString("Msg_Ocena", resourceCulture);
             }
         }
         

@@ -489,4 +489,19 @@
   <data name="Btn_No" xml:space="preserve">
     <value>Ne</value>
   </data>
+  <data name="Kupovina_Ocena" xml:space="preserve">
+    <value>Ocena</value>
+  </data>
+  <data name="Kupovina_Datum" xml:space="preserve">
+    <value>Datum kupovine</value>
+  </data>
+  <data name="KupovinaKnjige_Title" xml:space="preserve">
+    <value>Kupovina knjige</value>
+  </data>
+  <data name="Messg_Ocena" xml:space="preserve">
+    <value>Ocena mora biti broj od 1 do 5!</value>
+  </data>
+  <data name="Msg_DatumKupovina" xml:space="preserve">
+    <value>Morate uneti datum kupovine!</value>
+  </data>
 </root>

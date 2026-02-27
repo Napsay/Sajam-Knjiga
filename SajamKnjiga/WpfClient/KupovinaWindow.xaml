@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfClient.KupovinaWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Kupovina knjige"
+        Title=""
         Height="260" Width="350"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
@@ -20,16 +20,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="ISBN" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBlock x:Name="Knjiga_ISBN" Text="ISBN" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox x:Name="txtISBN" Grid.Row="0" Grid.Column="1" Margin="5" IsReadOnly="True"/>
 
-        <TextBlock Text="Naziv" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBlock x:Name="Knjiga_Naziv"  Text="Naziv" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox x:Name="txtNaziv" Grid.Row="1" Grid.Column="1" Margin="5" IsReadOnly="True"/>
 
-        <TextBlock Text="Ocena" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBlock x:Name="Kupovina_Ocena" Text="Ocena" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox x:Name="txtOcena" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-        <TextBlock Text="Datum kupovine" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBlock x:Name="Kupovina_Datum"  Text="Datum kupovine" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
         <DatePicker x:Name="dpDatum" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2"
@@ -37,8 +37,8 @@
                     HorizontalAlignment="Right"
                     Margin="0,15,0,0">
 
-            <Button Content="Odustani" Width="90" Margin="5" Click="BtnOdustani_Click"/>
-            <Button Content="Potvrdi" Width="90" Margin="5" Click="BtnPotvrdi_Click"/>
+            <Button x:Name="Btn_Cancel" Content="" Width="90" Margin="5" Click="BtnOdustani_Click"/>
+            <Button x:Name="Btn_Confirm" Content="" Width="90" Margin="5" Click="BtnPotvrdi_Click"/>
         </StackPanel>
     </Grid>
 </Window>
