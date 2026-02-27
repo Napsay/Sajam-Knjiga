@@ -735,4 +735,10 @@
   <data name="Msg_RemoveAuthorTitle" xml:space="preserve">
     <value>Potvrda uklanjanja</value>
   </data>
+  <data name="Msg_SelectIzdavaca" xml:space="preserve">
+    <value>Morate izabrati izdavača.</value>
+  </data>
+  <data name="Msg_DataEntry" xml:space="preserve">
+    <value>Greška pri unosu podataka!</value>
+  </data>
 </root>

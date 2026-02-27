@@ -735,4 +735,10 @@
   <data name="Msg_RemoveAuthorTitle" xml:space="preserve">
     <value> Remove author</value>
   </data>
+  <data name="Msg_SelectIzdavaca" xml:space="preserve">
+    <value>You must choose a publisher.</value>
+  </data>
+  <data name="Msg_DataEntry" xml:space="preserve">
+    <value>Data entry error!</value>
+  </data>
 </root>

@@ -359,6 +359,7 @@ namespace WpfClient
                         MessageBoxButton.OK,
                         MessageBoxImage.Warning
                         );
+                        return;
                     }
                 }
                 else if (tab.Header.ToString() == "Knjige")
@@ -377,6 +378,7 @@ namespace WpfClient
                         MessageBoxButton.OK,
                         MessageBoxImage.Warning
                         );
+                        return;
                     }
                 }
             }

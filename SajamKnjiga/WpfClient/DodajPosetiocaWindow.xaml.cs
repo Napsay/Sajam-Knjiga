@@ -1,5 +1,6 @@
 ﻿using Core.DAO;
 using Core.Models;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,7 +98,12 @@ namespace WpfClient
             }
             catch (Exception)
             {
-                MessageBox.Show("Greška pri unosu podataka!");
+               MessageBox.Show(
+               LocalizationManager.GetString("Msg_DataEntry"),
+               LocalizationManager.GetString("Msg_WarningTitle"),
+               MessageBoxButton.OK,
+               MessageBoxImage.Warning
+               );
             }
         }
 

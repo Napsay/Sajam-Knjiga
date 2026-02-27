@@ -1303,6 +1303,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data entry error!.
+        /// </summary>
+        public static string Msg_DataEntry {
+            get {
+                return ResourceManager.GetString("Msg_DataEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data not loaded..
         /// </summary>
         public static string Msg_DataNotLoaded {
@@ -1578,6 +1587,15 @@ namespace WpfClient.Resources {
         public static string Msg_SelectDifferentBooks {
             get {
                 return ResourceManager.GetString("Msg_SelectDifferentBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must choose a publisher..
+        /// </summary>
+        public static string Msg_SelectIzdavaca {
+            get {
+                return ResourceManager.GetString("Msg_SelectIzdavaca", resourceCulture);
             }
         }
         

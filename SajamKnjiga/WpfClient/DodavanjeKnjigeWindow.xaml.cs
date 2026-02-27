@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,12 @@ namespace WpfClient
         {
             if (lbKnjige.SelectedItem == null)
             {
-                MessageBox.Show("Izaberite knjigu.");
-                return;
+                MessageBox.Show(
+                LocalizationManager.GetString("Msg_SelectBook"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
             }
 
             IzabranaKnjiga = (Knjiga)lbKnjige.SelectedItem;

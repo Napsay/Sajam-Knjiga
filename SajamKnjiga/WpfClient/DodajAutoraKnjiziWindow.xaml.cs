@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,12 @@ namespace WpfClient
             if (SelectedAutor != null)
                 DialogResult = true; 
             else
-                MessageBox.Show("Izaberite autora iz liste.");
+                MessageBox.Show(
+                LocalizationManager.GetString("Msg_SelectAuthor"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
         }
 
         private void BtnOdustani_Click(object sender, RoutedEventArgs e)

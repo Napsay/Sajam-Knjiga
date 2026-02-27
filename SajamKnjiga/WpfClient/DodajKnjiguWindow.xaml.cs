@@ -1,5 +1,6 @@
 ﻿using Core.DAO;
 using Core.Models;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,7 +89,12 @@ namespace WpfClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greška pri unosu knjige: " + ex.Message);
+                MessageBox.Show(
+                LocalizationManager.GetString("Msg_DataEntry"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using Core.DAO;
 using Core.Models;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,11 +54,11 @@ namespace WpfClient
             if (selected == null)
             {
                 MessageBox.Show(
-                   "Molimo prvo izaberite izdavaca.",
-                   "Upozorenje",
-                   MessageBoxButton.OK,
-                   MessageBoxImage.Warning);
-                return;
+                LocalizationManager.GetString("Msg_SelectIzdavaca"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
             }
 
             IzdavacDetaljiWindow detalji =
@@ -72,11 +73,11 @@ namespace WpfClient
             if (dgIzdavaci.SelectedItem == null)
             {
                 MessageBox.Show(
-                    "Morate izabrati izdavača.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-                return;
+                LocalizationManager.GetString("Msg_SelectIzdavaca"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
             }
 
             Izdavac selektovaniIzdavac = (Izdavac)dgIzdavaci.SelectedItem;
@@ -101,11 +102,11 @@ namespace WpfClient
             if (dgIzdavaci.SelectedItem == null)
             {
                 MessageBox.Show(
-                    "Morate izabrati izdavača.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-                return;
+                LocalizationManager.GetString("Msg_SelectIzdavaca"),
+                LocalizationManager.GetString("Msg_WarningTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
             }
 
             Izdavac selektovaniIzdavac = (Izdavac)dgIzdavaci.SelectedItem;
