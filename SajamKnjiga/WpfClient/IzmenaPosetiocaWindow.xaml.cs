@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using WpfClient.Resources; // LOKALIZACIJA
+using WpfClient.Resources; 
 
 namespace WpfClient
 {

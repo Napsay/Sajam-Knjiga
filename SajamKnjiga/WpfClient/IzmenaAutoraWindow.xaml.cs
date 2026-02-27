@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using WpfClient.Resources; 
+using WpfClient.Resources;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace WpfClient
 {
@@ -18,6 +20,25 @@ namespace WpfClient
             InitializeComponent();
             _autor = autor;
             UcitajPodatke();
+            btnPotvrdi.IsEnabled = false;
+
+            
+            txtIme.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtPrezime.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtTelefon.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtEmail.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtBrLicne.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtGodineIskustva.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+
+            txtUlica.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtBroj.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtGrad.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtDrzava.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+
+            dpDatumRodjenja.SelectedDateChanged += (s, e) => AzurirajDugmePotvrdi();
+
+            
+            AzurirajDugmePotvrdi();
         }
 
         private void UcitajPodatke()
@@ -163,6 +184,75 @@ namespace WpfClient
                     _knjigeObservable.Remove(knjiga);
                 }
             }
+        }
+        private bool SadrziBroj(string tekst)
+        {
+            return Regex.IsMatch(tekst, @"\d");
+        }
+
+        private bool ValidanEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool ValidirajFormu()
+        {
+            
+            if (string.IsNullOrWhiteSpace(txtIme.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtPrezime.Text))
+                return false;
+            if (dpDatumRodjenja.SelectedDate == null)
+                return false;
+            if (string.IsNullOrWhiteSpace(txtTelefon.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtBrLicne.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtGodineIskustva.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtUlica.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtBroj.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtGrad.Text))
+                return false;
+            if (string.IsNullOrWhiteSpace(txtDrzava.Text))
+                return false;
+            if (SadrziBroj(txtIme.Text))
+                return false;
+            if (SadrziBroj(txtPrezime.Text))
+                return false;
+            if (SadrziBroj(txtGrad.Text))
+                return false;
+            if (SadrziBroj(txtDrzava.Text))
+                return false;
+
+            if (!int.TryParse(txtGodineIskustva.Text, out int godine) || godine < 0)
+                return false;
+            if (!int.TryParse(txtBroj.Text, out _))
+                return false;
+            if (!ValidanEmail(txtEmail.Text))
+                return false;
+            return true;
+        }
+
+        private void AzurirajDugmePotvrdi()
+        {
+            if (btnPotvrdi != null)
+                btnPotvrdi.IsEnabled = ValidirajFormu();
         }
     }
 }
