@@ -573,4 +573,40 @@
   <data name="Izbor_NovaKnjiga" xml:space="preserve">
     <value>New book</value>
   </data>
+  <data name="IzdavacDetaljiWindow_Title" xml:space="preserve">
+    <value>Publisher details</value>
+  </data>
+  <data name="Izdavac_Sef_Label" xml:space="preserve">
+    <value>Chief: </value>
+  </data>
+  <data name="Izdavac_Sef_Text" xml:space="preserve">
+    <value>Chief:</value>
+  </data>
+  <data name="Izdavac_Autori" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="Btn_AddChief" xml:space="preserve">
+    <value>Add Chief</value>
+  </data>
+  <data name="Btn_RemoveChief" xml:space="preserve">
+    <value>Remove chief</value>
+  </data>
+  <data name="Msg_SelectAuthorFirst" xml:space="preserve">
+    <value>Please select an author first.</value>
+  </data>
+  <data name="Msg_ChiefMinExperience" xml:space="preserve">
+    <value>Chief must have at least 5 years of experience.</value>
+  </data>
+  <data name="Msg_ChiefSetSuccess" xml:space="preserve">
+    <value>Chief has been successfully set.</value>
+  </data>
+  <data name="Msg_ChiefRemovedSuccess" xml:space="preserve">
+    <value>Chief has been successfully removed.</value>
+  </data>
+  <data name="Msg_NoChiefToRemove" xml:space="preserve">
+    <value>Publisher has no chief, cannot be removed.</value>
+  </data>
+  <data name="Izdavac_NoChief" xml:space="preserve">
+    <value>No chief</value>
+  </data>
 </root>

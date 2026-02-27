@@ -573,4 +573,40 @@
   <data name="Izbor_NovaKnjiga" xml:space="preserve">
     <value>Nova knjiga</value>
   </data>
+  <data name="IzdavacDetaljiWindow_Title" xml:space="preserve">
+    <value>Detalji o izdavacu</value>
+  </data>
+  <data name="Izdavac_Sef_Label" xml:space="preserve">
+    <value>Šef: </value>
+  </data>
+  <data name="Izdavac_Sef_Text" xml:space="preserve">
+    <value>Sef:</value>
+  </data>
+  <data name="Izdavac_Autori" xml:space="preserve">
+    <value>Autori</value>
+  </data>
+  <data name="Btn_AddChief" xml:space="preserve">
+    <value>Dodaj sefa</value>
+  </data>
+  <data name="Btn_RemoveChief" xml:space="preserve">
+    <value>Ukloni sefa</value>
+  </data>
+  <data name="Msg_SelectAuthorFirst" xml:space="preserve">
+    <value>Molimo prvo izaberite autora.</value>
+  </data>
+  <data name="Msg_ChiefMinExperience" xml:space="preserve">
+    <value>Šef mora imati najmanje 5 godina iskustva.</value>
+  </data>
+  <data name="Msg_ChiefSetSuccess" xml:space="preserve">
+    <value>Šef je uspešno postavljen.</value>
+  </data>
+  <data name="Msg_ChiefRemovedSuccess" xml:space="preserve">
+    <value>Šef je uspešno uklonjen.</value>
+  </data>
+  <data name="Msg_NoChiefToRemove" xml:space="preserve">
+    <value>Izdavač nema šefa, ne može se ukloniti.</value>
+  </data>
+  <data name="Izdavac_NoChief" xml:space="preserve">
+    <value>Nema šefa</value>
+  </data>
 </root>

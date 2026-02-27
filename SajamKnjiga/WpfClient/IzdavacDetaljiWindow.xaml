@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
+        xmlns:res="clr-namespace:WpfClient.Resources"
         mc:Ignorable="d"
-        Title="Detalji o izdavacu" Height="450" Width="800">
+        Title="{x:Static res:Strings.IzdavacDetaljiWindow_Title}"
+        Height="450" Width="800">
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,23 +16,34 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+       
         <StackPanel>
             <TextBlock Text="{Binding Naziv}"
                        FontSize="18"
                        FontWeight="Bold"/>
-            <TextBlock Text="{Binding Sef.PunoIme, StringFormat=Šef: {0}}"
-                       Margin="0,5,0,0"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="{x:Static res:Strings.Izdavac_Sef_Label}"
+                           FontWeight="Bold"/>
+                <TextBlock x:Name="txtSef"/>
+            </StackPanel>
         </StackPanel>
 
-        <GroupBox Header="Autori" Grid.Row="1" Margin="0,10,0,10">
+       
+        <GroupBox Header="{x:Static res:Strings.Izdavac_Autori}"
+                  Grid.Row="1"
+                  Margin="0,10,0,10">
             <DataGrid x:Name="dgAutori"
                       AutoGenerateColumns="False"
                       SelectionMode="Single"
                       CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*"/>
-                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*"/>
-                    <DataGridTextColumn Header="Godine iskustva" Binding="{Binding GodineIskustva}" Width="120"/>
+                    <DataGridTextColumn Header="{x:Static res:Strings.Autor_Ime}"
+                                        Binding="{Binding Ime}" Width="*"/>
+                    <DataGridTextColumn Header="{x:Static res:Strings.Autor_Prezime}"
+                                        Binding="{Binding Prezime}" Width="*"/>
+                    <DataGridTextColumn Header="{x:Static res:Strings.Autor_GodIskustva}"
+                                        Binding="{Binding GodineIskustva}" Width="120"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
@@ -37,24 +51,14 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     HorizontalAlignment="Right">
-            <Button Content="Dodaj šefa"
+            <Button Content="{x:Static res:Strings.Btn_AddChief}"
                     Margin="0,0,10,0"
                     Click="BtnDodajSefa_Click"/>
-            <Button Content="Ukloni šefa"
+            <Button Content="{x:Static res:Strings.Btn_RemoveChief}"
                     Margin="0,0,10,0"
                     Click="BtnUkloniSefa_Click"/>
-            <Button Content="Zatvori"
+            <Button Content="{x:Static res:Strings.About_Close}"
                     Click="BtnZatvori_Click"/>
-        </StackPanel>
-        <StackPanel>
-            <TextBlock Text="{Binding Naziv}"
-               FontSize="18"
-               FontWeight="Bold"/>
-
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <TextBlock Text="Šef: " FontWeight="Bold"/>
-                <TextBlock x:Name="txtSef"/>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

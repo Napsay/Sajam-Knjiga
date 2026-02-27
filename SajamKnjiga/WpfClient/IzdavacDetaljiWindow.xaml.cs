@@ -1,24 +1,11 @@
 ﻿using Core.DAO;
 using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfClient.Resources; 
 
 namespace WpfClient
 {
-    /// <summary>
-    /// Interaction logic for IzdavacDetaljiWindow.xaml
-    /// </summary>
     public partial class IzdavacDetaljiWindow : Window
     {
         private Izdavac _izdavac;
@@ -35,54 +22,63 @@ namespace WpfClient
             PrikaziSefa();
         }
 
-
-
         private void BtnDodajSefa_Click(object sender, RoutedEventArgs e)
         {
             Autor autor = dgAutori.SelectedItem as Autor;
             if (autor == null)
             {
                 MessageBox.Show(
-                  "Molimo prvo izaberite autora.",
-                  "Upozorenje",
-                  MessageBoxButton.OK,
-                  MessageBoxImage.Warning);
+                    Strings.Msg_SelectAuthorFirst,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
             if (autor.GodineIskustva < 5)
             {
                 MessageBox.Show(
-                  "Sef mora imati najmanje 5 godina iskustva.",
-                  "Upozorenje",
-                  MessageBoxButton.OK,
-                  MessageBoxImage.Warning);
+                    Strings.Msg_ChiefMinExperience,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
             _izdavac.Sef = autor;
-            _izdavacDao.SaveAll();  
+            _izdavacDao.SaveAll();
 
             PrikaziSefa();
-            MessageBox.Show("Šef je uspešno postavljen.");
+
+            MessageBox.Show(
+                Strings.Msg_ChiefSetSuccess,
+                Strings.Msg_OK,
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
+
         private void BtnUkloniSefa_Click(object sender, RoutedEventArgs e)
         {
             if (_izdavac.Sef == null)
             {
                 MessageBox.Show(
-                   "Izdavac nema sefa, ne moze se ukloniti.",
-                   "Upozorenje",
-                   MessageBoxButton.OK,
-                   MessageBoxImage.Warning);
+                    Strings.Msg_NoChiefToRemove,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
             _izdavac.Sef = null;
-            _izdavacDao.SaveAll();   
+            _izdavacDao.SaveAll();
 
             PrikaziSefa();
-            MessageBox.Show("Šef je uspešno uklonjen.");
+
+            MessageBox.Show(
+                Strings.Msg_ChiefRemovedSuccess,
+                Strings.Msg_OK,
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
 
         private void BtnZatvori_Click(object sender, RoutedEventArgs e)
@@ -93,7 +89,7 @@ namespace WpfClient
         private void PrikaziSefa()
         {
             if (_izdavac.Sef == null)
-                txtSef.Text = "Nema šefa";
+                txtSef.Text = Strings.Izdavac_NoChief;
             else
                 txtSef.Text = $"{_izdavac.Sef.Ime} {_izdavac.Sef.Prezime}";
         }

@@ -376,6 +376,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Chief.
+        /// </summary>
+        public static string Btn_AddChief {
+            get {
+                return ResourceManager.GetString("Btn_AddChief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Btn_Cancel {
@@ -444,6 +453,15 @@ namespace WpfClient.Resources {
         public static string Btn_Prkazi {
             get {
                 return ResourceManager.GetString("Btn_Prkazi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove chief.
+        /// </summary>
+        public static string Btn_RemoveChief {
+            get {
+                return ResourceManager.GetString("Btn_RemoveChief", resourceCulture);
             }
         }
         
@@ -687,6 +705,51 @@ namespace WpfClient.Resources {
         public static string IzborNovogEntitetaWindow_Title {
             get {
                 return ResourceManager.GetString("IzborNovogEntitetaWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authors.
+        /// </summary>
+        public static string Izdavac_Autori {
+            get {
+                return ResourceManager.GetString("Izdavac_Autori", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No chief.
+        /// </summary>
+        public static string Izdavac_NoChief {
+            get {
+                return ResourceManager.GetString("Izdavac_NoChief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chief: .
+        /// </summary>
+        public static string Izdavac_Sef_Label {
+            get {
+                return ResourceManager.GetString("Izdavac_Sef_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chief:.
+        /// </summary>
+        public static string Izdavac_Sef_Text {
+            get {
+                return ResourceManager.GetString("Izdavac_Sef_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publisher details.
+        /// </summary>
+        public static string IzdavacDetaljiWindow_Title {
+            get {
+                return ResourceManager.GetString("IzdavacDetaljiWindow_Title", resourceCulture);
             }
         }
         
@@ -997,6 +1060,33 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chief must have at least 5 years of experience..
+        /// </summary>
+        public static string Msg_ChiefMinExperience {
+            get {
+                return ResourceManager.GetString("Msg_ChiefMinExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chief has been successfully removed..
+        /// </summary>
+        public static string Msg_ChiefRemovedSuccess {
+            get {
+                return ResourceManager.GetString("Msg_ChiefRemovedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chief has been successfully set..
+        /// </summary>
+        public static string Msg_ChiefSetSuccess {
+            get {
+                return ResourceManager.GetString("Msg_ChiefSetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the author?.
         /// </summary>
         public static string Msg_ConfirmDeleteAuthor {
@@ -1105,6 +1195,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Publisher has no chief, cannot be removed..
+        /// </summary>
+        public static string Msg_NoChiefToRemove {
+            get {
+                return ResourceManager.GetString("Msg_NoChiefToRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No visitors have this author&apos;s books on their wishlist..
         /// </summary>
         public static string Msg_NoVisitorsWithAuthorsBooks {
@@ -1137,6 +1236,15 @@ namespace WpfClient.Resources {
         public static string Msg_SelectAuthor {
             get {
                 return ResourceManager.GetString("Msg_SelectAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an author first..
+        /// </summary>
+        public static string Msg_SelectAuthorFirst {
+            get {
+                return ResourceManager.GetString("Msg_SelectAuthorFirst", resourceCulture);
             }
         }
         
