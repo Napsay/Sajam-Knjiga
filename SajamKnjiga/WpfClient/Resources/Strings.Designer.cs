@@ -412,6 +412,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string Btn_No {
+            get {
+                return ResourceManager.GetString("Btn_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show results.
         /// </summary>
         public static string Btn_Prkazi {
@@ -426,6 +435,15 @@ namespace WpfClient.Resources {
         public static string Btn_Search {
             get {
                 return ResourceManager.GetString("Btn_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Btn_Yes {
+            get {
+                return ResourceManager.GetString("Btn_Yes", resourceCulture);
             }
         }
         
@@ -1038,6 +1056,60 @@ namespace WpfClient.Resources {
         public static string Posetilac_Status {
             get {
                 return ResourceManager.GetString("Posetilac_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string PosetiociListaZelja_Close {
+            get {
+                return ResourceManager.GetString("PosetiociListaZelja_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string PosetiociListaZelja_Search {
+            get {
+                return ResourceManager.GetString("PosetiociListaZelja_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authors with wishlist books.
+        /// </summary>
+        public static string PosetiociListaZelja_Title {
+            get {
+                return ResourceManager.GetString("PosetiociListaZelja_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authors of books on the visitor&apos;s wish list.
+        /// </summary>
+        public static string PosetiociListaZeljaAutorWindow_Title {
+            get {
+                return ResourceManager.GetString("PosetiociListaZeljaAutorWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the visitor?.
+        /// </summary>
+        public static string PotvrdaBrisanjaWindow_Message {
+            get {
+                return ResourceManager.GetString("PotvrdaBrisanjaWindow_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting a visitor.
+        /// </summary>
+        public static string PotvrdaBrisanjaWindow_Title {
+            get {
+                return ResourceManager.GetString("PotvrdaBrisanjaWindow_Title", resourceCulture);
             }
         }
         

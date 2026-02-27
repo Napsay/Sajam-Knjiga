@@ -10,20 +10,15 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <!-- опис -->
                 <RowDefinition Height="*"/>
-                <!-- листа -->
                 <RowDefinition Height="Auto"/>
-                <!-- дугмад -->
             </Grid.RowDefinitions>
 
-            <!-- ТЕКСТ -->
             <TextBlock
                 Text="Изаберите књигу (или више књига) које желите да додате аутору:"
                 FontWeight="SemiBold"
                 Margin="0,0,0,10"/>
 
-            <!-- ЛИСТА КЊИГА -->
             <ListBox x:Name="lstKnjige"
          Grid.Row="1"
          SelectionMode="Extended"
@@ -34,16 +29,14 @@
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120"/>
-                                <!-- ISBN -->
                                 <ColumnDefinition Width="*"/>
-                                <!-- Naziv -->
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0"
+                            <TextBlock x:Name="Knjiga_ISBN" Grid.Column="0"
                            Text="{Binding ISBN}"
                            FontWeight="SemiBold"/>
 
-                            <TextBlock Grid.Column="1"
+                            <TextBlock x:Name="Knjiga_Naziv" Grid.Column="1"
                            Text="{Binding Naziv}"
                            Margin="10,0,0,0"/>
                         </Grid>
@@ -51,7 +44,6 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <!-- ДУГМАД -->
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="PosetiociListaZeljaAutorWindow" Height="450" Width="800">
+        Title="" Height="450" Width="800">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -25,26 +25,26 @@
 
         <DataGrid x:Name="dgPosetioci" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Broj članske karte"
+                <DataGridTextColumn x:Name="Posetilac_ClanskaKarta" Header="Broj članske karte"
                                     Binding="{Binding BrClanskeKarte}"
                                     Width="150"/>
-                <DataGridTextColumn Header="Ime"
+                <DataGridTextColumn x:Name="Posetilac_Ime" Header="Ime"
                                     Binding="{Binding Ime}"
                                     Width="100"/>
-                <DataGridTextColumn Header="Prezime"
+                <DataGridTextColumn x:Name="Posetilac_Prezime" Header="Prezime"
                                     Binding="{Binding Prezime}"
                                     Width="120"/>
-                <DataGridTextColumn Header="Adresa"
+                <DataGridTextColumn x:Name="Posetilac_Adresa" Header="Adresa"
                                     Binding="{Binding Adresa}"
                                     Width="*"/>
-                <DataGridTextColumn Header="Status"
+                <DataGridTextColumn x:Name="Posetilac_Status" Header="Status"
                                     Binding="{Binding Status}"
                                     Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Width="80" Height="30" Click="Close_Click">Zatvori</Button>
+            <Button x:Name="Btn_Close" Width="80" Height="30" Click="Close_Click"/>
         </StackPanel>
     </Grid>
 </Window>

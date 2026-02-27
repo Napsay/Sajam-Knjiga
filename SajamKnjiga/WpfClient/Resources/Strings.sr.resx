@@ -465,4 +465,28 @@
   <data name="Adresa_Grad" xml:space="preserve">
     <value>Grad</value>
   </data>
+  <data name="PosetiociListaZelja_Title" xml:space="preserve">
+    <value>Autori knjiga na listi želja posetilaca</value>
+  </data>
+  <data name="PosetiociListaZelja_Search" xml:space="preserve">
+    <value>Pretraga</value>
+  </data>
+  <data name="PosetiociListaZelja_Close" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
+  <data name="PosetiociListaZeljaAutorWindow_Title" xml:space="preserve">
+    <value>Autori knjiga na listi želja posetioca</value>
+  </data>
+  <data name="PotvrdaBrisanjaWindow_Title" xml:space="preserve">
+    <value>Brisanje posetioca</value>
+  </data>
+  <data name="PotvrdaBrisanjaWindow_Message" xml:space="preserve">
+    <value>Da li ste sigurni da želite da obrišete posetioca?</value>
+  </data>
+  <data name="Btn_Yes" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="Btn_No" xml:space="preserve">
+    <value>Ne</value>
+  </data>
 </root>

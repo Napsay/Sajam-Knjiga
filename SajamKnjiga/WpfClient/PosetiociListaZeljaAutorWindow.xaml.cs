@@ -1,7 +1,9 @@
 ﻿using Core.DAO;
 using Core.Models;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfClient.Resources;
 
 namespace WpfClient
 {
@@ -40,6 +43,8 @@ namespace WpfClient
 
             sviPosetioci = posetioci;
             dgPosetioci.ItemsSource = sviPosetioci;
+
+            UpdateUI();
         }
 
         private void txtPretraga_TextChanged(object sender, TextChangedEventArgs e)
@@ -112,6 +117,20 @@ namespace WpfClient
             }
 
             dgPosetioci.ItemsSource = rezultat;
+        }
+
+        private void UpdateUI()
+        {
+            this.Title = LocalizationManager.GetString("PosetiociListaZeljaAutorWindow_Title");
+
+            Posetilac_ClanskaKarta.Header = LocalizationManager.GetString("Posetilac_ClanskaKarta");
+            Posetilac_Ime.Header = LocalizationManager.GetString("Posetilac_Ime");
+            Posetilac_Prezime.Header = LocalizationManager.GetString("Posetilac_Prezime");
+            Posetilac_Adresa.Header = LocalizationManager.GetString("Posetilac_Adresa");
+            Posetilac_Status.Header = LocalizationManager.GetString("Posetilac_Status");
+
+            Btn_Close.Content = LocalizationManager.GetString("Btn_Close");
+            txtPretraga.Text = LocalizationManager.GetString("Search_Placeholder");
         }
     }
 }
