@@ -4,46 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
+        xmlns:res="clr-namespace:WpfClient.Resources"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="450" Width="800">
+        Title="{x:Static res:Strings.About_Title}"
+        Height="450" Width="800">
+
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="20">
 
-                <TextBlock Text="Sajam knjiga"
-                       FontSize="20"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"/>
+                
+                <TextBlock Text="{x:Static res:Strings.About_AppName}"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
 
+                
                 <TextBlock x:Name="txtVersion"
-                       Margin="0,10,0,10"
-                       HorizontalAlignment="Center"/>
+                           Margin="0,10,0,10"
+                           HorizontalAlignment="Center"/>
 
-                <TextBlock TextWrapping="Wrap"
-                       Margin="0,0,0,15">
-                Aplikacija za evidenciju posetilaca, autora i knjiga
-                na sajmu knjiga - destkop aplikacija namenjena referentu sajma. Omogućava dodavanje, izmenu i brisanje
-                podataka, kao i pregled svih unetih informacija.
-                </TextBlock>
+               
+                <TextBlock Text="{x:Static res:Strings.About_Description}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,15"/>
 
-                <TextBlock Text="Autori:"
-                       FontWeight="Bold"
-                       Margin="0,10,0,5"/>
+                
+                <TextBlock Text="{x:Static res:Strings.About_Authors}"
+                           FontWeight="Bold"
+                           Margin="0,10,0,5"/>
 
-                <TextBlock TextWrapping="Wrap" Margin="0,5,0,10">
-                Aplikaciju su razvili <Run FontWeight="Bold">Stefan Karać</Run> i 
-                <Run FontWeight="Bold">Milica Stanković</Run>, studenti treće godine
-                Fakulteta tehničkih nauka u Novom Sadu, smer Računarstvo i automatika.
-                Projekat je realizovan u okviru predmeta Osnove informacionih sistema
-                i Softversko inženjerstvo, kroz zajednički rad
-                u svim fazama razvoja aplikacije.
-                </TextBlock>
+                
+                <TextBlock Text="{x:Static res:Strings.About_Authors_Text}"
+                           TextWrapping="Wrap"
+                           Margin="0,5,0,10"/>
 
-                <Button Content="Zatvori"
-                    Width="100"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Center"
-                    Click="Button_Click"/>
+                
+                <Button Content="{x:Static res:Strings.About_Close}"
+                        Width="100"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center"
+                        Click="Button_Click"/>
 
             </StackPanel>
         </ScrollViewer>

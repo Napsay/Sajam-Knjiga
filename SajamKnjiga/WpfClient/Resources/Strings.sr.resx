@@ -360,4 +360,22 @@
   <data name="Btn_GridPosetioci" xml:space="preserve">
     <value>Prikazi autore knjiga na listi želja posetioca</value>
   </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>O aplikaciji</value>
+  </data>
+  <data name="About_AppName" xml:space="preserve">
+    <value>Sajam knjiga</value>
+  </data>
+  <data name="About_Description" xml:space="preserve">
+    <value>Aplikacija za evidenciju posetilaca, autora i knjiga na sajmu knjiga - desktop aplikacija namenjena referentu sajma. Omogućava dodavanje, izmenu i brisanje podataka, kao i pregled svih unetih informacija.</value>
+  </data>
+  <data name="About_Authors" xml:space="preserve">
+    <value>Autori:</value>
+  </data>
+  <data name="About_Authors_Text" xml:space="preserve">
+    <value>Aplikaciju su razvili Stefan Karać i Milica Stanković, studenti treće godine Fakulteta tehničkih nauka u Novom Sadu, smer Računarstvo i automatika.</value>
+  </data>
+  <data name="About_Close" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
 </root>

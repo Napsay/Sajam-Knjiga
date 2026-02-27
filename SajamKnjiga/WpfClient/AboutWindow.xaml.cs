@@ -27,8 +27,7 @@ namespace WpfClient
         {
             InitializeComponent();
 
-            var version = Assembly.GetExecutingAssembly().GetName().Version;
-            txtVersion.Text = "Verzija: " + version.ToString();
+            txtVersion.Text = "Version 1.0";
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

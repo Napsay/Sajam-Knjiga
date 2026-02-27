@@ -22,7 +22,7 @@ namespace WpfClient.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace WpfClient.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WpfClient.Resources.Strings", typeof(Strings).Assembly);
@@ -51,7 +51,7 @@ namespace WpfClient.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,63 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Book Fair.
+        /// </summary>
+        public static string About_AppName {
+            get {
+                return ResourceManager.GetString("About_AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authors:.
+        /// </summary>
+        public static string About_Authors {
+            get {
+                return ResourceManager.GetString("About_Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application was developed by Stefan Karać and Milica Stanković, third-year students at the Faculty of Technical Sciences in Novi Sad, Computer Science and Automation..
+        /// </summary>
+        public static string About_Authors_Text {
+            get {
+                return ResourceManager.GetString("About_Authors_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string About_Close {
+            get {
+                return ResourceManager.GetString("About_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application for managing visitors, authors and books at the book fair. Desktop application intended for fair staff. It enables adding, editing and deleting data, as well as viewing all entered information..
+        /// </summary>
+        public static string About_Description {
+            get {
+                return ResourceManager.GetString("About_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About_Title {
+            get {
+                return ResourceManager.GetString("About_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
-        internal static string Autor_Adresa {
+        public static string Autor_Adresa {
             get {
                 return ResourceManager.GetString("Autor_Adresa", resourceCulture);
             }
@@ -72,7 +126,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Date of birth.
         /// </summary>
-        internal static string Autor_DatumRodjenja {
+        public static string Autor_DatumRodjenja {
             get {
                 return ResourceManager.GetString("Autor_DatumRodjenja", resourceCulture);
             }
@@ -81,7 +135,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
-        internal static string Autor_Email {
+        public static string Autor_Email {
             get {
                 return ResourceManager.GetString("Autor_Email", resourceCulture);
             }
@@ -90,7 +144,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Years of experience.
         /// </summary>
-        internal static string Autor_GodIskustva {
+        public static string Autor_GodIskustva {
             get {
                 return ResourceManager.GetString("Autor_GodIskustva", resourceCulture);
             }
@@ -99,7 +153,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string Autor_Ime {
+        public static string Autor_Ime {
             get {
                 return ResourceManager.GetString("Autor_Ime", resourceCulture);
             }
@@ -108,7 +162,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Surname.
         /// </summary>
-        internal static string Autor_Prezime {
+        public static string Autor_Prezime {
             get {
                 return ResourceManager.GetString("Autor_Prezime", resourceCulture);
             }
@@ -117,7 +171,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
-        internal static string Autor_Telefon {
+        public static string Autor_Telefon {
             get {
                 return ResourceManager.GetString("Autor_Telefon", resourceCulture);
             }
@@ -126,7 +180,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ➕.
         /// </summary>
-        internal static string Btn_Add {
+        public static string Btn_Add {
             get {
                 return ResourceManager.GetString("Btn_Add", resourceCulture);
             }
@@ -135,7 +189,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 🗑️.
         /// </summary>
-        internal static string Btn_Delete {
+        public static string Btn_Delete {
             get {
                 return ResourceManager.GetString("Btn_Delete", resourceCulture);
             }
@@ -144,7 +198,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ✏️.
         /// </summary>
-        internal static string Btn_Edit {
+        public static string Btn_Edit {
             get {
                 return ResourceManager.GetString("Btn_Edit", resourceCulture);
             }
@@ -153,7 +207,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Show visitors with wishlist books by the author.
         /// </summary>
-        internal static string Btn_GridAutori {
+        public static string Btn_GridAutori {
             get {
                 return ResourceManager.GetString("Btn_GridAutori", resourceCulture);
             }
@@ -162,7 +216,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Display book authors in the visitor&apos;s wish list.
         /// </summary>
-        internal static string Btn_GridPosetioci {
+        public static string Btn_GridPosetioci {
             get {
                 return ResourceManager.GetString("Btn_GridPosetioci", resourceCulture);
             }
@@ -171,7 +225,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 🔍.
         /// </summary>
-        internal static string Btn_Search {
+        public static string Btn_Search {
             get {
                 return ResourceManager.GetString("Btn_Search", resourceCulture);
             }
@@ -180,7 +234,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt; First.
         /// </summary>
-        internal static string btnFirstPageAutori {
+        public static string btnFirstPageAutori {
             get {
                 return ResourceManager.GetString("btnFirstPageAutori", resourceCulture);
             }
@@ -189,7 +243,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt; First.
         /// </summary>
-        internal static string btnFirstPageKnjige {
+        public static string btnFirstPageKnjige {
             get {
                 return ResourceManager.GetString("btnFirstPageKnjige", resourceCulture);
             }
@@ -198,7 +252,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt; First.
         /// </summary>
-        internal static string btnFirstPagePosetioci {
+        public static string btnFirstPagePosetioci {
             get {
                 return ResourceManager.GetString("btnFirstPagePosetioci", resourceCulture);
             }
@@ -207,7 +261,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Last &gt;.
         /// </summary>
-        internal static string btnLastPageAutori {
+        public static string btnLastPageAutori {
             get {
                 return ResourceManager.GetString("btnLastPageAutori", resourceCulture);
             }
@@ -216,7 +270,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Last &gt;.
         /// </summary>
-        internal static string btnLastPageKnjige {
+        public static string btnLastPageKnjige {
             get {
                 return ResourceManager.GetString("btnLastPageKnjige", resourceCulture);
             }
@@ -225,7 +279,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Last &gt;.
         /// </summary>
-        internal static string btnLastPagePosetioci {
+        public static string btnLastPagePosetioci {
             get {
                 return ResourceManager.GetString("btnLastPagePosetioci", resourceCulture);
             }
@@ -234,7 +288,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Authors.
         /// </summary>
-        internal static string Knjiga_Autori {
+        public static string Knjiga_Autori {
             get {
                 return ResourceManager.GetString("Knjiga_Autori", resourceCulture);
             }
@@ -243,7 +297,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Number of pages.
         /// </summary>
-        internal static string Knjiga_BrStrana {
+        public static string Knjiga_BrStrana {
             get {
                 return ResourceManager.GetString("Knjiga_BrStrana", resourceCulture);
             }
@@ -252,7 +306,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Price.
         /// </summary>
-        internal static string Knjiga_Cena {
+        public static string Knjiga_Cena {
             get {
                 return ResourceManager.GetString("Knjiga_Cena", resourceCulture);
             }
@@ -261,7 +315,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Year of issue.
         /// </summary>
-        internal static string Knjiga_GodIzdavanja {
+        public static string Knjiga_GodIzdavanja {
             get {
                 return ResourceManager.GetString("Knjiga_GodIzdavanja", resourceCulture);
             }
@@ -270,7 +324,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ISBN.
         /// </summary>
-        internal static string Knjiga_ISBN {
+        public static string Knjiga_ISBN {
             get {
                 return ResourceManager.GetString("Knjiga_ISBN", resourceCulture);
             }
@@ -279,7 +333,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Publisher.
         /// </summary>
-        internal static string Knjiga_Izdavac {
+        public static string Knjiga_Izdavac {
             get {
                 return ResourceManager.GetString("Knjiga_Izdavac", resourceCulture);
             }
@@ -288,7 +342,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Name of the book.
         /// </summary>
-        internal static string Knjiga_Naziv {
+        public static string Knjiga_Naziv {
             get {
                 return ResourceManager.GetString("Knjiga_Naziv", resourceCulture);
             }
@@ -297,7 +351,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Genre.
         /// </summary>
-        internal static string Knjiga_Zanr {
+        public static string Knjiga_Zanr {
             get {
                 return ResourceManager.GetString("Knjiga_Zanr", resourceCulture);
             }
@@ -306,7 +360,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Author ID.
         /// </summary>
-        internal static string Kolona_IDAutora {
+        public static string Kolona_IDAutora {
             get {
                 return ResourceManager.GetString("Kolona_IDAutora", resourceCulture);
             }
@@ -315,7 +369,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Book Fair.
         /// </summary>
-        internal static string MainWindow_Title {
+        public static string MainWindow_Title {
             get {
                 return ResourceManager.GetString("MainWindow_Title", resourceCulture);
             }
@@ -324,7 +378,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Analytics.
         /// </summary>
-        internal static string Menu_Analitika {
+        public static string Menu_Analitika {
             get {
                 return ResourceManager.GetString("Menu_Analitika", resourceCulture);
             }
@@ -333,7 +387,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Publisher Analytics.
         /// </summary>
-        internal static string Menu_Analitika_Izdavaci {
+        public static string Menu_Analitika_Izdavaci {
             get {
                 return ResourceManager.GetString("Menu_Analitika_Izdavaci", resourceCulture);
             }
@@ -342,7 +396,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Analytics for two books.
         /// </summary>
-        internal static string Menu_Analitika_Knjige {
+        public static string Menu_Analitika_Knjige {
             get {
                 return ResourceManager.GetString("Menu_Analitika_Knjige", resourceCulture);
             }
@@ -351,7 +405,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string Menu_Edit {
+        public static string Menu_Edit {
             get {
                 return ResourceManager.GetString("Menu_Edit", resourceCulture);
             }
@@ -360,7 +414,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
-        internal static string Menu_Edit_Delete {
+        public static string Menu_Edit_Delete {
             get {
                 return ResourceManager.GetString("Menu_Edit_Delete", resourceCulture);
             }
@@ -369,7 +423,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string Menu_Edit_Edit {
+        public static string Menu_Edit_Edit {
             get {
                 return ResourceManager.GetString("Menu_Edit_Edit", resourceCulture);
             }
@@ -378,7 +432,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
-        internal static string Menu_File {
+        public static string Menu_File {
             get {
                 return ResourceManager.GetString("Menu_File", resourceCulture);
             }
@@ -387,7 +441,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        internal static string Menu_File_Close {
+        public static string Menu_File_Close {
             get {
                 return ResourceManager.GetString("Menu_File_Close", resourceCulture);
             }
@@ -396,7 +450,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
-        internal static string Menu_File_New {
+        public static string Menu_File_New {
             get {
                 return ResourceManager.GetString("Menu_File_New", resourceCulture);
             }
@@ -405,7 +459,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Open .
         /// </summary>
-        internal static string Menu_File_Open {
+        public static string Menu_File_Open {
             get {
                 return ResourceManager.GetString("Menu_File_Open", resourceCulture);
             }
@@ -414,7 +468,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Authors.
         /// </summary>
-        internal static string Menu_File_Open_Autori {
+        public static string Menu_File_Open_Autori {
             get {
                 return ResourceManager.GetString("Menu_File_Open_Autori", resourceCulture);
             }
@@ -423,7 +477,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Publishers.
         /// </summary>
-        internal static string Menu_File_Open_Izdavaci {
+        public static string Menu_File_Open_Izdavaci {
             get {
                 return ResourceManager.GetString("Menu_File_Open_Izdavaci", resourceCulture);
             }
@@ -432,7 +486,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Books.
         /// </summary>
-        internal static string Menu_File_Open_Knjige {
+        public static string Menu_File_Open_Knjige {
             get {
                 return ResourceManager.GetString("Menu_File_Open_Knjige", resourceCulture);
             }
@@ -441,7 +495,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Visitors.
         /// </summary>
-        internal static string Menu_File_Open_Posetioci {
+        public static string Menu_File_Open_Posetioci {
             get {
                 return ResourceManager.GetString("Menu_File_Open_Posetioci", resourceCulture);
             }
@@ -450,7 +504,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string Menu_File_Save {
+        public static string Menu_File_Save {
             get {
                 return ResourceManager.GetString("Menu_File_Save", resourceCulture);
             }
@@ -459,7 +513,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
-        internal static string Menu_Help {
+        public static string Menu_Help {
             get {
                 return ResourceManager.GetString("Menu_Help", resourceCulture);
             }
@@ -468,7 +522,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
-        internal static string Menu_Help_About {
+        public static string Menu_Help_About {
             get {
                 return ResourceManager.GetString("Menu_Help_About", resourceCulture);
             }
@@ -477,7 +531,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
-        internal static string Menu_Language {
+        public static string Menu_Language {
             get {
                 return ResourceManager.GetString("Menu_Language", resourceCulture);
             }
@@ -486,7 +540,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the author?.
         /// </summary>
-        internal static string Msg_ConfirmDeleteAuthor {
+        public static string Msg_ConfirmDeleteAuthor {
             get {
                 return ResourceManager.GetString("Msg_ConfirmDeleteAuthor", resourceCulture);
             }
@@ -495,7 +549,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the book?.
         /// </summary>
-        internal static string Msg_ConfirmDeleteBook {
+        public static string Msg_ConfirmDeleteBook {
             get {
                 return ResourceManager.GetString("Msg_ConfirmDeleteBook", resourceCulture);
             }
@@ -504,7 +558,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the visitor?.
         /// </summary>
-        internal static string Msg_ConfirmDeleteVisitor {
+        public static string Msg_ConfirmDeleteVisitor {
             get {
                 return ResourceManager.GetString("Msg_ConfirmDeleteVisitor", resourceCulture);
             }
@@ -513,7 +567,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Data not loaded..
         /// </summary>
-        internal static string Msg_DataNotLoaded {
+        public static string Msg_DataNotLoaded {
             get {
                 return ResourceManager.GetString("Msg_DataNotLoaded", resourceCulture);
             }
@@ -522,7 +576,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to All data has been saved successfully!.
         /// </summary>
-        internal static string Msg_DataSaved {
+        public static string Msg_DataSaved {
             get {
                 return ResourceManager.GetString("Msg_DataSaved", resourceCulture);
             }
@@ -531,7 +585,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Delete Author.
         /// </summary>
-        internal static string Msg_DeleteAuthorTitle {
+        public static string Msg_DeleteAuthorTitle {
             get {
                 return ResourceManager.GetString("Msg_DeleteAuthorTitle", resourceCulture);
             }
@@ -540,7 +594,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Delete Book.
         /// </summary>
-        internal static string Msg_DeleteBookTitle {
+        public static string Msg_DeleteBookTitle {
             get {
                 return ResourceManager.GetString("Msg_DeleteBookTitle", resourceCulture);
             }
@@ -549,7 +603,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Delete Visitor.
         /// </summary>
-        internal static string Msg_DeleteVisitorTitle {
+        public static string Msg_DeleteVisitorTitle {
             get {
                 return ResourceManager.GetString("Msg_DeleteVisitorTitle", resourceCulture);
             }
@@ -558,7 +612,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error while saving data.
         /// </summary>
-        internal static string Msg_ErrorSavingData {
+        public static string Msg_ErrorSavingData {
             get {
                 return ResourceManager.GetString("Msg_ErrorSavingData", resourceCulture);
             }
@@ -567,7 +621,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string Msg_ErrorTitle {
+        public static string Msg_ErrorTitle {
             get {
                 return ResourceManager.GetString("Msg_ErrorTitle", resourceCulture);
             }
@@ -576,7 +630,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No authors with books on this visitor&apos;s wishlist..
         /// </summary>
-        internal static string Msg_NoAuthorsForVisitorWishlist {
+        public static string Msg_NoAuthorsForVisitorWishlist {
             get {
                 return ResourceManager.GetString("Msg_NoAuthorsForVisitorWishlist", resourceCulture);
             }
@@ -585,7 +639,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No visitors have this author&apos;s books on their wishlist..
         /// </summary>
-        internal static string Msg_NoVisitorsWithAuthorsBooks {
+        public static string Msg_NoVisitorsWithAuthorsBooks {
             get {
                 return ResourceManager.GetString("Msg_NoVisitorsWithAuthorsBooks", resourceCulture);
             }
@@ -594,7 +648,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
-        internal static string Msg_OK {
+        public static string Msg_OK {
             get {
                 return ResourceManager.GetString("Msg_OK", resourceCulture);
             }
@@ -603,7 +657,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string Msg_SaveTitle {
+        public static string Msg_SaveTitle {
             get {
                 return ResourceManager.GetString("Msg_SaveTitle", resourceCulture);
             }
@@ -612,7 +666,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Please select an author from the table..
         /// </summary>
-        internal static string Msg_SelectAuthor {
+        public static string Msg_SelectAuthor {
             get {
                 return ResourceManager.GetString("Msg_SelectAuthor", resourceCulture);
             }
@@ -621,7 +675,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You must select an author to edit..
         /// </summary>
-        internal static string Msg_SelectAuthorForEdit {
+        public static string Msg_SelectAuthorForEdit {
             get {
                 return ResourceManager.GetString("Msg_SelectAuthorForEdit", resourceCulture);
             }
@@ -630,7 +684,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Please select a book from the table..
         /// </summary>
-        internal static string Msg_SelectBook {
+        public static string Msg_SelectBook {
             get {
                 return ResourceManager.GetString("Msg_SelectBook", resourceCulture);
             }
@@ -639,7 +693,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You must select a book to edit..
         /// </summary>
-        internal static string Msg_SelectBookForEdit {
+        public static string Msg_SelectBookForEdit {
             get {
                 return ResourceManager.GetString("Msg_SelectBookForEdit", resourceCulture);
             }
@@ -648,7 +702,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Please select a visitor from the table..
         /// </summary>
-        internal static string Msg_SelectVisitor {
+        public static string Msg_SelectVisitor {
             get {
                 return ResourceManager.GetString("Msg_SelectVisitor", resourceCulture);
             }
@@ -657,7 +711,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You must select a visitor to edit..
         /// </summary>
-        internal static string Msg_SelectVisitorForEdit {
+        public static string Msg_SelectVisitorForEdit {
             get {
                 return ResourceManager.GetString("Msg_SelectVisitorForEdit", resourceCulture);
             }
@@ -666,7 +720,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Warning.
         /// </summary>
-        internal static string Msg_WarningTitle {
+        public static string Msg_WarningTitle {
             get {
                 return ResourceManager.GetString("Msg_WarningTitle", resourceCulture);
             }
@@ -675,7 +729,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
-        internal static string Posetilac_Adresa {
+        public static string Posetilac_Adresa {
             get {
                 return ResourceManager.GetString("Posetilac_Adresa", resourceCulture);
             }
@@ -684,7 +738,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Membership card.
         /// </summary>
-        internal static string Posetilac_ClanskaKarta {
+        public static string Posetilac_ClanskaKarta {
             get {
                 return ResourceManager.GetString("Posetilac_ClanskaKarta", resourceCulture);
             }
@@ -693,7 +747,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Year of membership.
         /// </summary>
-        internal static string Posetilac_GodinaClanstva {
+        public static string Posetilac_GodinaClanstva {
             get {
                 return ResourceManager.GetString("Posetilac_GodinaClanstva", resourceCulture);
             }
@@ -702,7 +756,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string Posetilac_Ime {
+        public static string Posetilac_Ime {
             get {
                 return ResourceManager.GetString("Posetilac_Ime", resourceCulture);
             }
@@ -711,7 +765,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Surname.
         /// </summary>
-        internal static string Posetilac_Prezime {
+        public static string Posetilac_Prezime {
             get {
                 return ResourceManager.GetString("Posetilac_Prezime", resourceCulture);
             }
@@ -720,7 +774,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Average grade.
         /// </summary>
-        internal static string Posetilac_ProsecnaOcena {
+        public static string Posetilac_ProsecnaOcena {
             get {
                 return ResourceManager.GetString("Posetilac_ProsecnaOcena", resourceCulture);
             }
@@ -729,7 +783,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
-        internal static string Posetilac_Status {
+        public static string Posetilac_Status {
             get {
                 return ResourceManager.GetString("Posetilac_Status", resourceCulture);
             }
@@ -738,7 +792,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
-        internal static string Search_Placeholder {
+        public static string Search_Placeholder {
             get {
                 return ResourceManager.GetString("Search_Placeholder", resourceCulture);
             }
@@ -747,7 +801,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Book Fair.
         /// </summary>
-        internal static string Status_BookFair {
+        public static string Status_BookFair {
             get {
                 return ResourceManager.GetString("Status_BookFair", resourceCulture);
             }
@@ -756,7 +810,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Page {0} of {1}.
         /// </summary>
-        internal static string Status_PageInfo {
+        public static string Status_PageInfo {
             get {
                 return ResourceManager.GetString("Status_PageInfo", resourceCulture);
             }
@@ -765,7 +819,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Authors.
         /// </summary>
-        internal static string Tab_Autori {
+        public static string Tab_Autori {
             get {
                 return ResourceManager.GetString("Tab_Autori", resourceCulture);
             }
@@ -774,7 +828,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Books.
         /// </summary>
-        internal static string Tab_Knjige {
+        public static string Tab_Knjige {
             get {
                 return ResourceManager.GetString("Tab_Knjige", resourceCulture);
             }
@@ -783,7 +837,7 @@ namespace WpfClient.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Visitors.
         /// </summary>
-        internal static string Tab_Posetioci {
+        public static string Tab_Posetioci {
             get {
                 return ResourceManager.GetString("Tab_Posetioci", resourceCulture);
             }

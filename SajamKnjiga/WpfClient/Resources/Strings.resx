@@ -361,4 +361,22 @@
   <data name="Btn_GridPosetioci" xml:space="preserve">
     <value>Display book authors in the visitor's wish list</value>
   </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="About_AppName" xml:space="preserve">
+    <value>Book Fair</value>
+  </data>
+  <data name="About_Description" xml:space="preserve">
+    <value>Application for managing visitors, authors and books at the book fair. Desktop application intended for fair staff. It enables adding, editing and deleting data, as well as viewing all entered information.</value>
+  </data>
+  <data name="About_Authors" xml:space="preserve">
+    <value>Authors:</value>
+  </data>
+  <data name="About_Authors_Text" xml:space="preserve">
+    <value>The application was developed by Stefan Karać and Milica Stanković, third-year students at the Faculty of Technical Sciences in Novi Sad, Computer Science and Automation.</value>
+  </data>
+  <data name="About_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>
