@@ -504,4 +504,10 @@
   <data name="Msg_DatumKupovina" xml:space="preserve">
     <value>You must enter the purchase date!</value>
   </data>
+  <data name="DodajKnjiguAutoru_Title" xml:space="preserve">
+    <value>Add Book to Author</value>
+  </data>
+  <data name="DodajKnjiguAutoru_Opis" xml:space="preserve">
+    <value>Select the book you want to add to the author:</value>
+  </data>
 </root>

@@ -520,6 +520,24 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the book you want to add to the author:.
+        /// </summary>
+        public static string DodajKnjiguAutoru_Opis {
+            get {
+                return ResourceManager.GetString("DodajKnjiguAutoru_Opis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Book to Author.
+        /// </summary>
+        public static string DodajKnjiguAutoru_Title {
+            get {
+                return ResourceManager.GetString("DodajKnjiguAutoru_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authors.
         /// </summary>
         public static string Knjiga_Autori {
@@ -817,6 +835,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The rating must be a number from 1 to 5!.
+        /// </summary>
+        public static string Messg_Ocena {
+            get {
+                return ResourceManager.GetString("Messg_Ocena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the author?.
         /// </summary>
         public static string Msg_ConfirmDeleteAuthor {
@@ -930,15 +957,6 @@ namespace WpfClient.Resources {
         public static string Msg_NoVisitorsWithAuthorsBooks {
             get {
                 return ResourceManager.GetString("Msg_NoVisitorsWithAuthorsBooks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The rating must be a number from 1 to 5!.
-        /// </summary>
-        public static string Msg_Ocena {
-            get {
-                return ResourceManager.GetString("Msg_Ocena", resourceCulture);
             }
         }
         

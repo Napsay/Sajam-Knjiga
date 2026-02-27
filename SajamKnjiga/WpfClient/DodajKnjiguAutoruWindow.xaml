@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
+        xmlns:res="clr-namespace:WpfClient.Resources"
         mc:Ignorable="d"
-        Title="Dodaj Knjigu" Height="450" Width="800">
+        Title="{x:Static res:Strings.DodajKnjiguAutoru_Title}"
+        Height="450" Width="800">
+
     <Border Padding="15">
         <Grid>
             <Grid.RowDefinitions>
@@ -15,14 +18,14 @@
             </Grid.RowDefinitions>
 
             <TextBlock
-                Text="Изаберите књигу (или више књига) које желите да додате аутору:"
+                Text="{x:Static res:Strings.DodajKnjiguAutoru_Opis}"
                 FontWeight="SemiBold"
                 Margin="0,0,0,10"/>
 
             <ListBox x:Name="lstKnjige"
-         Grid.Row="1"
-         SelectionMode="Extended"
-         SelectionChanged="lstKnjige_SelectionChanged">
+                     Grid.Row="1"
+                     SelectionMode="Extended"
+                     SelectionChanged="lstKnjige_SelectionChanged">
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -32,13 +35,13 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock x:Name="Knjiga_ISBN" Grid.Column="0"
-                           Text="{Binding ISBN}"
-                           FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding ISBN}"
+                                       FontWeight="SemiBold"/>
 
-                            <TextBlock x:Name="Knjiga_Naziv" Grid.Column="1"
-                           Text="{Binding Naziv}"
-                           Margin="10,0,0,0"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Naziv}"
+                                       Margin="10,0,0,0"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -49,13 +52,13 @@
                         HorizontalAlignment="Right"
                         Margin="0,15,0,0">
 
-                <Button Content="Одустани"
+                <Button Content="{x:Static res:Strings.Btn_Cancel}"
                         Width="110"
                         Margin="5"
                         Click="BtnOdustani_Click"/>
 
                 <Button x:Name="btnPotvrdi"
-                        Content="Потврди"
+                        Content="{x:Static res:Strings.Btn_Confirm}"
                         Width="110"
                         Margin="5"
                         IsEnabled="False"
