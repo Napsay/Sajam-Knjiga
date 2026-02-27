@@ -11,7 +11,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WpfClient.Resources;
 using System.Windows.Shapes;
+using Core;
+using Core.Utils;
 
 namespace WpfClient
 {
@@ -41,8 +44,8 @@ namespace WpfClient
             if (cmbPrvaKnjiga.SelectedItem == null || cmbDrugaKnjiga.SelectedItem == null)
             {
                 MessageBox.Show(
-                    "Morate izabrati obe knjige.",
-                    "Upozorenje",
+                    LocalizationManager.GetString("Msg_SelectBook"),
+                    LocalizationManager.GetString("Msg_WarningTitle"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
                 return;
@@ -54,8 +57,8 @@ namespace WpfClient
             if (prvaKnjiga.ISBN == drugaKnjiga.ISBN)
             {
                 MessageBox.Show(
-                    "Morate izabrati dve različite knjige.",
-                    "Upozorenje",
+                    LocalizationManager.GetString("Msg_SelectDifferentBooks"),
+                   LocalizationManager.GetString("Msg_WarningTitle"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
                 return;

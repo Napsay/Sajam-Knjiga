@@ -409,4 +409,22 @@
   <data name="Analitika_Pretrazi" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="AnalitikaIzdavaci_Title" xml:space="preserve">
+    <value>AnalitikaIzdavaci_Title</value>
+  </data>
+  <data name="AnalitikaIzdavaci_Svi" xml:space="preserve">
+    <value>AnalitikaIzdavaci_Svi</value>
+  </data>
+  <data name="AnalitikaIzdavaci_PrkaziKnjige" xml:space="preserve">
+    <value>Show publisher books</value>
+  </data>
+  <data name="AnalitikaIzdavaci_PrkaziAutore" xml:space="preserve">
+    <value>Show publisher authors</value>
+  </data>
+  <data name="Kolona_Sifra" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Kolona_Naziv" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

@@ -169,6 +169,42 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show publisher authors.
+        /// </summary>
+        public static string AnalitikaIzdavaci_PrkaziAutore {
+            get {
+                return ResourceManager.GetString("AnalitikaIzdavaci_PrkaziAutore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show publisher books.
+        /// </summary>
+        public static string AnalitikaIzdavaci_PrkaziKnjige {
+            get {
+                return ResourceManager.GetString("AnalitikaIzdavaci_PrkaziKnjige", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AnalitikaIzdavaci_Svi.
+        /// </summary>
+        public static string AnalitikaIzdavaci_Svi {
+            get {
+                return ResourceManager.GetString("AnalitikaIzdavaci_Svi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AnalitikaIzdavaci_Title.
+        /// </summary>
+        public static string AnalitikaIzdavaci_Title {
+            get {
+                return ResourceManager.GetString("AnalitikaIzdavaci_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Autor_Adresa {
@@ -426,6 +462,24 @@ namespace WpfClient.Resources {
         public static string Kolona_IDAutora {
             get {
                 return ResourceManager.GetString("Kolona_IDAutora", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Kolona_Naziv {
+            get {
+                return ResourceManager.GetString("Kolona_Naziv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string Kolona_Sifra {
+            get {
+                return ResourceManager.GetString("Kolona_Sifra", resourceCulture);
             }
         }
         
