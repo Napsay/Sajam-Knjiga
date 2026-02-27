@@ -537,4 +537,22 @@
   <data name="DodajKnjigu_Autori" xml:space="preserve">
     <value>Autori</value>
   </data>
+  <data name="DodajPosetiocaWindow_Title" xml:space="preserve">
+    <value>Dodavanje posetioca</value>
+  </data>
+  <data name="Posetilac_BrClanskeKarte" xml:space="preserve">
+    <value>Broj clanske karte</value>
+  </data>
+  <data name="Adresa_Drzava" xml:space="preserve">
+    <value>Drzava</value>
+  </data>
+  <data name="Status_Redovan" xml:space="preserve">
+    <value>Redovan</value>
+  </data>
+  <data name="Status_VIP" xml:space="preserve">
+    <value>VIP</value>
+  </data>
+  <data name="Posetilac_Status_Label" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

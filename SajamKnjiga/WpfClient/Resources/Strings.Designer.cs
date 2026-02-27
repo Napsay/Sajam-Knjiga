@@ -124,6 +124,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Adresa_Drzava {
+            get {
+                return ResourceManager.GetString("Adresa_Drzava", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string Adresa_Grad {
@@ -615,6 +624,15 @@ namespace WpfClient.Resources {
         public static string DodajKnjiguWindow_Title {
             get {
                 return ResourceManager.GetString("DodajKnjiguWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Visitor.
+        /// </summary>
+        public static string DodajPosetiocaWindow_Title {
+            get {
+                return ResourceManager.GetString("DodajPosetiocaWindow_Title", resourceCulture);
             }
         }
         
@@ -1150,6 +1168,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Membership card number.
+        /// </summary>
+        public static string Posetilac_BrClanskeKarte {
+            get {
+                return ResourceManager.GetString("Posetilac_BrClanskeKarte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Membership card.
         /// </summary>
         public static string Posetilac_ClanskaKarta {
@@ -1200,6 +1227,15 @@ namespace WpfClient.Resources {
         public static string Posetilac_Status {
             get {
                 return ResourceManager.GetString("Posetilac_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Posetilac_Status_Label {
+            get {
+                return ResourceManager.GetString("Posetilac_Status_Label", resourceCulture);
             }
         }
         
@@ -1290,6 +1326,24 @@ namespace WpfClient.Resources {
         public static string Status_PageInfo {
             get {
                 return ResourceManager.GetString("Status_PageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular.
+        /// </summary>
+        public static string Status_Redovan {
+            get {
+                return ResourceManager.GetString("Status_Redovan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIP.
+        /// </summary>
+        public static string Status_VIP {
+            get {
+                return ResourceManager.GetString("Status_VIP", resourceCulture);
             }
         }
         
