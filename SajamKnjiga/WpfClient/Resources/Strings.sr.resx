@@ -435,4 +435,13 @@
   <data name="AutoriListaZelja_Close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="DodajAutoraKnjizi_Title" xml:space="preserve">
+    <value>Izaberi autora</value>
+  </data>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Odustani</value>
+  </data>
+  <data name="Btn_Confirm" xml:space="preserve">
+    <value>Potvrdi</value>
+  </data>
 </root>

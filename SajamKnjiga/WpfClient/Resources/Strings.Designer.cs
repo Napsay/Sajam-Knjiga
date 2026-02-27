@@ -304,6 +304,24 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Btn_Cancel {
+            get {
+                return ResourceManager.GetString("Btn_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Btn_Confirm {
+            get {
+                return ResourceManager.GetString("Btn_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 🗑️.
         /// </summary>
         public static string Btn_Delete {
@@ -408,6 +426,15 @@ namespace WpfClient.Resources {
         public static string btnLastPagePosetioci {
             get {
                 return ResourceManager.GetString("btnLastPagePosetioci", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Author.
+        /// </summary>
+        public static string DodajAutoraKnjizi_Title {
+            get {
+                return ResourceManager.GetString("DodajAutoraKnjizi_Title", resourceCulture);
             }
         }
         

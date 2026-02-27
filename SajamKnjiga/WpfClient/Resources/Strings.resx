@@ -436,4 +436,13 @@
   <data name="AutoriListaZelja_Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="DodajAutoraKnjizi_Title" xml:space="preserve">
+    <value>Select Author</value>
+  </data>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Btn_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>
