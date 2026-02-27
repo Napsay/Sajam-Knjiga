@@ -115,6 +115,42 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string Adresa_Broj {
+            get {
+                return ResourceManager.GetString("Adresa_Broj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string Adresa_Grad {
+            get {
+                return ResourceManager.GetString("Adresa_Grad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Adresa_Naslov {
+            get {
+                return ResourceManager.GetString("Adresa_Naslov", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        public static string Adresa_Ulica {
+            get {
+                return ResourceManager.GetString("Adresa_Ulica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Second Book.
         /// </summary>
         public static string Analitika_DrugaKnjiga {
@@ -214,6 +250,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ID card number.
+        /// </summary>
+        public static string Autor_BrLicne {
+            get {
+                return ResourceManager.GetString("Autor_BrLicne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date of birth.
         /// </summary>
         public static string Autor_DatumRodjenja {
@@ -246,6 +291,15 @@ namespace WpfClient.Resources {
         public static string Autor_Ime {
             get {
                 return ResourceManager.GetString("Autor_Ime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact phone.
+        /// </summary>
+        public static string Autor_KontaktTelefon {
+            get {
+                return ResourceManager.GetString("Autor_KontaktTelefon", resourceCulture);
             }
         }
         
@@ -426,6 +480,15 @@ namespace WpfClient.Resources {
         public static string btnLastPagePosetioci {
             get {
                 return ResourceManager.GetString("btnLastPagePosetioci", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Author.
+        /// </summary>
+        public static string DodajAutora_Title {
+            get {
+                return ResourceManager.GetString("DodajAutora_Title", resourceCulture);
             }
         }
         

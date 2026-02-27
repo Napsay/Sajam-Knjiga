@@ -1,7 +1,8 @@
 ﻿<Window x:Class="WpfClient.DodajAutoraWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Dodavanje autora"
+        xmlns:res="clr-namespace:WpfClient.Resources"
+        Title="{x:Static res:Strings.DodajAutora_Title}"
         Height="450" Width="450"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
@@ -28,65 +29,77 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Ime *" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Autor_Ime}" 
+                       Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtIme" Grid.Row="0" Grid.Column="1" Margin="5"/>
 
-            <!-- Prezime -->
-            <TextBlock Text="Prezime *" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Autor_Prezime}" 
+                       Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtPrezime" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
-            <!-- Datum rođenja -->
-            <TextBlock Text="Datum rođenja *" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Autor_DatumRodjenja}" 
+                       Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
             <DatePicker x:Name="dpDatumRodjenja" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-            <!-- Telefon -->
-            <TextBlock Text="Kontakt telefon *" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Autor_KontaktTelefon}" 
+                       Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtTelefon" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
-            <!-- Email -->
-            <TextBlock Text="Email *" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Autor_Email}" 
+                       Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtEmail" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
-            <!-- Broj lične karte -->
-            <TextBlock Text="Broj lične karte *" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Autor_BrLicne}" 
+                       Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtBrLicne" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
-            <!-- Godine iskustva -->
-            <TextBlock Text="Godine iskustva *" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Autor_GodIskustva}" 
+                       Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtGodineIskustva" Grid.Row="6" Grid.Column="1" Margin="5"/>
 
-            <!-- Adresa naslov -->
-            <TextBlock Text="Adresa *"
+            
+            <TextBlock Text="{x:Static res:Strings.Adresa_Naslov}"
                        FontWeight="Bold"
                        Grid.Row="7"
                        Grid.ColumnSpan="2"
                        Margin="0,20,0,5"/>
 
-            <!-- Ulica -->
-            <TextBlock Text="Ulica" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Adresa_Ulica}" 
+                       Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtUlica" Grid.Row="8" Grid.Column="1" Margin="5"/>
 
-            <!-- Broj -->
-            <TextBlock Text="Broj" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Adresa_Broj}" 
+                       Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtBroj" Grid.Row="9" Grid.Column="1" Margin="5"/>
 
-            <!-- Grad -->
-            <TextBlock Text="Grad" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
+            
+            <TextBlock Text="{x:Static res:Strings.Adresa_Grad}" 
+                       Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox x:Name="txtGrad" Grid.Row="10" Grid.Column="1" Margin="5"/>
 
-            <!-- Dugmad -->
+            
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Grid.Row="10"
-                        Margin="0,68,0,-43" Grid.Column="1">
+                        Margin="0,68,0,-43"
+                        Grid.Column="1">
 
-                <Button Content="Odustani"
+                <Button Content="{x:Static res:Strings.Btn_Cancel}"
                         Width="100"
                         Margin="5"
                         Click="BtnOdustani_Click"/>
 
                 <Button x:Name="btnPotvrdi"
-                        Content="Potvrdi"
+                        Content="{x:Static res:Strings.Btn_Confirm}"
                         Width="100"
                         Margin="5"
                         Background="#2196F3"

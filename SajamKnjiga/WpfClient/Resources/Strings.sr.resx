@@ -444,4 +444,25 @@
   <data name="Btn_Confirm" xml:space="preserve">
     <value>Potvrdi</value>
   </data>
+  <data name="DodajAutora_Title" xml:space="preserve">
+    <value>Dodavanje Autora</value>
+  </data>
+  <data name="Autor_BrLicne" xml:space="preserve">
+    <value>Broj lične karte</value>
+  </data>
+  <data name="Autor_KontaktTelefon" xml:space="preserve">
+    <value>Kontakt telefon</value>
+  </data>
+  <data name="Adresa_Naslov" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="Adresa_Ulica" xml:space="preserve">
+    <value>Ulica</value>
+  </data>
+  <data name="Adresa_Broj" xml:space="preserve">
+    <value>Broj</value>
+  </data>
+  <data name="Adresa_Grad" xml:space="preserve">
+    <value>Grad</value>
+  </data>
 </root>
