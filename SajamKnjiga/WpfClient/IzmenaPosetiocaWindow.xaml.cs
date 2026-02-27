@@ -4,6 +4,7 @@ using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using WpfClient.Resources; // LOKALIZACIJA
@@ -24,6 +25,20 @@ namespace WpfClient
             AdresaDao adresaDao = new AdresaDao();
             IzdavacDao izdavacDao = new IzdavacDao(adresaDao);
             _sveKnjige = sveKnjige;
+            btnPotvrdi.IsEnabled = false;
+
+            txtIme.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtPrezime.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtTelefon.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtEmail.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtUlica.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtBroj.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtGrad.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            txtDrzava.TextChanged += (s, e) => AzurirajDugmePotvrdi();
+            dpDatumRodjenja.SelectedDateChanged += (s, e) => AzurirajDugmePotvrdi();
+            cmbStatus.SelectionChanged += (s, e) => AzurirajDugmePotvrdi();
+
+            AzurirajDugmePotvrdi();
             UcitajKupovine();
             UcitajPodatke();
             UcitajListuZelja();
@@ -292,6 +307,88 @@ namespace WpfClient
                 dgListaZelja.ItemsSource = null;
                 dgListaZelja.ItemsSource = _posetilac.ListaZelja;
             }
+        }
+
+        private bool SadrziBroj(string tekst)
+        {
+            return Regex.IsMatch(tekst, @"\d");
+        }
+
+        private bool ValidanEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool ValidirajFormu()
+        {
+            // Obavezna polja
+            if (string.IsNullOrWhiteSpace(txtIme.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtPrezime.Text))
+                return false;
+
+            if (dpDatumRodjenja.SelectedDate == null)
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtTelefon.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtUlica.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtBroj.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtGrad.Text))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(txtDrzava.Text))
+                return false;
+
+            // Ime i prezime ne smeju da sadrže brojeve
+            if (SadrziBroj(txtIme.Text))
+                return false;
+
+            if (SadrziBroj(txtPrezime.Text))
+                return false;
+
+            // Grad i država ne smeju imati brojeve
+            if (SadrziBroj(txtGrad.Text))
+                return false;
+
+            if (SadrziBroj(txtDrzava.Text))
+                return false;
+
+            // Broj kuće mora biti broj
+            if (!int.TryParse(txtBroj.Text, out _))
+                return false;
+
+            // Email format
+            if (!ValidanEmail(txtEmail.Text))
+                return false;
+
+            return true;
+        }
+
+        private void AzurirajDugmePotvrdi()
+        {
+            if (btnPotvrdi != null)
+                btnPotvrdi.IsEnabled = ValidirajFormu();
         }
     }
 }
