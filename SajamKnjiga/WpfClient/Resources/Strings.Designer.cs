@@ -475,6 +475,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show details.
+        /// </summary>
+        public static string Btn_ShowDetails {
+            get {
+                return ResourceManager.GetString("Btn_ShowDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string Btn_Yes {
@@ -718,11 +727,38 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of authors.
+        /// </summary>
+        public static string Izdavac_BrojAutora {
+            get {
+                return ResourceManager.GetString("Izdavac_BrojAutora", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of books.
+        /// </summary>
+        public static string Izdavac_BrojKnjiga {
+            get {
+                return ResourceManager.GetString("Izdavac_BrojKnjiga", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No chief.
         /// </summary>
         public static string Izdavac_NoChief {
             get {
                 return ResourceManager.GetString("Izdavac_NoChief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chief.
+        /// </summary>
+        public static string Izdavac_Sef {
+            get {
+                return ResourceManager.GetString("Izdavac_Sef", resourceCulture);
             }
         }
         
@@ -750,6 +786,15 @@ namespace WpfClient.Resources {
         public static string IzdavacDetaljiWindow_Title {
             get {
                 return ResourceManager.GetString("IzdavacDetaljiWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All publishers.
+        /// </summary>
+        public static string IzdavaciWindow_Title {
+            get {
+                return ResourceManager.GetString("IzdavaciWindow_Title", resourceCulture);
             }
         }
         
@@ -1290,6 +1335,15 @@ namespace WpfClient.Resources {
         public static string Msg_SelectDifferentBooks {
             get {
                 return ResourceManager.GetString("Msg_SelectDifferentBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a publisher first..
+        /// </summary>
+        public static string Msg_SelectPublisherFirst {
+            get {
+                return ResourceManager.GetString("Msg_SelectPublisherFirst", resourceCulture);
             }
         }
         

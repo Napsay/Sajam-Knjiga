@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
+        xmlns:res="clr-namespace:WpfClient.Resources"
         mc:Ignorable="d"
-        Title="Svi izdavaci" Height="450" Width="800">
+        Title="{x:Static res:Strings.IzdavaciWindow_Title}"
+        Height="450" Width="800">
+
     <Grid Margin="5">
         <DataGrid x:Name="dgIzdavaci"
                   AutoGenerateColumns="False"
@@ -26,25 +29,36 @@
             </DataGrid.ColumnHeaderStyle>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Sifra}" Width="60"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="200"/>
-                <DataGridTextColumn Header="Šef" Binding="{Binding SefPunoIme}"  Width="120"/>
-                <DataGridTextColumn Header="Broj autora" Binding="{Binding SpisakAutora.Count}" Width="100"/>
-                <DataGridTextColumn Header="Broj knjiga" Binding="{Binding SpisakKnjiga.Count}" Width="100"/>
+                <DataGridTextColumn Header="{x:Static res:Strings.Kolona_Sifra}"
+                                    Binding="{Binding Sifra}" Width="60"/>
+
+                <DataGridTextColumn Header="{x:Static res:Strings.Kolona_Naziv}"
+                                    Binding="{Binding Naziv}" Width="200"/>
+
+                <DataGridTextColumn Header="{x:Static res:Strings.Izdavac_Sef}"
+                                    Binding="{Binding SefPunoIme}" Width="120"/>
+
+                <DataGridTextColumn Header="{x:Static res:Strings.Izdavac_BrojAutora}"
+                                    Binding="{Binding SpisakAutora.Count}" Width="120"/>
+
+                <DataGridTextColumn Header="{x:Static res:Strings.Izdavac_BrojKnjiga}"
+                                    Binding="{Binding SpisakKnjiga.Count}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel Orientation="Horizontal"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Margin="0,0,0,0">
-            <Button Content="Prikaži detalje"
-            Width="120"
-            Margin="0,0,10,0"
-            Click="BtnDetalji_Click"/>
-            <Button Content="Zatvori"
-            Width="80"
-            Click="BtnZatvori_Click"/>
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,0">
+
+            <Button Content="{x:Static res:Strings.Btn_ShowDetails}"
+                    Width="120"
+                    Margin="0,0,10,0"
+                    Click="BtnDetalji_Click"/>
+
+            <Button Content="{x:Static res:Strings.About_Close}"
+                    Width="80"
+                    Click="BtnZatvori_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,24 +1,10 @@
 ﻿using Core.DAO;
 using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfClient.Resources; 
 
 namespace WpfClient
 {
-    /// <summary>
-    /// Interaction logic for IzdavaciWindow.xaml
-    /// </summary>
     public partial class IzdavaciWindow : Window
     {
         private IzdavacDao _izdavacDao;
@@ -47,8 +33,8 @@ namespace WpfClient
             if (selected == null)
             {
                 MessageBox.Show(
-                   "Molimo prvo izaberite izdavaca.",
-                   "Upozorenje",
+                   Strings.Msg_SelectPublisherFirst,
+                   Strings.Msg_WarningTitle,
                    MessageBoxButton.OK,
                    MessageBoxImage.Warning);
                 return;

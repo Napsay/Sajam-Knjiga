@@ -609,4 +609,22 @@
   <data name="Izdavac_NoChief" xml:space="preserve">
     <value>Nema šefa</value>
   </data>
+  <data name="IzdavaciWindow_Title" xml:space="preserve">
+    <value>Svi izdavači</value>
+  </data>
+  <data name="Izdavac_Sef" xml:space="preserve">
+    <value>Sef</value>
+  </data>
+  <data name="Izdavac_BrojAutora" xml:space="preserve">
+    <value>Broj autora</value>
+  </data>
+  <data name="Izdavac_BrojKnjiga" xml:space="preserve">
+    <value>Broj knjiga</value>
+  </data>
+  <data name="Btn_ShowDetails" xml:space="preserve">
+    <value>Prikazi detalje</value>
+  </data>
+  <data name="Msg_SelectPublisherFirst" xml:space="preserve">
+    <value>Molimo prvo izaberite izdavača.</value>
+  </data>
 </root>
