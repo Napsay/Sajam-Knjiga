@@ -1,35 +1,25 @@
 ﻿using Core.DAO;
 using Core.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfClient.Resources; 
 
 namespace WpfClient
 {
-    /// <summary>
-    /// Interaction logic for IzmenaAutoraWindow.xaml
-    /// </summary>
     public partial class IzmenaAutoraWindow : Window
     {
         private Autor _autor;
-        private ObservableCollection<Knjiga> _knjigeObservable; 
+        private ObservableCollection<Knjiga> _knjigeObservable;
+
         public IzmenaAutoraWindow(Autor autor)
         {
             InitializeComponent();
             _autor = autor;
             UcitajPodatke();
         }
+
         private void UcitajPodatke()
         {
             txtIme.Text = _autor.Ime;
@@ -47,6 +37,7 @@ namespace WpfClient
                 txtGrad.Text = _autor.Adresa.Grad;
                 txtDrzava.Text = _autor.Adresa.Drzava;
             }
+
             var autorKnjigaDao = new AutorKnjigaDao();
             var isbnovi = autorKnjigaDao.GetKnjigeZaAutora(_autor.AutorID);
 
@@ -92,18 +83,17 @@ namespace WpfClient
             }
             catch
             {
-                MessageBox.Show("Greška pri izmeni autora!");
+                MessageBox.Show(
+                    Strings.Msg_EditAuthorError,
+                    Strings.Msg_ErrorTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
         private void BtnOdustani_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void txtGrad_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void BtnDodajKnjigu_Click(object sender, RoutedEventArgs e)
@@ -114,14 +104,17 @@ namespace WpfClient
             var autorISBN = autorKnjigaDao
                 .GetKnjigeZaAutora(_autor.AutorID);
 
-            // све књиге које НЕ припадају аутору
             var dostupneKnjige = knjigaDao.getAllKnjige()
                 .Where(k => !autorISBN.Contains(k.ISBN))
                 .ToList();
 
             if (!dostupneKnjige.Any())
             {
-                MessageBox.Show("Аутор већ има све књиге.");
+                MessageBox.Show(
+                    Strings.Msg_AuthorHasAllBooks,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
                 return;
             }
 
@@ -132,7 +125,7 @@ namespace WpfClient
                 foreach (var k in dlg.IzabraneKnjige)
                 {
                     autorKnjigaDao.AddVeza(_autor.AutorID, k.ISBN);
-                    _knjigeObservable.Add(k); // моментално освежава DataGrid
+                    _knjigeObservable.Add(k);
                 }
             }
         }
@@ -142,16 +135,16 @@ namespace WpfClient
             if (dgKnjige.SelectedItems.Count == 0)
             {
                 MessageBox.Show(
-                  "Molimo izaberite barem jednu knjigu iz tabele.",
-                  "Upozorenje",
-                  MessageBoxButton.OK,
-                  MessageBoxImage.Warning);
+                    Strings.Msg_SelectAtLeastOneBook,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
             var potvrda = new PotvrdaBrisanjaWindow(
-                "Да ли сте сигурни да желите да уклоните означену књигу?",
-                "Потврда брисања");
+                Strings.Msg_RemoveBookConfirm,
+                Strings.Msg_DeleteConfirmationTitle);
 
             potvrda.Owner = this;
             potvrda.WindowStartupLocation = WindowStartupLocation.CenterOwner;

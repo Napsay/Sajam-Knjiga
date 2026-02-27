@@ -259,6 +259,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Autor_Adresa_Label {
+            get {
+                return ResourceManager.GetString("Autor_Adresa_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID card number.
         /// </summary>
         public static string Autor_BrLicne {
@@ -453,6 +462,15 @@ namespace WpfClient.Resources {
         public static string Btn_Prkazi {
             get {
                 return ResourceManager.GetString("Btn_Prkazi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove book.
+        /// </summary>
+        public static string Btn_RemoveBook {
+            get {
+                return ResourceManager.GetString("Btn_RemoveBook", resourceCulture);
             }
         }
         
@@ -799,6 +817,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Author.
+        /// </summary>
+        public static string IzmenaAutoraWindow_Title {
+            get {
+                return ResourceManager.GetString("IzmenaAutoraWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authors.
         /// </summary>
         public static string Knjiga_Autori {
@@ -1105,6 +1132,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author already has all books..
+        /// </summary>
+        public static string Msg_AuthorHasAllBooks {
+            get {
+                return ResourceManager.GetString("Msg_AuthorHasAllBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chief must have at least 5 years of experience..
         /// </summary>
         public static string Msg_ChiefMinExperience {
@@ -1204,11 +1240,29 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete confirmation.
+        /// </summary>
+        public static string Msg_DeleteConfirmationTitle {
+            get {
+                return ResourceManager.GetString("Msg_DeleteConfirmationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Visitor.
         /// </summary>
         public static string Msg_DeleteVisitorTitle {
             get {
                 return ResourceManager.GetString("Msg_DeleteVisitorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while editing the author!.
+        /// </summary>
+        public static string Msg_EditAuthorError {
+            get {
+                return ResourceManager.GetString("Msg_EditAuthorError", resourceCulture);
             }
         }
         
@@ -1267,11 +1321,29 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Are you sure you want to remove the selected book?.
+        /// </summary>
+        public static string Msg_RemoveBookConfirm {
+            get {
+                return ResourceManager.GetString("Msg_RemoveBookConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Msg_SaveTitle {
             get {
                 return ResourceManager.GetString("Msg_SaveTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Please select at least one book from the table.
+        /// </summary>
+        public static string Msg_SelectAtLeastOneBook {
+            get {
+                return ResourceManager.GetString("Msg_SelectAtLeastOneBook", resourceCulture);
             }
         }
         
@@ -1569,6 +1641,15 @@ namespace WpfClient.Resources {
         public static string Tab_Autori {
             get {
                 return ResourceManager.GetString("Tab_Autori", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string Tab_Informacije {
+            get {
+                return ResourceManager.GetString("Tab_Informacije", resourceCulture);
             }
         }
         

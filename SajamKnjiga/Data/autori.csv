@@ -1,6 +1,6 @@
 1|Ivo|Andrić|1892-10-09|11|0612345678|100000001|50|ivo.andric@example.com
 2|Miloš|Crnjanski|1893-10-26|12|0623456789|100000002|45|milos.crnjanski@example.com
-3|Meša|Selimović|1910-04-26|13|0634567890|100000003|40|mesa.selimovic@example.com
+3|Meša|Selimović|1910-04-26|13|0634567890||40|mesa.selimovic@example.com
 4|Danilo|Kiš|1935-02-22|14|0645678901|100000004|35|danilo.kis@example.com
 5|Branko|Ćopić|1915-01-01|15|0656789012|100000005|42|branko.copic@example.com
 6|Borislav|Pekić|1930-02-04|16|0667890123|100000006|38|borislav.pekic@example.com

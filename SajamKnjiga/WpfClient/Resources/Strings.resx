@@ -627,4 +627,31 @@
   <data name="Msg_SelectPublisherFirst" xml:space="preserve">
     <value>Please select a publisher first.</value>
   </data>
+  <data name="IzmenaAutoraWindow_Title" xml:space="preserve">
+    <value>Edit Author</value>
+  </data>
+  <data name="Tab_Informacije" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Autor_Adresa_Label" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Btn_RemoveBook" xml:space="preserve">
+    <value>Remove book</value>
+  </data>
+  <data name="Msg_EditAuthorError" xml:space="preserve">
+    <value>Error while editing the author!</value>
+  </data>
+  <data name="Msg_AuthorHasAllBooks" xml:space="preserve">
+    <value>Author already has all books.</value>
+  </data>
+  <data name="Msg_SelectAtLeastOneBook" xml:space="preserve">
+    <value> Please select at least one book from the table</value>
+  </data>
+  <data name="Msg_RemoveBookConfirm" xml:space="preserve">
+    <value> Are you sure you want to remove the selected book?</value>
+  </data>
+  <data name="Msg_DeleteConfirmationTitle" xml:space="preserve">
+    <value>Delete confirmation</value>
+  </data>
 </root>

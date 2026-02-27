@@ -627,4 +627,31 @@
   <data name="Msg_SelectPublisherFirst" xml:space="preserve">
     <value>Molimo prvo izaberite izdavača.</value>
   </data>
+  <data name="IzmenaAutoraWindow_Title" xml:space="preserve">
+    <value>Izmena Autora</value>
+  </data>
+  <data name="Tab_Informacije" xml:space="preserve">
+    <value>Informacije</value>
+  </data>
+  <data name="Autor_Adresa_Label" xml:space="preserve">
+    <value>Adrese</value>
+  </data>
+  <data name="Btn_RemoveBook" xml:space="preserve">
+    <value>Ukloni knjigu</value>
+  </data>
+  <data name="Msg_EditAuthorError" xml:space="preserve">
+    <value>Greška pri izmeni autora!</value>
+  </data>
+  <data name="Msg_AuthorHasAllBooks" xml:space="preserve">
+    <value>Autor vec ima sve knjige.</value>
+  </data>
+  <data name="Msg_SelectAtLeastOneBook" xml:space="preserve">
+    <value>Molimo izaberite barem jednu knjigu iz tabele.</value>
+  </data>
+  <data name="Msg_RemoveBookConfirm" xml:space="preserve">
+    <value>Da li ste sigurni da želite da uklonite označenu knjigu?</value>
+  </data>
+  <data name="Msg_DeleteConfirmationTitle" xml:space="preserve">
+    <value>Potvrda brisanja</value>
+  </data>
 </root>
