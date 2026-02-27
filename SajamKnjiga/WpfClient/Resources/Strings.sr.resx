@@ -654,4 +654,58 @@
   <data name="Msg_DeleteConfirmationTitle" xml:space="preserve">
     <value>Potvrda brisanja</value>
   </data>
+  <data name="IzmenaPosetiocaWindow_Title" xml:space="preserve">
+    <value>Izmena posetioca</value>
+  </data>
+  <data name="Tab_Kupljene" xml:space="preserve">
+    <value> Kupljene</value>
+  </data>
+  <data name="Tab_Zelje" xml:space="preserve">
+    <value>Zelje</value>
+  </data>
+  <data name="Btn_CancelPurchase" xml:space="preserve">
+    <value>Ponisti kupovinu</value>
+  </data>
+  <data name="Btn_DeleteItem" xml:space="preserve">
+    <value>Obrisi</value>
+  </data>
+  <data name="Btn_Purchase" xml:space="preserve">
+    <value>Kupovina</value>
+  </data>
+  <data name="Kupovina_Datum_Label" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Stat_ProsecnaOcena" xml:space="preserve">
+    <value>Prosecna ocena: {0}</value>
+  </data>
+  <data name="Stat_UkupnaPotrosnja" xml:space="preserve">
+    <value> Potrošeno: {0} RSD</value>
+  </data>
+  <data name="Msg_EditVisitorError" xml:space="preserve">
+    <value>Greška pri izmeni podataka!</value>
+  </data>
+  <data name="Msg_SelectPurchasedBook" xml:space="preserve">
+    <value>Morate označiti knjigu iz tabele kupljenih knjiga.</value>
+  </data>
+  <data name="Msg_ConfirmCancelPurchase" xml:space="preserve">
+    <value> Da li ste sigurni da želite da poništite kupovinu?</value>
+  </data>
+  <data name="Msg_CancelPurchaseTitle" xml:space="preserve">
+    <value>Ponisti kupovinu</value>
+  </data>
+  <data name="Msg_SelectWishlistBook" xml:space="preserve">
+    <value>Morate označiti knjigu iz liste želja.</value>
+  </data>
+  <data name="Msg_RemoveWishlistBookConfirm" xml:space="preserve">
+    <value>Da li ste sigurni da želite da uklonite knjigu iz liste želja?</value>
+  </data>
+  <data name="Msg_RemoveWishlistBookTitle" xml:space="preserve">
+    <value>Uklanjanje knjige</value>
+  </data>
+  <data name="Stat_ProsecnaOcenaZero" xml:space="preserve">
+    <value>Prosečna ocena: 0</value>
+  </data>
+  <data name="Stat_UkupnaPotrosnjaZero" xml:space="preserve">
+    <value>Potrošeno: 0 RSD</value>
+  </data>
 </root>

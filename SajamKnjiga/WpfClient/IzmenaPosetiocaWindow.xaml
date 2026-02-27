@@ -1,23 +1,22 @@
 ﻿<Window x:Class="WpfClient.IzmenaPosetiocaWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Izmena posetioca"
+        xmlns:res="clr-namespace:WpfClient.Resources"
+        Title="{x:Static res:Strings.IzmenaPosetiocaWindow_Title}"
         Height="560" Width="500"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
 
     <Border Padding="15">
         <Grid>
-
             <TabControl>
 
-                <TabItem Header="Informacije">
+                
+                <TabItem Header="{x:Static res:Strings.Tab_Informacije}">
                     <Grid Margin="10">
-
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -37,60 +36,61 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-
-                        <TextBlock Text="Broj članske karte *" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Posetilac_BrClanskeKarte}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtBrClanskeKarte" Grid.Row="0" Grid.Column="1" Margin="5" IsReadOnly="True"/>
 
-                        <TextBlock Text="Ime *" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Posetilac_Ime}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtIme" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Prezime *" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Posetilac_Prezime}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtPrezime" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Datum rođenja *" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Autor_DatumRodjenja}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
                         <DatePicker x:Name="dpDatumRodjenja" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Kontakt telefon *" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Autor_KontaktTelefon}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtTelefon" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Email *" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Autor_Email}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtEmail" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Status *" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Posetilac_Status_Label}" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
                         <ComboBox x:Name="cmbStatus" Grid.Row="6" Grid.Column="1" Margin="5">
-                            <ComboBoxItem Content="Redovan"/>
-                            <ComboBoxItem Content="VIP"/>
+                            <ComboBoxItem Content="{x:Static res:Strings.Status_Redovan}"/>
+                            <ComboBoxItem Content="{x:Static res:Strings.Status_VIP}"/>
                         </ComboBox>
-                        <TextBlock Text="Adresa *"
+
+                        <TextBlock Text="{x:Static res:Strings.Posetilac_Adresa}"
                                    FontWeight="Bold"
                                    Grid.Row="7"
                                    Grid.ColumnSpan="2"
                                    Margin="0,15,0,5"/>
 
-                        <TextBlock Text="Ulica" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Adresa_Ulica}" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtUlica" Grid.Row="8" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Broj" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Adresa_Broj}" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtBroj" Grid.Row="9" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Grad" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Adresa_Grad}" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtGrad" Grid.Row="10" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Država" Grid.Row="11" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static res:Strings.Adresa_Drzava}" Grid.Row="11" Grid.Column="0" VerticalAlignment="Center"/>
                         <TextBox x:Name="txtDrzava" Grid.Row="11" Grid.Column="1" Margin="5"/>
+
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right"
                                     Grid.Row="12"
                                     Grid.ColumnSpan="2"
                                     Margin="0,20,0,0">
 
-                            <Button Content="Odustani"
+                            <Button Content="{x:Static res:Strings.Btn_Cancel}"
                                     Width="100"
                                     Margin="5"
                                     Click="BtnOdustani_Click"/>
 
                             <Button x:Name="btnPotvrdi"
-                                    Content="Potvrdi"
+                                    Content="{x:Static res:Strings.Btn_Confirm}"
                                     Width="100"
                                     Margin="5"
                                     Background="#2196F3"
@@ -101,117 +101,95 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Kupljene">
+                
+                <TabItem Header="{x:Static res:Strings.Tab_Kupljene}">
                     <Grid Margin="10">
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                             <RowDefinition Height="Auto"/>
-
                         </Grid.RowDefinitions>
 
-                        <Button Content="Poništi kupovinu"
-                Width="150"
-                Margin="0,0,0,10"
-                HorizontalAlignment="Left"
-                Click="BtnPonistiKupovinu_Click"/>
+                        <Button Content="{x:Static res:Strings.Btn_CancelPurchase}"
+                                Width="150"
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Left"
+                                Click="BtnPonistiKupovinu_Click"/>
 
                         <DataGrid x:Name="dgKupljeneKnjige"
-                  Grid.Row="1"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectionMode="Single"
-                  Margin="0,5,0,5">
+                                  Grid.Row="1"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  Margin="0,5,0,5">
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ISBN" Binding="{Binding Knjiga.ISBN}" Width="*"/>
-                                <DataGridTextColumn Header="Naziv" Binding="{Binding Knjiga.Naziv}" Width="2*"/>
-                                <DataGridTextColumn Header="Datum" Binding="{Binding DatumKupovine, StringFormat=dd.MM.yyyy}" Width="*"/>
-                                <DataGridTextColumn Header="Ocena" Binding="{Binding Ocena}" Width="*"/>
-                                <DataGridTextColumn Header="Cena" Binding="{Binding Knjiga.Cena}" Width="*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_ISBN}" Binding="{Binding Knjiga.ISBN}" Width="*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_Naziv}" Binding="{Binding Knjiga.Naziv}" Width="2*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Kupovina_Datum_Label}" Binding="{Binding DatumKupovine, StringFormat=dd.MM.yyyy}" Width="*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Kupovina_Ocena}" Binding="{Binding Ocena}" Width="*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_Cena}" Binding="{Binding Knjiga.Cena}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
-
                         <StackPanel Grid.Row="2"
-                    HorizontalAlignment="Right"
-                    Margin="0,10,0,0">
+                                    HorizontalAlignment="Right"
+                                    Margin="0,10,0,0">
 
                             <TextBlock x:Name="txtProsecnaOcena"
-                       Text="Prosečna ocena: 0"
-                       FontWeight="SemiBold"
-                       Margin="0,2"/>
+                                       FontWeight="SemiBold"
+                                       Margin="0,2"/>
 
                             <TextBlock x:Name="txtUkupnaPotrosnja"
-                       Text="Potrošeno: 0 RSD"
-                       FontWeight="SemiBold"
-                       Margin="0,2"/>
+                                       FontWeight="SemiBold"
+                                       Margin="0,2"/>
                         </StackPanel>
-
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Želje" HorizontalAlignment="Left" Margin="-2,0,0,0" Width="41" Height="22" VerticalAlignment="Bottom">
+                <TabItem Header="{x:Static res:Strings.Tab_Zelje}">
                     <Grid Margin="10">
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-
                             <RowDefinition Height="*"/>
-
                         </Grid.RowDefinitions>
+
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <Button Content="Dodaj"
-                    Width="80"
-                    Margin="0,0,10,0"
-                    Click="BtnDodajZelju_Click"/>
+                            <Button Content="{x:Static res:Strings.Btn_Add}"
+                                    Width="80"
+                                    Margin="0,0,10,0"
+                                    Click="BtnDodajZelju_Click"/>
 
-                            <Button Content="Obriši"
-                    Width="80"
-                    Margin="0,0,10,0"
-                    Click="BtnObrisiZelju_Click"/>
+                            <Button Content="{x:Static res:Strings.Btn_DeleteItem}"
+                                    Width="80"
+                                    Margin="0,0,10,0"
+                                    Click="BtnObrisiZelju_Click"/>
 
-                            <Button Content="Kupovina"
-                    Width="100"
-                    Click="BtnKupovinaIzZelje_Click"/>
+                            <Button Content="{x:Static res:Strings.Btn_Purchase}"
+                                    Width="100"
+                                    Click="BtnKupovinaIzZelje_Click"/>
                         </StackPanel>
+
                         <DataGrid x:Name="dgListaZelja"
-                  Grid.Row="1"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectionMode="Single"
-                  Margin="0,5,0,5">
+                                  Grid.Row="1"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  Margin="0,5,0,5">
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ISBN"
-                                    Binding="{Binding ISBN}"
-                                    Width="*"/>
-
-                                <DataGridTextColumn Header="Naziv"
-                                    Binding="{Binding Naziv}"
-                                    Width="2*"/>
-
-                                <DataGridTextColumn Header="Autor"
-                                    Binding="{Binding Autori[0].PunoIme}"
-                                    Width="2*"/>
-
-                                <DataGridTextColumn Header="Izdavač"
-                                    Binding="{Binding Izdavac.Naziv}"
-                                    Width="2*"/>
-
-                                <DataGridTextColumn Header="Cena"
-                                    Binding="{Binding Cena}"
-                                    Width="*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_ISBN}" Binding="{Binding ISBN}" Width="*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_Naziv}" Binding="{Binding Naziv}" Width="2*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_Autori}" Binding="{Binding Autori[0].PunoIme}" Width="2*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_Izdavac}" Binding="{Binding Izdavac.Naziv}" Width="2*"/>
+                                <DataGridTextColumn Header="{x:Static res:Strings.Knjiga_Cena}" Binding="{Binding Cena}" Width="*"/>
                             </DataGrid.Columns>
-
                         </DataGrid>
 
                     </Grid>
                 </TabItem>
 
             </TabControl>
-
         </Grid>
     </Border>
 </Window>

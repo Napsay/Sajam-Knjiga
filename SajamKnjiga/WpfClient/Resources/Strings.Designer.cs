@@ -403,6 +403,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel purchase.
+        /// </summary>
+        public static string Btn_CancelPurchase {
+            get {
+                return ResourceManager.GetString("Btn_CancelPurchase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string Btn_Confirm {
@@ -417,6 +426,15 @@ namespace WpfClient.Resources {
         public static string Btn_Delete {
             get {
                 return ResourceManager.GetString("Btn_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Btn_DeleteItem {
+            get {
+                return ResourceManager.GetString("Btn_DeleteItem", resourceCulture);
             }
         }
         
@@ -462,6 +480,15 @@ namespace WpfClient.Resources {
         public static string Btn_Prkazi {
             get {
                 return ResourceManager.GetString("Btn_Prkazi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase.
+        /// </summary>
+        public static string Btn_Purchase {
+            get {
+                return ResourceManager.GetString("Btn_Purchase", resourceCulture);
             }
         }
         
@@ -826,6 +853,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Visitor.
+        /// </summary>
+        public static string IzmenaPosetiocaWindow_Title {
+            get {
+                return ResourceManager.GetString("IzmenaPosetiocaWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authors.
         /// </summary>
         public static string Knjiga_Autori {
@@ -930,6 +966,15 @@ namespace WpfClient.Resources {
         public static string Kupovina_Datum {
             get {
                 return ResourceManager.GetString("Kupovina_Datum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Kupovina_Datum_Label {
+            get {
+                return ResourceManager.GetString("Kupovina_Datum_Label", resourceCulture);
             }
         }
         
@@ -1141,6 +1186,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel purchase.
+        /// </summary>
+        public static string Msg_CancelPurchaseTitle {
+            get {
+                return ResourceManager.GetString("Msg_CancelPurchaseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chief must have at least 5 years of experience..
         /// </summary>
         public static string Msg_ChiefMinExperience {
@@ -1164,6 +1218,15 @@ namespace WpfClient.Resources {
         public static string Msg_ChiefSetSuccess {
             get {
                 return ResourceManager.GetString("Msg_ChiefSetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to cancel the purchase?.
+        /// </summary>
+        public static string Msg_ConfirmCancelPurchase {
+            get {
+                return ResourceManager.GetString("Msg_ConfirmCancelPurchase", resourceCulture);
             }
         }
         
@@ -1267,6 +1330,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while editing visitor data!.
+        /// </summary>
+        public static string Msg_EditVisitorError {
+            get {
+                return ResourceManager.GetString("Msg_EditVisitorError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error while saving data.
         /// </summary>
         public static string Msg_ErrorSavingData {
@@ -1326,6 +1398,24 @@ namespace WpfClient.Resources {
         public static string Msg_RemoveBookConfirm {
             get {
                 return ResourceManager.GetString("Msg_RemoveBookConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove the book from the wishlist?.
+        /// </summary>
+        public static string Msg_RemoveWishlistBookConfirm {
+            get {
+                return ResourceManager.GetString("Msg_RemoveWishlistBookConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove book.
+        /// </summary>
+        public static string Msg_RemoveWishlistBookTitle {
+            get {
+                return ResourceManager.GetString("Msg_RemoveWishlistBookTitle", resourceCulture);
             }
         }
         
@@ -1420,6 +1510,15 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select a book from the purchased books table..
+        /// </summary>
+        public static string Msg_SelectPurchasedBook {
+            get {
+                return ResourceManager.GetString("Msg_SelectPurchasedBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a visitor from the table..
         /// </summary>
         public static string Msg_SelectVisitor {
@@ -1434,6 +1533,15 @@ namespace WpfClient.Resources {
         public static string Msg_SelectVisitorForEdit {
             get {
                 return ResourceManager.GetString("Msg_SelectVisitorForEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select a book from the wishlist..
+        /// </summary>
+        public static string Msg_SelectWishlistBook {
+            get {
+                return ResourceManager.GetString("Msg_SelectWishlistBook", resourceCulture);
             }
         }
         
@@ -1600,6 +1708,42 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average rating: {0}.
+        /// </summary>
+        public static string Stat_ProsecnaOcena {
+            get {
+                return ResourceManager.GetString("Stat_ProsecnaOcena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average rating: 0.
+        /// </summary>
+        public static string Stat_ProsecnaOcenaZero {
+            get {
+                return ResourceManager.GetString("Stat_ProsecnaOcenaZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total spent: {0} RSD.
+        /// </summary>
+        public static string Stat_UkupnaPotrosnja {
+            get {
+                return ResourceManager.GetString("Stat_UkupnaPotrosnja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total spent: 0 RSD.
+        /// </summary>
+        public static string Stat_UkupnaPotrosnjaZero {
+            get {
+                return ResourceManager.GetString("Stat_UkupnaPotrosnjaZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Book Fair.
         /// </summary>
         public static string Status_BookFair {
@@ -1663,11 +1807,29 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchased.
+        /// </summary>
+        public static string Tab_Kupljene {
+            get {
+                return ResourceManager.GetString("Tab_Kupljene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visitors.
         /// </summary>
         public static string Tab_Posetioci {
             get {
                 return ResourceManager.GetString("Tab_Posetioci", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wishlist.
+        /// </summary>
+        public static string Tab_Zelje {
+            get {
+                return ResourceManager.GetString("Tab_Zelje", resourceCulture);
             }
         }
     }

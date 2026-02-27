@@ -1,26 +1,15 @@
 ﻿using Core.DAO;
 using Core.Models;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Core.Models;
-using Core.Utils;
+using WpfClient.Resources; // LOKALIZACIJA
 
 namespace WpfClient
 {
-    /// <summary>
-    /// Interaction logic for IzmenaPosetiocaWindow.xaml
-    /// </summary>
     public partial class IzmenaPosetiocaWindow : Window
     {
         private Posetilac _posetilac;
@@ -30,7 +19,6 @@ namespace WpfClient
 
         public IzmenaPosetiocaWindow(Posetilac posetilac, List<Knjiga> sveKnjige)
         {
-
             InitializeComponent();
             _posetilac = posetilac;
             AdresaDao adresaDao = new AdresaDao();
@@ -40,6 +28,7 @@ namespace WpfClient
             UcitajPodatke();
             UcitajListuZelja();
         }
+
         private void UcitajKupovine()
         {
             if (_posetilac == null)
@@ -47,7 +36,6 @@ namespace WpfClient
 
             dgKupljeneKnjige.ItemsSource = _posetilac.KupljeneKnjige;
             IzracunajStatistiku();
-            Console.WriteLine("Broj kupovina: " + _posetilac.KupljeneKnjige.Count);
         }
 
         private void UcitajListuZelja()
@@ -57,9 +45,9 @@ namespace WpfClient
 
             dgListaZelja.ItemsSource = _posetilac.ListaZelja;
         }
+
         private void UcitajPodatke()
         {
-
             txtBrClanskeKarte.Text = _posetilac.BrClanskeKarte;
             txtIme.Text = _posetilac.Ime;
             txtPrezime.Text = _posetilac.Prezime;
@@ -69,7 +57,6 @@ namespace WpfClient
 
             cmbStatus.SelectedIndex = (int)_posetilac.Status;
 
-
             if (_posetilac.Adresa != null)
             {
                 txtUlica.Text = _posetilac.Adresa.Ulica;
@@ -77,24 +64,23 @@ namespace WpfClient
                 txtGrad.Text = _posetilac.Adresa.Grad;
                 txtDrzava.Text = _posetilac.Adresa.Drzava;
             }
-
         }
+
         private void IzracunajStatistiku()
         {
-
             if (_posetilac == null)
             {
-                txtProsecnaOcena.Text = "Prosečna ocena: 0";
-                txtUkupnaPotrosnja.Text = "Potrošeno: 0 RSD";
+                txtProsecnaOcena.Text = Strings.Stat_ProsecnaOcenaZero;
+                txtUkupnaPotrosnja.Text = Strings.Stat_UkupnaPotrosnjaZero;
                 return;
             }
-            List<Kupovina> kupovine = _posetilac.KupljeneKnjige;
 
+            List<Kupovina> kupovine = _posetilac.KupljeneKnjige;
 
             if (kupovine == null || kupovine.Count == 0)
             {
-                txtProsecnaOcena.Text = "Prosečna ocena: 0";
-                txtUkupnaPotrosnja.Text = "Potrošeno: 0 RSD";
+                txtProsecnaOcena.Text = Strings.Stat_ProsecnaOcenaZero;
+                txtUkupnaPotrosnja.Text = Strings.Stat_UkupnaPotrosnjaZero;
                 return;
             }
 
@@ -102,28 +88,27 @@ namespace WpfClient
             double ukupnaPotrosnja = 0;
             int brojKupovina = 0;
 
-
             foreach (Kupovina kupovina in kupovine)
             {
                 zbirOcena += kupovina.Ocena;
                 brojKupovina++;
-
 
                 if (kupovina.Knjiga != null)
                 {
                     ukupnaPotrosnja += kupovina.Knjiga.Cena;
                 }
             }
+
             double prosecnaOcena = zbirOcena / brojKupovina;
-            txtProsecnaOcena.Text = "Prosečna ocena: " + prosecnaOcena.ToString("F2");
-            txtUkupnaPotrosnja.Text = "Potrošeno: " + ukupnaPotrosnja.ToString("F2") + " RSD";
+
+            txtProsecnaOcena.Text = string.Format(Strings.Stat_ProsecnaOcena, prosecnaOcena.ToString("F2"));
+            txtUkupnaPotrosnja.Text = string.Format(Strings.Stat_UkupnaPotrosnja, ukupnaPotrosnja.ToString("F2"));
         }
 
         private void BtnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
                 _posetilac.Ime = txtIme.Text;
                 _posetilac.Prezime = txtPrezime.Text;
                 _posetilac.DatumRodjenja = dpDatumRodjenja.SelectedDate.Value;
@@ -152,7 +137,11 @@ namespace WpfClient
             }
             catch
             {
-                MessageBox.Show("Greška pri izmeni podataka!");
+                MessageBox.Show(
+                    Strings.Msg_EditVisitorError,
+                    Strings.Msg_ErrorTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -165,15 +154,19 @@ namespace WpfClient
         {
             if (dgKupljeneKnjige.SelectedItem == null)
             {
-                MessageBox.Show("Morate označiti knjigu iz tabele kupljenih knjiga.");
+                MessageBox.Show(
+                    Strings.Msg_SelectPurchasedBook,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
             Kupovina selektovanaKupovina = (Kupovina)dgKupljeneKnjige.SelectedItem;
 
             MessageBoxResult rezultat = MessageBox.Show(
-                "Da li ste sigurni da želite da poništite kupovinu?",
-                "Poništi kupovinu",
+                Strings.Msg_ConfirmCancelPurchase,
+                Strings.Msg_CancelPurchaseTitle,
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
@@ -194,6 +187,66 @@ namespace WpfClient
             dgListaZelja.ItemsSource = _posetilac.ListaZelja;
 
             IzracunajStatistiku();
+        }
+
+        private void BtnObrisiZelju_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgListaZelja.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    Strings.Msg_SelectWishlistBook,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            Knjiga selektovanaKnjiga = (Knjiga)dgListaZelja.SelectedItem;
+
+            MessageBoxResult rezultat = MessageBox.Show(
+                Strings.Msg_RemoveWishlistBookConfirm,
+                Strings.Msg_RemoveWishlistBookTitle,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (rezultat != MessageBoxResult.Yes)
+                return;
+
+            _posetilac.ListaZelja.Remove(selektovanaKnjiga);
+            dgListaZelja.ItemsSource = null;
+            dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+        }
+
+        private void BtnKupovinaIzZelje_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgListaZelja.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    Strings.Msg_SelectWishlistBook,
+                    Strings.Msg_WarningTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            Knjiga selektovanaKnjiga = (Knjiga)dgListaZelja.SelectedItem;
+            KupovinaWindow dialog = new KupovinaWindow(selektovanaKnjiga);
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                Kupovina novaKupovina = new Kupovina(0, _posetilac, selektovanaKnjiga, dialog.DatumKupovine, dialog.Ocena, "");
+                _posetilac.KupljeneKnjige.Add(novaKupovina);
+                _posetilac.ListaZelja.Remove(selektovanaKnjiga);
+
+                dgKupljeneKnjige.ItemsSource = null;
+                dgKupljeneKnjige.ItemsSource = _posetilac.KupljeneKnjige;
+
+                dgListaZelja.ItemsSource = null;
+                dgListaZelja.ItemsSource = _posetilac.ListaZelja;
+
+                IzracunajStatistiku();
+            }
         }
 
         private void BtnDodajZelju_Click(object sender, RoutedEventArgs e)
@@ -238,62 +291,6 @@ namespace WpfClient
                 _posetilac.ListaZelja.Add(dialog.IzabranaKnjiga);
                 dgListaZelja.ItemsSource = null;
                 dgListaZelja.ItemsSource = _posetilac.ListaZelja;
-            }
-
-        }
-
-        private void BtnObrisiZelju_Click(object sender, RoutedEventArgs e)
-        {
-            if (dgListaZelja.SelectedItem == null)
-            {
-                MessageBox.Show(
-                    "Morate označiti knjigu iz liste želja.",
-                    "Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-                return;
-            }
-
-            Knjiga selektovanaKnjiga = (Knjiga)dgListaZelja.SelectedItem;
-
-            MessageBoxResult rezultat = MessageBox.Show(
-                "Da li ste sigurni da želite da uklonite knjigu iz liste želja?",
-                "Uklanjanje knjige",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-
-            if (rezultat != MessageBoxResult.Yes)
-            {
-                return;
-            }
-            _posetilac.ListaZelja.Remove(selektovanaKnjiga);
-            dgListaZelja.ItemsSource = null;
-            dgListaZelja.ItemsSource = _posetilac.ListaZelja;
-        }
-
-        private void BtnKupovinaIzZelje_Click(object sender, RoutedEventArgs e)
-        {
-            if (dgListaZelja.SelectedItem == null)
-            {
-                MessageBox.Show("Morate označiti knjigu iz liste želja.","Upozorenje",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-                return;
-            }
-            Knjiga selektovanaKnjiga = (Knjiga)dgListaZelja.SelectedItem;
-            KupovinaWindow dialog = new KupovinaWindow(selektovanaKnjiga);
-            dialog.Owner = this;
-
-            if (dialog.ShowDialog() == true)
-            {
-                Kupovina novaKupovina = new Kupovina(0, _posetilac, selektovanaKnjiga, dialog.DatumKupovine, dialog.Ocena, "");
-                _posetilac.KupljeneKnjige.Add(novaKupovina);
-                _posetilac.ListaZelja.Remove(selektovanaKnjiga);
-                dgKupljeneKnjige.ItemsSource = null;
-                dgKupljeneKnjige.ItemsSource = _posetilac.KupljeneKnjige;
-                dgListaZelja.ItemsSource = null;
-                dgListaZelja.ItemsSource = _posetilac.ListaZelja;
-                IzracunajStatistiku();
             }
         }
     }

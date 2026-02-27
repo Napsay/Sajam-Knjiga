@@ -654,4 +654,58 @@
   <data name="Msg_DeleteConfirmationTitle" xml:space="preserve">
     <value>Delete confirmation</value>
   </data>
+  <data name="IzmenaPosetiocaWindow_Title" xml:space="preserve">
+    <value>Edit Visitor</value>
+  </data>
+  <data name="Tab_Kupljene" xml:space="preserve">
+    <value>Purchased</value>
+  </data>
+  <data name="Tab_Zelje" xml:space="preserve">
+    <value>Wishlist</value>
+  </data>
+  <data name="Btn_CancelPurchase" xml:space="preserve">
+    <value>Cancel purchase</value>
+  </data>
+  <data name="Btn_DeleteItem" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Btn_Purchase" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+  <data name="Kupovina_Datum_Label" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Stat_ProsecnaOcena" xml:space="preserve">
+    <value>Average rating: {0}</value>
+  </data>
+  <data name="Stat_UkupnaPotrosnja" xml:space="preserve">
+    <value>Total spent: {0} RSD</value>
+  </data>
+  <data name="Msg_EditVisitorError" xml:space="preserve">
+    <value>Error while editing visitor data!</value>
+  </data>
+  <data name="Msg_SelectPurchasedBook" xml:space="preserve">
+    <value>You must select a book from the purchased books table.</value>
+  </data>
+  <data name="Msg_ConfirmCancelPurchase" xml:space="preserve">
+    <value>Are you sure you want to cancel the purchase?</value>
+  </data>
+  <data name="Msg_CancelPurchaseTitle" xml:space="preserve">
+    <value>Cancel purchase</value>
+  </data>
+  <data name="Msg_SelectWishlistBook" xml:space="preserve">
+    <value>You must select a book from the wishlist.</value>
+  </data>
+  <data name="Msg_RemoveWishlistBookConfirm" xml:space="preserve">
+    <value>Are you sure you want to remove the book from the wishlist?</value>
+  </data>
+  <data name="Msg_RemoveWishlistBookTitle" xml:space="preserve">
+    <value>Remove book</value>
+  </data>
+  <data name="Stat_ProsecnaOcenaZero" xml:space="preserve">
+    <value>Average rating: 0</value>
+  </data>
+  <data name="Stat_UkupnaPotrosnjaZero" xml:space="preserve">
+    <value>Total spent: 0 RSD</value>
+  </data>
 </root>
