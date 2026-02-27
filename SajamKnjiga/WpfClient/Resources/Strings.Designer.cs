@@ -268,6 +268,33 @@ namespace WpfClient.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string AutoriListaZelja_Close {
+            get {
+                return ResourceManager.GetString("AutoriListaZelja_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string AutoriListaZelja_Search {
+            get {
+                return ResourceManager.GetString("AutoriListaZelja_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authors with wishlist books.
+        /// </summary>
+        public static string AutoriListaZelja_Title {
+            get {
+                return ResourceManager.GetString("AutoriListaZelja_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ➕.
         /// </summary>
         public static string Btn_Add {

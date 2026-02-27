@@ -426,4 +426,13 @@
   <data name="Kolona_Naziv" xml:space="preserve">
     <value>Naziv</value>
   </data>
+  <data name="AutoriListaZelja_Title" xml:space="preserve">
+    <value>Autori sa knjigama na listi želja</value>
+  </data>
+  <data name="AutoriListaZelja_Search" xml:space="preserve">
+    <value>Pretraga</value>
+  </data>
+  <data name="AutoriListaZelja_Close" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
 </root>
