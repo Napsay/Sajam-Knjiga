@@ -106,14 +106,12 @@ namespace Core.DAO
         {
             foreach (var izdavac in _izdavaci)
             {
-                // Poveži šefa
                 if (izdavac.Sef != null)
                 {
                     var praviAutor = _autorDao.GetBySifra(izdavac.Sef.AutorID);
                     izdavac.Sef = praviAutor;
                 }
 
-                // Poveži listu autora
                 for (int i = 0; i < izdavac.SpisakAutora.Count; i++)
                 {
                     var praviAutor = _autorDao.GetBySifra(izdavac.SpisakAutora[i].AutorID);

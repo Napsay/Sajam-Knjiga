@@ -63,10 +63,10 @@ namespace WpfClient
         {
             InitializeComponent();
 
-            UcitajKnjige();
             UcitajPosetioce();
             UcitajAutore();
-            
+            UcitajKnjige();
+
             PokreniSat();
             OsveziStatusBar();
             CommandBindings.Add(new CommandBinding(
@@ -559,6 +559,7 @@ namespace WpfClient
             sveKnjige = listaKnjigaLocal;
             listaIzdavaca = listaIzdavacaLocal;
             sviPosetioci = listaPosetilacaLocal;
+
 
             _filteredKnjige = sveKnjige;
 

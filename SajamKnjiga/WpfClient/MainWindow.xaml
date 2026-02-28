@@ -111,13 +111,23 @@
             SelectionChanged="TabControl_SelectionChanged">
 
             <TabItem x:Name="TabItem_Posetioci" Header="Posetioci">
-                <StackPanel Orientation="Vertical" Margin="5">
-                    <Button x:Name="Btn_GridPosetioci" Content="Prikazi autore knjiga na listi želja posetioca"
-                            Width="250"
-                            HorizontalAlignment="Left"
-                            Margin="0,0,0,5"
-                            Click="BtnPrikaziAutore_Click"/>
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="Btn_GridPosetioci"
+                Content="Prikazi autore knjiga na listi želja posetioca"
+                Width="250"
+                HorizontalAlignment="Left"
+                Margin="0,0,0,5"
+                Click="BtnPrikaziAutore_Click"
+                Grid.Row="0"/>
+
                     <DataGrid x:Name="dgPosetioci"
+                  Grid.Row="1"
                   AutoGenerateColumns="False"
                   Margin="5"
                   RowBackground="White"
@@ -127,7 +137,7 @@
                   CanUserSortColumns="True"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
-                  RowHeight="25" 
+                  RowHeight="25"
                   Sorting="dgPosetioci_Sorting">
 
                         <DataGrid.ColumnHeaderStyle>
@@ -160,15 +170,18 @@
                                     SortMemberPath="Status"
                                     Width="100"/>
                             <DataGridTextColumn x:Name="Posetilac_GodinaClanstva"  Header="Godina članstva" 
-                                     Binding="{Binding GodineClanstvaPrikaz}" 
-                                     SortMemberPath ="Godina članstva"           />
+                                    Binding="{Binding GodineClanstvaPrikaz}" 
+                                    SortMemberPath ="Godina članstva"/>
                             <DataGridTextColumn x:Name="Posetilac_ProsecnaOcena" Header="Prosečna ocena" 
-                                     Binding="{Binding ProsecnaOcenaRec, StringFormat=F1}"
-                                     SortMemberPath ="Prosečna ocena"           />
+                                    Binding="{Binding ProsecnaOcenaRec, StringFormat=F1}"
+                                    SortMemberPath ="Prosečna ocena"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="10">
                         <Button x:Name="btnFirstPagePosetioci" Tag="Posetioci" Click="BtnFirstPage_Click" Content="&lt; Prva" Margin="5"/>
                         <Button Name="btnPrevPagePosetioci" Tag="Posetioci" Click="BtnPrevPage_Click" Content="&lt;&lt;" Margin="5"/>
                         <TextBlock Name="txtPosetiociPageInfo" VerticalAlignment="Center" Margin="5"/>
@@ -176,7 +189,7 @@
                         <Button x:Name="btnLastPagePosetioci" Tag="Posetioci" Click="BtnLastPage_Click" Content="Poslednja &gt;" Margin="5"/>
                     </StackPanel>
 
-                </StackPanel>
+                </Grid>
             </TabItem>
 
             <TabItem x:Name="TabItem_Autori" Header="Autori">

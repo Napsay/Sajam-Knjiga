@@ -18,8 +18,6 @@ namespace Core.Utils
         }
         public List<T> Load()
         {
-            // ukoliko fajl ne postoji napravi novi fajl i
-            // zatvori stream za pisanje u fajl
             if (!File.Exists(_fileName))
             {
                 FileStream fs = File.Create(_fileName);

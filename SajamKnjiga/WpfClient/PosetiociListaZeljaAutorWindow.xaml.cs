@@ -129,7 +129,6 @@ namespace WpfClient
             Posetilac_Adresa.Header = LocalizationManager.GetString("Posetilac_Adresa");
             Posetilac_Status.Header = LocalizationManager.GetString("Posetilac_Status");
 
-            Btn_Close.Content = LocalizationManager.GetString("Btn_Close");
             txtPretraga.Text = LocalizationManager.GetString("Search_Placeholder");
         }
     }
